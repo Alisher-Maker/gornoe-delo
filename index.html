@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Горное Дело: Квиз</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        .quiz-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; width: 100%; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #e67e22; padding-bottom: 10px; }
+        .question { font-size: 1.2em; margin-bottom: 20px; font-weight: bold; }
+        .options button { display: block; width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .options button:hover { background: #e67e22; color: white; }
+        #result { margin-top: 20px; font-weight: bold; color: #27ae60; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>⛏ Горный Квиз</h1>
+    <div id="quiz">
+        <div class="question" id="question">Загрузка вопроса...</div>
+        <div class="options" id="options"></div>
+    </div>
+    <div id="result"></div>
+</div>
+
+<script>
+    const quizData = [
+        { q: "Как называется совокупность работ по вскрытию и подготовке месторождения?", a: ["Горные работы", "Очистные работы", "Вскрышные работы"], correct: 0 },
+        { q: "Основной инструмент для разрушения породы при бурении?", a: ["Анкер", "Долото", "Ковш"], correct: 1 },
+        { q: "Вертикальная выработка, имеющая непосредственный выход на поверхность?", a: ["Штрек", "Квершлаг", "Ствол"], correct: 2 }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function loadQuiz() {
+        const qElement = document.getElementById('question');
+        const optElement = document.getElementById('options');
+        qElement.innerText = quizData[current].q;
+        optElement.innerHTML = '';
+        
+        quizData[current].a.forEach((ans, index) => {
+            const btn = document.createElement('button');
+            btn.innerText = ans;
+            btn.onclick = () => checkAnswer(index);
+            optElement.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(idx) {
+        if(idx === quizData[current].correct) score++;
+        current++;
+        if(current < quizData[current-1 < quizData.length ? quizData.length : 0]) {
+            // Исправленная логика перехода
+        }
+        
+        if(current < quizData.length) {
+            loadQuiz();
+        } else {
+            document.getElementById('quiz').innerHTML = "Квиз завершен!";
+            document.getElementById('result').innerText = `Твой результат: ${score} из ${quizData.length}`;
+        }
+    }
+
+    loadQuiz();
+</script>
+</body>
+</html>
