@@ -3,166 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Горный Портал | Обучение</title>
+    <title>Горный Портал</title>
     <style>
-        :root {
-            --primary: #e67e22; /* Оранжевый/Медный */
-            --dark: #2c3e50;    /* Угольный */
-            --light: #ecf0f1;
-            --bg: #1a1a1a;      /* Глубокий черный */
-        }
-
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); color: var(--light); }
-        
+        :root { --primary: #e67e22; --dark: #2c3e50; --light: #ecf0f1; --bg: #1a1a1a; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--light); }
         header { background: var(--dark); padding: 20px; text-align: center; border-bottom: 4px solid var(--primary); }
-        
-        nav { display: flex; justify-content: center; background: #34495e; sticky: top; }
-        nav button { background: none; border: none; color: white; padding: 15px 20px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        nav button:hover { background: var(--primary); }
-        nav button.active { border-bottom: 3px solid var(--primary); color: var(--primary); }
-
-        .container { max-width: 1000px; margin: 20px auto; padding: 20px; }
-        
-        /* Карточки лекций */
+        nav { display: flex; justify-content: center; background: #34495e; position: sticky; top: 0; z-index: 100; }
+        nav button { background: none; border: none; color: white; padding: 15px 20px; cursor: pointer; font-weight: bold; }
+        nav button:hover, nav button.active { background: var(--primary); }
+        .container { max-width: 900px; margin: 20px auto; padding: 20px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: #2c3e50; border-radius: 10px; padding: 20px; transition: 0.3s; cursor: pointer; border: 1px solid #444; }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .card h3 { color: var(--primary); margin-top: 0; }
-
-        /* Стили квиза */
-        #quiz-box { background: white; color: #333; padding: 30px; border-radius: 15px; display: none; }
-        .option-btn { display: block; width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; text-align: left; font-size: 16px; }
-        .option-btn:hover { border-color: var(--primary); background: #fff5eb; }
-        
+        .card { background: #2c3e50; border-radius: 10px; padding: 20px; transition: 0.3s; cursor: pointer; border: 1px solid #444; text-align: center; }
+        .card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .content-block { background: white; color: #333; padding: 30px; border-radius: 15px; line-height: 1.6; }
         .hidden { display: none; }
-        .progress-bar { height: 10px; background: #ddd; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
-        #progress-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.3s; }
+        .option-btn { display: block; width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; background: white; font-size: 16px; }
+        .option-btn:hover { border-color: var(--primary); background: #fff5eb; }
+        .back-btn { background: #7f8c8d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>⛏ ГОРНЫЙ ЦИФРОВОЙ КЛАСС</h1>
-    <p>Технологии БВР, Маркшейдерия, Машины и ТБ</p>
 </header>
 
-<nav id="main-nav">
-    <button onclick="showSection('home')" id="btn-home">ГЛАВНАЯ</button>
-    <button onclick="showSection('lectures')" id="btn-lectures">ЛЕКЦИИ</button>
-    <button onclick="showSection('quiz')" id="btn-quiz">ВИКТОРИНА (30 ВОПРОСОВ)</button>
+<nav>
+    <button onclick="showSection('home')">ГЛАВНАЯ</button>
+    <button onclick="showSection('lectures')">ОБУЧЕНИЕ</button>
+    <button onclick="showSection('quiz-menu')">ВИКТОРИНЫ</button>
 </nav>
 
 <div class="container">
     
     <div id="section-home">
-        <h2>Добро пожаловать, студент!</h2>
-        <p>Выбери раздел в меню выше, чтобы начать обучение или проверить свои знания в интерактивном тесте.</p>
-        <div class="grid">
-            <div class="card" onclick="showSection('lectures')"><h3>📖 Лекции</h3><p>Курс по 5 ключевым темам горного дела.</p></div>
-            <div class="card" onclick="showSection('quiz')"><h3>🎮 Квиз</h3><p>30 случайных вопросов для подготовки к зачету.</p></div>
-        </div>
+        <h2>Добро пожаловать!</h2>
+        <p>Выбери раздел "Обучение" для чтения материала или "Викторины" для проверки знаний.</p>
     </div>
 
     <div id="section-lectures" class="hidden">
-        <h2>Темы обучения</h2>
+        <h2>Выберите тему лекции:</h2>
         <div class="grid">
-            <div class="card"><h3>ТБ</h3><p>Техника безопасности при подземных и открытых работах.</p></div>
-            <div class="card"><h3>Маркшейдерия</h3><p>Геометризация недр и замеры выработок.</p></div>
-            <div class="card"><h3>Горное дело</h3><p>Основы разработки месторождений.</p></div>
-            <div class="card"><h3>Технологии БВР</h3><p>Буровзрывные работы: расчеты и безопасность.</p></div>
-            <div class="card"><h3>Горные машины</h3><p>Комбайны, самосвалы и буровые установки.</p></div>
+            <div class="card" onclick="openLecture('tb')"><h3>⚠️ ТБ</h3></div>
+            <div class="card" onclick="openLecture('mark')"><h3>📐 Маркшейдерия</h3></div>
+            <div class="card" onclick="openLecture('bvr')"><h3>💥 Технологии БВР</h3></div>
+            <div class="card" onclick="openLecture('machines')"><h3>🚜 Горные машины</h3></div>
         </div>
     </div>
 
-    <div id="section-quiz" class="hidden">
-        <div id="quiz-start">
-            <center>
-                <h2>Готов проверить себя?</h2>
-                <p>Тест содержит 30 случайных вопросов по всем темам.</p>
-                <button style="padding: 15px 40px; font-size: 20px;" onclick="startQuiz()">ПОЕХАЛИ! 🚀</button>
-            </center>
-        </div>
+    <div id="section-read-lecture" class="hidden">
+        <button class="back-btn" onclick="showSection('lectures')">← Назад к списку</button>
+        <div class="content-block" id="lecture-text">
+            </div>
+    </div>
 
-        <div id="quiz-box">
-            <div class="progress-bar"><div id="progress-fill"></div></div>
-            <div id="q-text" style="font-size: 20px; font-weight: bold; margin-bottom: 20px;">Вопрос</div>
+    <div id="section-quiz-menu" class="hidden">
+        <h2>Выберите тему теста:</h2>
+        <div class="grid">
+            <div class="card" onclick="prepQuiz('tb')"><h3>Тест по ТБ</h3></div>
+            <div class="card" onclick="prepQuiz('bvr')"><h3>Тест по БВР</h3></div>
+            <div class="card" onclick="prepQuiz('mark')"><h3>Тест по Маркшейдерии</h3></div>
+        </div>
+    </div>
+
+    <div id="section-quiz-play" class="hidden">
+        <div class="content-block">
+            <div id="q-text" style="font-size: 20px; font-weight: bold; margin-bottom: 20px;"></div>
             <div id="q-options"></div>
-            <p id="q-count" style="margin-top: 20px; color: #666;"></p>
+            <p id="q-count" style="color: #666; font-size: 14px;"></p>
         </div>
     </div>
 </div>
 
 <script>
-    // БАЗА ДАННЫХ (Здесь 30 вопросов)
-    const allQuestions = [
-        { q: "Что такое 'БВР'?", a: ["Буровзрывные работы", "Быстрая выработка руды", "Безопасность во время работы"], c: 0 },
-        { q: "Основной инструмент маркшейдера?", a: ["Отбойный молоток", "Тахеометр", "Экскаватор"], c: 1 },
-        { q: "Минимальный возраст для работы в шахте?", a: ["16 лет", "18 лет", "21 год"], c: 1 },
-        { q: "Что такое штрек?", a: ["Вертикальная выработка", "Горизонтальная выработка", "Наклонный тоннель"], c: 1 },
-        { q: "Цвет самоспасателя у горнорабочих?", a: ["Синий", "Красный/Оранжевый", "Зеленый"], c: 1 },
-        { q: "Для чего нужен детонатор?", a: ["Для бурения", "Для инициирования взрыва", "Для очистки воздуха"], c: 1 },
-        { q: "Какая машина используется для погрузки руды?", a: ["LHD (ПДМ)", "Тягач", "Вентилятор"], c: 0 },
-        // ... Добавь сюда остальные 23 вопроса в таком же формате ...
-    ];
-    
-    // Генерируем заглушки для примера до 30, чтобы код работал
-    for(let i=allQuestions.length+1; i<=30; i++) {
-        allQuestions.push({ q: "Вопрос №"+i+" по теме Горное дело?", a: ["Вариант А", "Верный вариант", "Вариант С"], c: 1 });
-    }
+    // МАТЕРИАЛЫ ЛЕКЦИЙ (позже заменим на твои)
+    const lecturesDB = {
+        tb: "<h2>Техника Безопасности</h2><p>Тут будет твой текст про ТБ...</p>",
+        mark: "<h2>Маркшейдерское дело</h2><p>Тут будет твой текст про замеры...</p>",
+        bvr: "<h2>Технологии БВР</h2><p>Тут будет текст про взрывчатку...</p>",
+        machines: "<h2>Горные машины</h2><p>Тут будет текст про комбайны...</p>"
+    };
 
-    let currentQuestions = [];
+    // БАЗА ВОПРОСОВ (Добавь по 30 штук в каждую категорию)
+    const questionsDB = {
+        tb: [
+            { q: "Что необходимо сделать перед началом смены в шахте?", a: ["Проверить самоспасатель", "Спеть песню", "Поспать"], c: 0 },
+            { q: "Основной газ, опасный в угольных шахтах?", a: ["Кислород", "Метан", "Аргон"], c: 1 }
+        ],
+        bvr: [
+            { q: "Какой прибор используется для подрыва?", a: ["Конденсаторная подрывная машинка", "Телефон", "Динамит"], c: 0 },
+            { q: "Что такое шпур?", a: ["Отверстие в породе", "Длинная шахта", "Инструмент"], c: 0 }
+        ],
+        mark: [
+            { q: "Что измеряет теодолит?", a: ["Углы", "Вес руды", "Температуру"], c: 0 }
+        ]
+    };
+
+    let currentSession = [];
     let currentIdx = 0;
     let score = 0;
 
     function showSection(id) {
-        ['home', 'lectures', 'quiz'].forEach(s => document.getElementById('section-'+s).classList.add('hidden'));
-        document.getElementById('section-'+id).classList.remove('hidden');
+        document.querySelectorAll('.container > div').forEach(div => div.classList.add('hidden'));
+        document.getElementById('section-' + id).classList.remove('hidden');
     }
 
-    function startQuiz() {
-        document.getElementById('quiz-start').classList.add('hidden');
-        document.getElementById('quiz-box').style.display = 'block';
-        // Перемешиваем вопросы
-        currentQuestions = allQuestions.sort(() => Math.random() - 0.5).slice(0, 30);
+    function openLecture(id) {
+        document.getElementById('lecture-text').innerHTML = lecturesDB[id];
+        showSection('read-lecture');
+    }
+
+    function prepQuiz(category) {
+        let rawQuestions = questionsDB[category] || [];
+        if (rawQuestions.length === 0) {
+            alert("Вопросы для этой темы скоро добавятся!");
+            return;
+        }
+        // Перемешиваем и берем до 30 (без нумерации внутри вопроса)
+        currentSession = rawQuestions.sort(() => Math.random() - 0.5).slice(0, 30);
         currentIdx = 0;
         score = 0;
-        showQuestion();
+        showSection('quiz-play');
+        displayQuestion();
     }
 
-    function showQuestion() {
-        const q = currentQuestions[currentIdx];
-        document.getElementById('q-text').innerText = q.q;
-        const optionsDiv = document.getElementById('q-options');
-        optionsDiv.innerHTML = '';
+    function displayQuestion() {
+        const qData = currentSession[currentIdx];
+        document.getElementById('q-text').innerText = qData.q;
+        const optDiv = document.getElementById('q-options');
+        optDiv.innerHTML = '';
         
-        q.a.forEach((ans, i) => {
+        qData.a.forEach((ans, i) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
             btn.innerText = ans;
-            btn.onclick = () => nextQuestion(i);
-            optionsDiv.appendChild(btn);
+            btn.onclick = () => handleAnswer(i);
+            optDiv.appendChild(btn);
         });
-
-        document.getElementById('q-count').innerText = `Вопрос ${currentIdx + 1} из 30`;
-        document.getElementById('progress-fill').style.width = (currentIdx / 30 * 100) + '%';
+        document.getElementById('q-count').innerText = `Вопрос ${currentIdx + 1} из ${currentSession.length}`;
     }
 
-    function nextQuestion(selected) {
-        if(selected === currentQuestions[currentIdx].c) score++;
+    function handleAnswer(selected) {
+        if (selected === currentSession[currentIdx].c) score++;
         currentIdx++;
-        if(currentIdx < 30) {
-            showQuestion();
+        if (currentIdx < currentSession.length) {
+            displayQuestion();
         } else {
-            finishQuiz();
+            document.getElementById('section-quiz-play').innerHTML = `
+                <div class="content-block" style="text-align:center">
+                    <h2>Тест завершен!</h2>
+                    <p style="font-size:40px">🎯 ${score} / ${currentSession.length}</p>
+                    <button class="back-btn" onclick="location.reload()">На главную</button>
+                </div>
+            `;
         }
-    }
-
-    function finishQuiz() {
-        document.getElementById('quiz-box').innerHTML = `
-            <h2>Результат: ${score} из 30</h2>
-            <p>${score > 25 ? "Отлично! Ты настоящий горный инженер!" : "Нужно еще подучить теорию."}</p>
-            <button onclick="location.reload()">Вернуться на главную</button>
-        `;
     }
 </script>
 </body>
