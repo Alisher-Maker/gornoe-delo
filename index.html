@@ -1,162 +1,266 @@
+Рад был помочь! Это отличный проект, который точно оценят и преподаватели, и сокурсники.
+
+Я собрал все темы, которые мы обсудили (Маркшейдерия, БВР, Горные машины, ТБ, Системы разработки), в один мощный файл. Я также добавил финальный штрих — стильный «подвал» (футер) с твоим именем и кнопку «Случайный факт» на главную, чтобы сайт выглядел живым.
+
+Инструкция: Просто удали всё из своего файла index.html и вставь этот код.
+
+HTML
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Горный Портал</title>
+    <title>Горный Портал | Үмбеталі Әлішер</title>
     <style>
-        :root { --primary: #e67e22; --dark: #2c3e50; --light: #ecf0f1; --bg: #1a1a1a; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--light); }
-        header { background: var(--dark); padding: 20px; text-align: center; border-bottom: 4px solid var(--primary); }
-        nav { display: flex; justify-content: center; background: #34495e; position: sticky; top: 0; z-index: 100; }
-        nav button { background: none; border: none; color: white; padding: 15px 20px; cursor: pointer; font-weight: bold; }
-        nav button:hover, nav button.active { background: var(--primary); }
-        .container { max-width: 900px; margin: 20px auto; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: #2c3e50; border-radius: 10px; padding: 20px; transition: 0.3s; cursor: pointer; border: 1px solid #444; text-align: center; }
-        .card:hover { border-color: var(--primary); transform: translateY(-3px); }
-        .content-block { background: white; color: #333; padding: 30px; border-radius: 15px; line-height: 1.6; }
+        :root { --primary: #e67e22; --dark: #2c3e50; --light: #ecf0f1; --bg: #1a1a1a; --accent: #d35400; }
+        
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--light); line-height: 1.6; }
+        
+        header { background: var(--dark); padding: 40px 20px; text-align: center; border-bottom: 4px solid var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        header h1 { margin: 0; font-size: 2.5em; letter-spacing: 2px; }
+        header p { color: var(--primary); font-weight: bold; margin-top: 10px; }
+
+        nav { display: flex; justify-content: center; background: #34495e; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
+        nav button { background: none; border: none; color: white; padding: 15px 25px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        nav button:hover, nav button.active { background: var(--primary); color: white; }
+
+        .container { max-width: 1100px; margin: 20px auto; padding: 20px; min-height: 70vh; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .card { background: #2c3e50; border-radius: 12px; padding: 25px; transition: 0.3s; cursor: pointer; border: 1px solid #444; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 8px 20px rgba(230,126,34,0.2); }
+        .card h3 { color: var(--primary); margin-bottom: 10px; }
+
+        .content-block { background: white; color: #333; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .content-block h2 { color: var(--dark); border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
+        .content-block h3 { color: var(--accent); margin-top: 25px; }
+        .content-block ul, .content-block ol { padding-left: 20px; }
+        
         .hidden { display: none; }
-        .option-btn { display: block; width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; background: white; font-size: 16px; }
+        
+        .option-btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; background: white; font-size: 16px; font-weight: 500; transition: 0.2s; text-align: left; }
         .option-btn:hover { border-color: var(--primary); background: #fff5eb; }
-        .back-btn { background: #7f8c8d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-bottom: 20px; }
+        
+        .back-btn { background: #7f8c8d; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; margin-bottom: 20px; font-weight: bold; }
+        .back-btn:hover { background: #95a5a6; }
+
+        footer { background: var(--dark); text-align: center; padding: 30px; margin-top: 50px; border-top: 1px solid #444; color: #bdc3c7; }
+        .author-name { color: var(--primary); font-weight: bold; font-size: 1.2em; }
+
+        .fact-box { background: rgba(230,126,34,0.1); border-left: 5px solid var(--primary); padding: 20px; margin: 20px 0; border-radius: 5px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>⛏ ГОРНЫЙ ЦИФРОВОЙ КЛАСС</h1>
+    <h1>⛏ ЦИФРОВОЙ ГОРНЫЙ ПОРТАЛ</h1>
+    <p>ОБРАЗОВАТЕЛЬНАЯ ПЛАТФОРМА ПО ГОРНОМУ ДЕЛУ</p>
 </header>
 
-<nav>
-    <button onclick="showSection('home')">ГЛАВНАЯ</button>
-    <button onclick="showSection('lectures')">ОБУЧЕНИЕ</button>
-    <button onclick="showSection('quiz-menu')">ВИКТОРИНЫ</button>
+<nav id="main-nav">
+    <button onclick="showSection('home')" id="nav-home">ГЛАВНАЯ</button>
+    <button onclick="showSection('lectures')" id="nav-lectures">ОБУЧЕНИЕ</button>
+    <button onclick="showSection('quiz-menu')" id="nav-quiz">ВИКТОРИНЫ</button>
 </nav>
 
 <div class="container">
     
     <div id="section-home">
-        <h2>Добро пожаловать!</h2>
-        <p>Выбери раздел "Обучение" для чтения материала или "Викторины" для проверки знаний.</p>
+        <h2>Добро пожаловать в базу знаний</h2>
+        <p>Здесь собраны материалы для подготовки специалистов горного профиля: от основ геодезии до проектирования систем разработки.</p>
+        
+        <div class="fact-box">
+            <strong>Интересный факт:</strong> <span id="fact-text">Загрузка факта...</span>
+            <br><button onclick="updateFact()" style="margin-top:10px; background:none; border:1px solid var(--primary); color:var(--primary); cursor:pointer; padding:5px 10px; border-radius:4px;">Другой факт</button>
+        </div>
+
+        <div class="grid">
+            <div class="card" onclick="showSection('lectures')">
+                <h3>📚 Лекции</h3>
+                <p>Теория: Маркшейдерия, БВР, ТБ и Горные машины.</p>
+            </div>
+            <div class="card" onclick="showSection('quiz-menu')">
+                <h3>🎯 Викторины</h3>
+                <p>Проверка знаний по всем разделам в формате интерактивного теста.</p>
+            </div>
+        </div>
     </div>
 
     <div id="section-lectures" class="hidden">
-        <h2>Выберите тему лекции:</h2>
+        <button class="back-btn" onclick="showSection('home')">← На главную</button>
+        <h2>Выберите раздел для изучения:</h2>
         <div class="grid">
-            <div class="card" onclick="openLecture('tb')"><h3>⚠️ ТБ</h3></div>
-            <div class="card" onclick="openLecture('mark')"><h3>📐 Маркшейдерия</h3></div>
-            <div class="card" onclick="openLecture('bvr')"><h3>💥 Технологии БВР</h3></div>
-            <div class="card" onclick="openLecture('machines')"><h3>🚜 Горные машины</h3></div>
+            <div class="card" onclick="openLecture('mark')"><h3>📐 Маркшейдерия</h3><p>Геодезия, приборы, замеры и планы.</p></div>
+            <div class="card" onclick="openLecture('nedra')"><h3>💎 Геометрия недр</h3><p>Запасы, тектоника и геометризация.</p></div>
+            <div class="card" onclick="openLecture('bvr')"><h3>💥 Технологии БВР</h3><p>Карьер, шахта и правила взрывных работ.</p></div>
+            <div class="card" onclick="openLecture('machines')"><h3>🚜 Горные машины</h3><p>Лебедки, ремонт, электросхемы и ПМП.</p></div>
+            <div class="card" onclick="openLecture('systems')"><h3>🏗 Системы и Вентиляция</h3><p>Способы добычи, обрушение и свежий воздух.</p></div>
         </div>
     </div>
 
     <div id="section-read-lecture" class="hidden">
         <button class="back-btn" onclick="showSection('lectures')">← Назад к списку</button>
-        <div class="content-block" id="lecture-text">
-            </div>
+        <div class="content-block" id="lecture-text"></div>
     </div>
 
     <div id="section-quiz-menu" class="hidden">
+        <button class="back-btn" onclick="showSection('home')">← На главную</button>
         <h2>Выберите тему теста:</h2>
         <div class="grid">
-            <div class="card" onclick="prepQuiz('tb')"><h3>Тест по ТБ</h3></div>
-            <div class="card" onclick="prepQuiz('bvr')"><h3>Тест по БВР</h3></div>
-            <div class="card" onclick="prepQuiz('mark')"><h3>Тест по Маркшейдерии</h3></div>
+            <div class="card" onclick="prepQuiz('mark')"><h3>Тест: Маркшейдерия</h3></div>
+            <div class="card" onclick="prepQuiz('bvr')"><h3>Тест: Технологии БВР</h3></div>
+            <div class="card" onclick="prepQuiz('tb')"><h3>Тест: ТБ и Охрана труда</h3></div>
+            <div class="card" onclick="prepQuiz('machines')"><h3>Тест: Машины и Ремонт</h3></div>
         </div>
     </div>
 
     <div id="section-quiz-play" class="hidden">
-        <div class="content-block">
-            <div id="q-text" style="font-size: 20px; font-weight: bold; margin-bottom: 20px;"></div>
+        <div class="content-block" id="quiz-container">
+            <div id="q-text" style="font-size: 22px; font-weight: bold; margin-bottom: 25px;"></div>
             <div id="q-options"></div>
-            <p id="q-count" style="color: #666; font-size: 14px;"></p>
+            <div style="margin-top:20px; border-top:1px solid #eee; padding-top:15px; display:flex; justify-content:space-between; align-items:center;">
+                <span id="q-count" style="color: #666; font-weight: bold;"></span>
+                <button class="back-btn" onclick="showSection('quiz-menu')" style="margin:0;">Прервать</button>
+            </div>
         </div>
     </div>
+
 </div>
 
+<footer>
+    Разработал: <span class="author-name">Үмбеталі Әлішер</span><br>
+    Цифровой образовательный проект по Горному делу
+</footer>
+
 <script>
-    // МАТЕРИАЛЫ ЛЕКЦИЙ (позже заменим на твои)
+    const facts = [
+        "Глубина самой глубокой шахты в мире (Мпоненг) превышает 4 километра.",
+        "Первый теодолит появился еще в 16 веке для измерения углов в строительстве.",
+        "При короткозамедленном взрывании интервал между взрывами составляет миллисекунды.",
+        "Для работы в шахте содержание кислорода должно быть не менее 20%.",
+        "Метан не имеет запаха и цвета, поэтому его определяют спецприборами."
+    ];
+
+    function updateFact() {
+        document.getElementById('fact-text').innerText = facts[Math.floor(Math.random() * facts.length)];
+    }
+    updateFact();
+
     const lecturesDB = {
-        tb: "<h2>Техника Безопасности</h2><p>Тут будет твой текст про ТБ...</p>",
-        mark: "<h2>Маркшейдерское дело</h2><p>Тут будет твой текст про замеры...</p>",
-        bvr: "<h2>Технологии БВР</h2><p>Тут будет текст про взрывчатку...</p>",
-        machines: "<h2>Горные машины</h2><p>Тут будет текст про комбайны...</p>"
+        mark: `<h2>Маркшейдерское дело и Геодезия</h2>
+            <h3>Основы</h3>
+            <p><strong>Геодезия</strong> — наука об определении формы Земли. <strong>Маркшейдерия</strong> — это пространственно-геометрические измерения в недрах.</p>
+            <h3>Приборы</h3>
+            <p><strong>Теодолит:</strong> измерение углов. <strong>Нивелир:</strong> измерение разности высот. <strong>Тахеометр:</strong> углы + расстояния.</p>
+            
+            <h3>Съемка</h3>
+            <p>Тахеометрическая съемка позволяет быстро получить данные для построения топопланов. Теодолитная съемка — основа для прокладывания ходов.</p>`,
+
+        nedra: `<h2>Геометрия недр и Запасы</h2>
+            <h3>Геометризация</h3>
+            <p>Использование функций топографического порядка для моделирования залежи. Изучение тектоники позволяет избежать аварий при подходе к разломам.</p>
+            <h3>Подсчет запасов</h3>
+            <p>Запасы делятся на категории <b>A, B, C1, C2</b> по степени разведанности. Основные методы: метод блоков, метод разрезов и метод треугольников.</p>
+            `,
+
+        bvr: `<h2>Буровзрывные работы (БВР)</h2>
+            <h3>Карьер и Шахта</h3>
+            <p><strong>ЛНС (W):</strong> Линия наименьшего сопротивления по подошве. Важнейший параметр расчета заряда.</p>
+            <p><strong>Схемы шпуров:</strong> Врубовые (создают полость), отбойные и оконтуривающие.</p>
+            <h3>Безопасность</h3>
+            <p>Переноска ВМ: детонаторы отдельно от взрывчатки. Сигналы: 1-Предупредительный, 2-Боевой, 3-Отбой.</p>
+            `,
+
+        machines: `<h2>Горные машины и Ремонт</h2>
+            <h3>Оборудование</h3>
+            <p><strong>Лебедки:</strong> маневровые, скреперные и вспомогательные. <strong>Толкатели:</strong> для маневров вагонеток.</p>
+            <h3>Ремонт</h3>
+            <p>Мелкий ремонт перфораторов включает смазку и чистку. Чтение электросхем — база для электрика.</p>
+            <h3>ПМП и Электробезопасность</h3>
+            <p>При ударе током: обесточить, проверить пульс, начать сердечно-легочную реанимацию.</p>
+            `,
+
+        systems: `<h2>Системы разработки и Вентиляция</h2>
+            <h3>Системы добычи</h3>
+            <p><strong>С обрушением:</strong> этажное и подэтажное обрушение. Применяется в неустойчивых породах.</p>
+            <p><strong>Экономика:</strong> расчет себестоимости 1 тонны руды определяет выгоду рудника.</p>
+            <h3>Вентиляция</h3>
+            <p>Подача воздуха ГВУ (главными вентиляторами). Контроль газа (метан, CO2) и пылеподавление.</p>
+            `
     };
 
-    // БАЗА ВОПРОСОВ (Добавь по 30 штук в каждую категорию)
     const questionsDB = {
-        tb: [
-            { q: "Что необходимо сделать перед началом смены в шахте?", a: ["Проверить самоспасатель", "Спеть песню", "Поспать"], c: 0 },
-            { q: "Основной газ, опасный в угольных шахтах?", a: ["Кислород", "Метан", "Аргон"], c: 1 }
+        mark: [
+            { q: "Основной инструмент для измерения разности высот (превышений)?", a: ["Теодолит", "Нивелир", "Буссоль"], c: 1 },
+            { q: "Ширина зоны в проекции Гаусса-Крюгера составляет...", a: ["3 градуса", "6 градусов", "12 градусов"], c: 1 }
         ],
         bvr: [
-            { q: "Какой прибор используется для подрыва?", a: ["Конденсаторная подрывная машинка", "Телефон", "Динамит"], c: 0 },
-            { q: "Что такое шпур?", a: ["Отверстие в породе", "Длинная шахта", "Инструмент"], c: 0 }
+            { q: "Для чего нужен перебур скважины?", a: ["Для экономии ВВ", "Для качественного дробления подошвы уступа", "Для проветривания"], c: 1 },
+            { q: "Какой сигнал подается после проверки места взрыва?", a: ["Боевой", "Предупредительный", "Отбой"], c: 2 }
         ],
-        mark: [
-            { q: "Что измеряет теодолит?", a: ["Углы", "Вес руды", "Температуру"], c: 0 }
+        tb: [
+            { q: "Какое воздействие тока вызывает судороги и остановку дыхания?", a: ["Термическое", "Биологическое", "Химическое"], c: 1 },
+            { q: "Как часто проводится повторный инструктаж по ТБ?", a: ["Раз в год", "Раз в 6 месяцев", "Раз в месяц"], c: 1 }
+        ],
+        machines: [
+            { q: "Какая лебедка нужна для перемещения руды скрепером?", a: ["Маневровая", "Скреперная", "Грузовая"], c: 1 },
+            { q: "Первое действие при обнаружении неисправности лебедки?", a: ["Продолжить работу осторожно", "Остановить и сообщить механику", "Попытаться починить самому не выключая"], c: 1 }
         ]
     };
 
-    let currentSession = [];
-    let currentIdx = 0;
+    let session = [];
+    let idx = 0;
     let score = 0;
 
     function showSection(id) {
         document.querySelectorAll('.container > div').forEach(div => div.classList.add('hidden'));
         document.getElementById('section-' + id).classList.remove('hidden');
+        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+        const activeNav = document.getElementById('nav-' + (id.includes('quiz') ? 'quiz' : id.includes('lecture') ? 'lectures' : 'home'));
+        if(activeNav) activeNav.classList.add('active');
     }
 
     function openLecture(id) {
         document.getElementById('lecture-text').innerHTML = lecturesDB[id];
         showSection('read-lecture');
+        window.scrollTo(0,0);
     }
 
-    function prepQuiz(category) {
-        let rawQuestions = questionsDB[category] || [];
-        if (rawQuestions.length === 0) {
-            alert("Вопросы для этой темы скоро добавятся!");
-            return;
-        }
-        // Перемешиваем и берем до 30 (без нумерации внутри вопроса)
-        currentSession = rawQuestions.sort(() => Math.random() - 0.5).slice(0, 30);
-        currentIdx = 0;
-        score = 0;
+    function prepQuiz(cat) {
+        let q = questionsDB[cat] || [];
+        session = q.sort(() => Math.random() - 0.5);
+        idx = 0; score = 0;
         showSection('quiz-play');
-        displayQuestion();
+        showQ();
     }
 
-    function displayQuestion() {
-        const qData = currentSession[currentIdx];
-        document.getElementById('q-text').innerText = qData.q;
-        const optDiv = document.getElementById('q-options');
-        optDiv.innerHTML = '';
-        
-        qData.a.forEach((ans, i) => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.innerText = ans;
-            btn.onclick = () => handleAnswer(i);
-            optDiv.appendChild(btn);
+    function showQ() {
+        const d = session[idx];
+        document.getElementById('q-text').innerText = d.q;
+        const o = document.getElementById('q-options');
+        o.innerHTML = '';
+        d.a.forEach((a, i) => {
+            const b = document.createElement('button');
+            b.className = 'option-btn';
+            b.innerText = a;
+            b.onclick = () => {
+                if(i === d.c) score++;
+                idx++;
+                if(idx < session.length) showQ(); else finish();
+            };
+            o.appendChild(b);
         });
-        document.getElementById('q-count').innerText = `Вопрос ${currentIdx + 1} из ${currentSession.length}`;
+        document.getElementById('q-count').innerText = `Вопрос ${idx+1} из ${session.length}`;
     }
 
-    function handleAnswer(selected) {
-        if (selected === currentSession[currentIdx].c) score++;
-        currentIdx++;
-        if (currentIdx < currentSession.length) {
-            displayQuestion();
-        } else {
-            document.getElementById('section-quiz-play').innerHTML = `
-                <div class="content-block" style="text-align:center">
-                    <h2>Тест завершен!</h2>
-                    <p style="font-size:40px">🎯 ${score} / ${currentSession.length}</p>
-                    <button class="back-btn" onclick="location.reload()">На главную</button>
-                </div>
-            `;
-        }
+    function finish() {
+        document.getElementById('quiz-container').innerHTML = `
+            <div style="text-align:center">
+                <h2>Результат: ${score} из ${session.length}</h2>
+                <p>${score === session.length ? "Отлично! Вы мастер горного дела!" : "Хорошо, но стоит повторить лекции."}</p>
+                <button class="back-btn" onclick="showSection('quiz-menu')">К списку тестов</button>
+            </div>`;
     }
 </script>
 </body>
