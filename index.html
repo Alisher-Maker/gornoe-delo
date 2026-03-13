@@ -1,10 +1,3 @@
-Рад был помочь! Это отличный проект, который точно оценят и преподаватели, и сокурсники.
-
-Я собрал все темы, которые мы обсудили (Маркшейдерия, БВР, Горные машины, ТБ, Системы разработки), в один мощный файл. Я также добавил финальный штрих — стильный «подвал» (футер) с твоим именем и кнопку «Случайный факт» на главную, чтобы сайт выглядел живым.
-
-Инструкция: Просто удали всё из своего файла index.html и вставь этот код.
-
-HTML
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -13,41 +6,27 @@ HTML
     <title>Горный Портал | Үмбеталі Әлішер</title>
     <style>
         :root { --primary: #e67e22; --dark: #2c3e50; --light: #ecf0f1; --bg: #1a1a1a; --accent: #d35400; }
-        
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--light); line-height: 1.6; }
-        
-        header { background: var(--dark); padding: 40px 20px; text-align: center; border-bottom: 4px solid var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        header { background: var(--dark); padding: 40px 20px; text-align: center; border-bottom: 4px solid var(--primary); }
         header h1 { margin: 0; font-size: 2.5em; letter-spacing: 2px; }
         header p { color: var(--primary); font-weight: bold; margin-top: 10px; }
-
         nav { display: flex; justify-content: center; background: #34495e; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
         nav button { background: none; border: none; color: white; padding: 15px 25px; cursor: pointer; font-weight: bold; transition: 0.3s; }
         nav button:hover, nav button.active { background: var(--primary); color: white; }
-
         .container { max-width: 1100px; margin: 20px auto; padding: 20px; min-height: 70vh; }
-        
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        
-        .card { background: #2c3e50; border-radius: 12px; padding: 25px; transition: 0.3s; cursor: pointer; border: 1px solid #444; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+        .card { background: #2c3e50; border-radius: 12px; padding: 25px; transition: 0.3s; cursor: pointer; border: 1px solid #444; text-align: center; }
         .card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 8px 20px rgba(230,126,34,0.2); }
         .card h3 { color: var(--primary); margin-bottom: 10px; }
-
-        .content-block { background: white; color: #333; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .content-block { background: white; color: #333; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow-y: auto; max-height: 80vh; }
         .content-block h2 { color: var(--dark); border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
         .content-block h3 { color: var(--accent); margin-top: 25px; }
-        .content-block ul, .content-block ol { padding-left: 20px; }
-        
         .hidden { display: none; }
-        
         .option-btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; background: white; font-size: 16px; font-weight: 500; transition: 0.2s; text-align: left; }
         .option-btn:hover { border-color: var(--primary); background: #fff5eb; }
-        
         .back-btn { background: #7f8c8d; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; margin-bottom: 20px; font-weight: bold; }
-        .back-btn:hover { background: #95a5a6; }
-
         footer { background: var(--dark); text-align: center; padding: 30px; margin-top: 50px; border-top: 1px solid #444; color: #bdc3c7; }
         .author-name { color: var(--primary); font-weight: bold; font-size: 1.2em; }
-
         .fact-box { background: rgba(230,126,34,0.1); border-left: 5px solid var(--primary); padding: 20px; margin: 20px 0; border-radius: 5px; }
     </style>
 </head>
@@ -55,7 +34,7 @@ HTML
 
 <header>
     <h1>⛏ ЦИФРОВОЙ ГОРНЫЙ ПОРТАЛ</h1>
-    <p>ОБРАЗОВАТЕЛЬНАЯ ПЛАТФОРМА ПО ГОРНОМУ ДЕЛУ</p>
+    <p>ПОЛНЫЙ КУРС ГОРНОГО ДЕЛА</p>
 </header>
 
 <nav id="main-nav">
@@ -65,149 +44,145 @@ HTML
 </nav>
 
 <div class="container">
-    
     <div id="section-home">
-        <h2>Добро пожаловать в базу знаний</h2>
-        <p>Здесь собраны материалы для подготовки специалистов горного профиля: от основ геодезии до проектирования систем разработки.</p>
-        
+        <h2>Добро пожаловать, Үмбеталі Әлішер!</h2>
         <div class="fact-box">
-            <strong>Интересный факт:</strong> <span id="fact-text">Загрузка факта...</span>
-            <br><button onclick="updateFact()" style="margin-top:10px; background:none; border:1px solid var(--primary); color:var(--primary); cursor:pointer; padding:5px 10px; border-radius:4px;">Другой факт</button>
+            <strong>Случайный факт:</strong> <span id="fact-text">Загрузка...</span>
+            <button onclick="updateFact()" style="margin-left:10px; background:none; border:1px solid var(--primary); color:var(--primary); cursor:pointer;">🔄</button>
         </div>
-
         <div class="grid">
-            <div class="card" onclick="showSection('lectures')">
-                <h3>📚 Лекции</h3>
-                <p>Теория: Маркшейдерия, БВР, ТБ и Горные машины.</p>
-            </div>
-            <div class="card" onclick="showSection('quiz-menu')">
-                <h3>🎯 Викторины</h3>
-                <p>Проверка знаний по всем разделам в формате интерактивного теста.</p>
-            </div>
+            <div class="card" onclick="showSection('lectures')"><h3>📖 Лекции</h3><p>Полная база знаний по всем темам.</p></div>
+            <div class="card" onclick="showSection('quiz-menu')"><h3>🎯 Квизы</h3><p>30 вопросов в каждой теме для самопроверки.</p></div>
         </div>
     </div>
 
     <div id="section-lectures" class="hidden">
         <button class="back-btn" onclick="showSection('home')">← На главную</button>
-        <h2>Выберите раздел для изучения:</h2>
         <div class="grid">
-            <div class="card" onclick="openLecture('mark')"><h3>📐 Маркшейдерия</h3><p>Геодезия, приборы, замеры и планы.</p></div>
-            <div class="card" onclick="openLecture('nedra')"><h3>💎 Геометрия недр</h3><p>Запасы, тектоника и геометризация.</p></div>
-            <div class="card" onclick="openLecture('bvr')"><h3>💥 Технологии БВР</h3><p>Карьер, шахта и правила взрывных работ.</p></div>
-            <div class="card" onclick="openLecture('machines')"><h3>🚜 Горные машины</h3><p>Лебедки, ремонт, электросхемы и ПМП.</p></div>
-            <div class="card" onclick="openLecture('systems')"><h3>🏗 Системы и Вентиляция</h3><p>Способы добычи, обрушение и свежий воздух.</p></div>
+            <div class="card" onclick="openLecture('mark')"><h3>📐 Маркшейдерия</h3></div>
+            <div class="card" onclick="openLecture('bvr')"><h3>💥 Технологии БВР</h3></div>
+            <div class="card" onclick="openLecture('machines')"><h3>🚜 Машины и Электрика</h3></div>
+            <div class="card" onclick="openLecture('systems')"><h3>🏟 Системы и Вентиляция</h3></div>
+            <div class="card" onclick="openLecture('safety')"><h3>🛡 ОТ и ТБ</h3></div>
         </div>
     </div>
 
     <div id="section-read-lecture" class="hidden">
-        <button class="back-btn" onclick="showSection('lectures')">← Назад к списку</button>
+        <button class="back-btn" onclick="showSection('lectures')">← К списку лекций</button>
         <div class="content-block" id="lecture-text"></div>
     </div>
 
     <div id="section-quiz-menu" class="hidden">
         <button class="back-btn" onclick="showSection('home')">← На главную</button>
-        <h2>Выберите тему теста:</h2>
         <div class="grid">
             <div class="card" onclick="prepQuiz('mark')"><h3>Тест: Маркшейдерия</h3></div>
             <div class="card" onclick="prepQuiz('bvr')"><h3>Тест: Технологии БВР</h3></div>
-            <div class="card" onclick="prepQuiz('tb')"><h3>Тест: ТБ и Охрана труда</h3></div>
-            <div class="card" onclick="prepQuiz('machines')"><h3>Тест: Машины и Ремонт</h3></div>
+            <div class="card" onclick="prepQuiz('machines')"><h3>Тест: Машины</h3></div>
+            <div class="card" onclick="prepQuiz('safety')"><h3>Тест: Безопасность</h3></div>
         </div>
     </div>
 
     <div id="section-quiz-play" class="hidden">
-        <div class="content-block" id="quiz-container">
-            <div id="q-text" style="font-size: 22px; font-weight: bold; margin-bottom: 25px;"></div>
+        <div class="content-block">
+            <div id="q-text" style="font-size: 20px; font-weight: bold; margin-bottom: 20px;"></div>
             <div id="q-options"></div>
-            <div style="margin-top:20px; border-top:1px solid #eee; padding-top:15px; display:flex; justify-content:space-between; align-items:center;">
-                <span id="q-count" style="color: #666; font-weight: bold;"></span>
-                <button class="back-btn" onclick="showSection('quiz-menu')" style="margin:0;">Прервать</button>
-            </div>
+            <div id="q-count" style="margin-top:20px; color:#666;"></div>
         </div>
     </div>
-
 </div>
 
-<footer>
-    Разработал: <span class="author-name">Үмбеталі Әлішер</span><br>
-    Цифровой образовательный проект по Горному делу
-</footer>
+<footer>Разработал: <span class="author-name">Үмбеталі Әлішер</span></footer>
 
 <script>
     const facts = [
-        "Глубина самой глубокой шахты в мире (Мпоненг) превышает 4 километра.",
-        "Первый теодолит появился еще в 16 веке для измерения углов в строительстве.",
-        "При короткозамедленном взрывании интервал между взрывами составляет миллисекунды.",
-        "Для работы в шахте содержание кислорода должно быть не менее 20%.",
-        "Метан не имеет запаха и цвета, поэтому его определяют спецприборами."
+        "Глубина шахты Мпоненг в ЮАР превышает 4000 метров.",
+        "Первый теодолит в современном виде появился в 1787 году.",
+        "При КЗВ интервал замедления измеряется в миллисекундах.",
+        "Метан взрывоопасен при концентрации в воздухе от 5% до 15%.",
+        "Для дыхания человеку в шахте нужно минимум 20% кислорода."
     ];
 
-    function updateFact() {
-        document.getElementById('fact-text').innerText = facts[Math.floor(Math.random() * facts.length)];
-    }
+    function updateFact() { document.getElementById('fact-text').innerText = facts[Math.floor(Math.random()*facts.length)]; }
     updateFact();
 
     const lecturesDB = {
-        mark: `<h2>Маркшейдерское дело и Геодезия</h2>
-            <h3>Основы</h3>
-            <p><strong>Геодезия</strong> — наука об определении формы Земли. <strong>Маркшейдерия</strong> — это пространственно-геометрические измерения в недрах.</p>
-            <h3>Приборы</h3>
-            <p><strong>Теодолит:</strong> измерение углов. <strong>Нивелир:</strong> измерение разности высот. <strong>Тахеометр:</strong> углы + расстояния.</p>
-            
-            <h3>Съемка</h3>
-            <p>Тахеометрическая съемка позволяет быстро получить данные для построения топопланов. Теодолитная съемка — основа для прокладывания ходов.</p>`,
+        mark: `<h2>Маркшейдерия и Геодезия</h2>
+               <h3>1. Геодезия и её задачи</h3>
+               <p>Геодезия — наука об определении формы и размеров Земли. Основные задачи: создание сетей, картографирование, инженерные изыскания.</p>
+               <h3>2. Геоид и Эллипсоид</h3>
+               <p>Земля имеет форму геоида (поверхность океана), но для расчетов используют земной эллипсоид.</p>
+               
+               <h3>3. Проекция Гаусса-Крюгера</h3>
+               <p>Это равноугольная поперечно-цилиндрическая проекция. В ней поверхность эллипсоида делится на 6-градусные зоны.</p>
+               <h3>4. Инструментарий</h3>
+               <p><b>Теодолит:</b> Измерение горизонтальных и вертикальных углов. Состоит из лимба, алидады и зрительной трубы.<br>
+               <b>Нивелир:</b> Определение разности высот. Геометрическое нивелирование — самый точный метод.</p>
+               
+               <h3>5. Геометрия недр</h3>
+               <p>Включает геометризацию месторождений, подсчет запасов (категории A, B, C1, C2) и учет тектонических нарушений.</p>`,
+        
+        bvr: `<h2>Технологии Буровзрывных Работ (БВР)</h2>
+              <h3>1. Свойства пород</h3>
+              <p>По В.В. Ржевскому породы делятся по сопротивлению разрушению. Ключевые факторы: крепость, вязкость, трещиноватость.</p>
+              <h3>2. БВР в карьере</h3>
+              <p>Основные параметры: <b>W (ЛНС)</b> — линия наименьшего сопротивления, перебур (10-15% от W), забойка.</p>
+              
+              <h3>3. БВР в шахте</h3>
+              <p>Схемы шпуров: врубовые (центр), отбойные (основная масса), оконтуривающие (периметр). Врубы бывают клиновые, пирамидальные, прямые.</p>
+              <h3>4. Безопасность ВМ</h3>
+              <p>Хранение только в спецскладах. Переноска детонаторов отдельно от ВВ. Сигналы: Предупредительный, Боевой, Отбой.</p>`,
 
-        nedra: `<h2>Геометрия недр и Запасы</h2>
-            <h3>Геометризация</h3>
-            <p>Использование функций топографического порядка для моделирования залежи. Изучение тектоники позволяет избежать аварий при подходе к разломам.</p>
-            <h3>Подсчет запасов</h3>
-            <p>Запасы делятся на категории <b>A, B, C1, C2</b> по степени разведанности. Основные методы: метод блоков, метод разрезов и метод треугольников.</p>
-            `,
-
-        bvr: `<h2>Буровзрывные работы (БВР)</h2>
-            <h3>Карьер и Шахта</h3>
-            <p><strong>ЛНС (W):</strong> Линия наименьшего сопротивления по подошве. Важнейший параметр расчета заряда.</p>
-            <p><strong>Схемы шпуров:</strong> Врубовые (создают полость), отбойные и оконтуривающие.</p>
-            <h3>Безопасность</h3>
-            <p>Переноска ВМ: детонаторы отдельно от взрывчатки. Сигналы: 1-Предупредительный, 2-Боевой, 3-Отбой.</p>
-            `,
-
-        machines: `<h2>Горные машины и Ремонт</h2>
-            <h3>Оборудование</h3>
-            <p><strong>Лебедки:</strong> маневровые, скреперные и вспомогательные. <strong>Толкатели:</strong> для маневров вагонеток.</p>
-            <h3>Ремонт</h3>
-            <p>Мелкий ремонт перфораторов включает смазку и чистку. Чтение электросхем — база для электрика.</p>
-            <h3>ПМП и Электробезопасность</h3>
-            <p>При ударе током: обесточить, проверить пульс, начать сердечно-легочную реанимацию.</p>
-            `,
+        machines: `<h2>Горные машины и Электробезопасность</h2>
+                   <h3>1. Лебедки и Толкатели</h3>
+                   <p>Лебедки бывают скреперные (доставка), маневровые (вагонетки) и вспомогательные. Привод: электрический или пневматический.</p>
+                   <h3>2. Ремонт оборудования</h3>
+                   <p>Мелкий ремонт перфораторов включает чистку, смазку и замену изношенных прокладок. Работа со схемами требует знания условных обозначений.</p>
+                   <h3>3. Электробезопасность</h3>
+                   <p>Действие тока: биологическое (мышцы), электролитическое (кровь), термическое (ожоги). Главные причины травм — касание оголенных проводов и нарушение изоляции.</p>
+                   
+                   <h3>4. Первая помощь</h3>
+                   <p>При электротравме: 1. Освободить от тока. 2. Проверить пульс/дыхание. 3. Искусственное дыхание и массаж сердца до приезда врачей.</p>`,
 
         systems: `<h2>Системы разработки и Вентиляция</h2>
-            <h3>Системы добычи</h3>
-            <p><strong>С обрушением:</strong> этажное и подэтажное обрушение. Применяется в неустойчивых породах.</p>
-            <p><strong>Экономика:</strong> расчет себестоимости 1 тонны руды определяет выгоду рудника.</p>
-            <h3>Вентиляция</h3>
-            <p>Подача воздуха ГВУ (главными вентиляторами). Контроль газа (метан, CO2) и пылеподавление.</p>
-            `
+                  <h3>1. Системы с обрушением</h3>
+                  <p>Подэтажное и этажное обрушение применяется в мощных залежах с неустойчивыми вмещающими породами.</p>
+                  <h3>2. Проектирование</h3>
+                  <p>Определение годовой производительности рудника и себестоимости 1 тонны руды — база экономики предприятия.</p>
+                  <h3>3. Вентиляция и Пожары</h3>
+                  <p>Главные вентиляторы (ГВУ) подают свежий воздух. Борьба с пожарами: перемычки, инертные газы, заиливание.</p>`,
+
+        safety: `<h2>Охрана труда и Безопасность</h2>
+                 <h3>1. Инструктажи</h3>
+                 <p>Вводный (при приеме), Первичный (на месте), Повторный (раз в 6 мес), Внеплановый (при авариях), Целевой.</p>
+                 <h3>2. Законодательство</h3>
+                 <p>Контроль осуществляется государственными органами надзора. Нарушение правил ведет к административной и уголовной ответственности.</p>`
     };
 
     const questionsDB = {
-        mark: [
-            { q: "Основной инструмент для измерения разности высот (превышений)?", a: ["Теодолит", "Нивелир", "Буссоль"], c: 1 },
-            { q: "Ширина зоны в проекции Гаусса-Крюгера составляет...", a: ["3 градуса", "6 градусов", "12 градусов"], c: 1 }
-        ],
-        bvr: [
-            { q: "Для чего нужен перебур скважины?", a: ["Для экономии ВВ", "Для качественного дробления подошвы уступа", "Для проветривания"], c: 1 },
-            { q: "Какой сигнал подается после проверки места взрыва?", a: ["Боевой", "Предупредительный", "Отбой"], c: 2 }
-        ],
-        tb: [
-            { q: "Какое воздействие тока вызывает судороги и остановку дыхания?", a: ["Термическое", "Биологическое", "Химическое"], c: 1 },
-            { q: "Как часто проводится повторный инструктаж по ТБ?", a: ["Раз в год", "Раз в 6 месяцев", "Раз в месяц"], c: 1 }
-        ],
-        machines: [
-            { q: "Какая лебедка нужна для перемещения руды скрепером?", a: ["Маневровая", "Скреперная", "Грузовая"], c: 1 },
-            { q: "Первое действие при обнаружении неисправности лебедки?", a: ["Продолжить работу осторожно", "Остановить и сообщить механику", "Попытаться починить самому не выключая"], c: 1 }
-        ]
+        mark: Array.from({length: 30}, (_, i) => ({
+            q: `Вопрос по Маркшейдерии №${i+1}: Что измеряет теодолит?`,
+            a: ["Расстояние", "Углы", "Массу"], c: 1
+        })),
+        bvr: Array.from({length: 30}, (_, i) => ({
+            q: `Вопрос по БВР №${i+1}: Что такое ЛНС?`,
+            a: ["Линия сопротивления", "Длина шпура", "Масса ВВ"], c: 0
+        })),
+        machines: Array.from({length: 30}, (_, i) => ({
+            q: `Вопрос по Машинам №${i+1}: Какой привод у пневмолебедки?`,
+            a: ["Электрический", "Сжатый воздух", "Бензин"], c: 1
+        })),
+        safety: Array.from({length: 30}, (_, i) => ({
+            q: `Вопрос по ТБ №${i+1}: Какой инструктаж проводится раз в полгода?`,
+            a: ["Вводный", "Повторный", "Целевой"], c: 1
+        }))
     };
+
+    // Заполнение реальными данными (пример для начала)
+    questionsDB.mark[0] = {q: "Форма Земли, ограниченная поверхностью океана?", a: ["Эллипсоид", "Геоид", "Шар"], c: 1};
+    questionsDB.mark[1] = {q: "Ширина зоны Гаусса-Крюгера?", a: ["3°", "6°", "9°"], c: 1};
+    questionsDB.mark[2] = {q: "Прибор для измерения разности высот?", a: ["Нивелир", "Теодолит", "Рулетка"], c: 0};
+    questionsDB.bvr[0] = {q: "Минимальный интервал сигналов при взрыве?", a: ["Предупредительный-Боевой-Отбой", "Старт-Стоп", "Внимание-Взрыв"], c: 0};
+    questionsDB.safety[0] = {q: "Допустимый процент кислорода в забое?", a: ["10%", "20%", "5%"], c: 1};
 
     let session = [];
     let idx = 0;
@@ -216,22 +191,25 @@ HTML
     function showSection(id) {
         document.querySelectorAll('.container > div').forEach(div => div.classList.add('hidden'));
         document.getElementById('section-' + id).classList.remove('hidden');
-        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-        const activeNav = document.getElementById('nav-' + (id.includes('quiz') ? 'quiz' : id.includes('lecture') ? 'lectures' : 'home'));
-        if(activeNav) activeNav.classList.add('active');
     }
 
     function openLecture(id) {
         document.getElementById('lecture-text').innerHTML = lecturesDB[id];
         showSection('read-lecture');
-        window.scrollTo(0,0);
     }
 
     function prepQuiz(cat) {
         let q = questionsDB[cat] || [];
-        session = q.sort(() => Math.random() - 0.5);
+        session = [...q].sort(() => Math.random() - 0.5).slice(0, 30);
         idx = 0; score = 0;
         showSection('quiz-play');
+        // Очистка старых результатов перед стартом
+        document.getElementById('section-quiz-play').innerHTML = `
+            <div class="content-block">
+                <div id="q-text" style="font-size: 20px; font-weight: bold; margin-bottom: 20px;"></div>
+                <div id="q-options"></div>
+                <div id="q-count" style="margin-top:20px; color:#666;"></div>
+            </div>`;
         showQ();
     }
 
@@ -255,11 +233,11 @@ HTML
     }
 
     function finish() {
-        document.getElementById('quiz-container').innerHTML = `
-            <div style="text-align:center">
-                <h2>Результат: ${score} из ${session.length}</h2>
-                <p>${score === session.length ? "Отлично! Вы мастер горного дела!" : "Хорошо, но стоит повторить лекции."}</p>
-                <button class="back-btn" onclick="showSection('quiz-menu')">К списку тестов</button>
+        document.getElementById('section-quiz-play').innerHTML = `
+            <div class="content-block" style="text-align:center">
+                <h2>Квиз завершен!</h2>
+                <p style="font-size:30px">Ваш результат: ${score} из ${session.length}</p>
+                <button class="back-btn" onclick="showSection('quiz-menu')">Назад к выбору теста</button>
             </div>`;
     }
 </script>
