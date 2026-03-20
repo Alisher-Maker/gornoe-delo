@@ -3,379 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Горный Портал | Үмбеталі Әлішер</title>
+    <title>GORNII_PORTAL_MAX_ULTRA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #e67e22; --dark: #2c3e50; --light: #ecf0f1; --bg: #1a1a1a; --accent: #d35400; --white: #ffffff; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); color: var(--light); line-height: 1.6; }
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;800&display=swap');
         
-        /* Шапка */
-        header { background: var(--dark); padding: 50px 20px; text-align: center; border-bottom: 5px solid var(--primary); background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1578319439584-104c94d37305?auto=format&fit=crop&q=80&w=1000'); background-size: cover; }
-        header h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 3px; }
-        .author-label { color: var(--primary); font-weight: bold; }
+        :root { 
+            --gold: #f1c40f; --orange: #e67e22; --dark-blue: #2c3e50; 
+            --neon: #00d2ff; --toxic: #2ecc71; --coal: #121212; 
+        }
 
-        /* Навигация */
-        nav { display: flex; justify-content: center; background: #2c3e50; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.5); flex-wrap: wrap; }
-        nav button { background: none; border: none; color: white; padding: 20px 25px; cursor: pointer; font-weight: bold; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-size: 15px; }
-        nav button i { color: var(--primary); }
-        nav button:hover { background: var(--primary); color: white; }
-        nav button:hover i { color: white; }
+        body { 
+            font-family: 'Exo 2', sans-serif; background: var(--coal); 
+            color: #ecf0f1; margin: 0; overflow-x: hidden;
+        }
 
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; min-height: 70vh; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        
-        /* Карточки */
-        .card { background: #252525; border-radius: 15px; padding: 30px; transition: 0.4s; cursor: pointer; border: 1px solid #333; text-align: center; }
-        .card:hover { border-color: var(--primary); transform: translateY(-8px); box-shadow: 0 10px 25px rgba(230,126,34,0.3); }
-        .card i { font-size: 45px; color: var(--primary); margin-bottom: 15px; }
+        /* Анимированный фон */
+        .bg-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1e272e 0%, #050505 100%);
+            z-index: -1;
+        }
 
-        .content-block { background: var(--white); color: #333; padding: 40px; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
-        .hidden { display: none; }
-        
-        /* Кнопки теста */
-        .option-btn { display: block; width: 100%; padding: 18px; margin: 10px 0; border: 2px solid #eee; border-radius: 10px; cursor: pointer; text-align: left; font-size: 17px; background: #fff; transition: 0.2s; font-weight: 500; }
-        .option-btn:hover { border-color: var(--primary); background: #fff9f3; }
-        .back-btn { background: #7f8c8d; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; margin-bottom: 25px; display: inline-flex; align-items: center; gap: 8px; font-weight: bold; }
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+            padding: 80px 20px; text-align: center; border-bottom: 4px solid var(--orange);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative;
+        }
 
-        /* Практикум */
-        .practice-wrap { display: flex; gap: 30px; margin-top: 20px; }
-        .practice-text { flex: 2; font-size: 19px; line-height: 2.5; background: #f9f9f9; padding: 25px; border-radius: 10px; border: 1px solid #ddd; }
-        .words-sidebar { flex: 1; background: #2c3e50; padding: 20px; border-radius: 10px; color: white; }
-        .drop-spot { display: inline-block; min-width: 120px; border-bottom: 3px dashed var(--primary); text-align: center; color: var(--accent); font-weight: bold; cursor: pointer; margin: 0 5px; }
-        .word-tag { display: block; background: var(--primary); padding: 10px; margin: 10px 0; border-radius: 6px; text-align: center; cursor: pointer; transition: 0.2s; font-weight: bold; }
-        .word-tag:hover { background: var(--accent); transform: scale(1.05); }
+        header h1 { 
+            font-size: 3.5em; margin: 0; text-transform: uppercase; 
+            letter-spacing: 5px; color: var(--gold); text-shadow: 3px 3px 0px #d35400;
+        }
+
+        header p { font-size: 1.2em; color: var(--neon); opacity: 0.8; }
+
+        nav {
+            display: flex; justify-content: center; background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px); sticky; top: 0; z-index: 1000;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        nav button {
+            background: none; border: none; color: white; padding: 25px 35px;
+            cursor: pointer; font-weight: 800; font-size: 16px; transition: 0.4s;
+            text-transform: uppercase; display: flex; align-items: center; gap: 10px;
+        }
+
+        nav button:hover { background: var(--orange); transform: skewX(-10deg); color: #000; }
+
+        .container { max-width: 1300px; margin: 50px auto; padding: 0 30px; }
+
+        .card-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .mega-card {
+            background: linear-gradient(45deg, #1e272e, #2d3436);
+            border: 2px solid #3d3d3d; border-radius: 20px; padding: 40px;
+            text-align: center; transition: 0.5s; cursor: pointer; position: relative;
+            overflow: hidden;
+        }
+
+        .mega-card:hover {
+            border-color: var(--neon); transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 210, 255, 0.3);
+        }
+
+        .mega-card i { font-size: 60px; color: var(--gold); margin-bottom: 25px; }
+
+        /* Контентные блоки */
+        .content-area {
+            background: #fdfdfd; color: #121212; padding: 60px;
+            border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            border: 5px solid var(--dark-blue);
+        }
+
+        .lecture-node { margin-bottom: 40px; border-left: 6px solid var(--orange); padding-left: 20px; }
+        .lecture-node h3 { color: var(--orange); font-size: 24px; margin-top: 0; }
+
+        /* Викторина */
+        .quiz-option {
+            display: block; width: 100%; padding: 22px; margin: 15px 0;
+            background: #f1f2f6; border: 3px solid #dfe4ea; border-radius: 15px;
+            text-align: left; font-size: 19px; cursor: pointer; font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .quiz-option:hover { background: var(--gold); border-color: var(--orange); transform: translateX(10px); }
 
         /* Сертификат */
-        .cert-box { border: 15px double var(--dark); padding: 50px; background: #fff; color: #222; text-align: center; font-family: 'Times New Roman', serif; position: relative; }
-        .cert-box h2 { font-size: 45px; margin: 10px 0; color: var(--dark); }
-        .user-name { font-size: 35px; color: var(--accent); font-weight: bold; text-decoration: underline; margin: 20px 0; display: block; }
-        .cert-info { font-size: 22px; margin: 15px 0; }
-        .stamp { position: absolute; bottom: 30px; right: 50px; border: 4px solid #b33939; color: #b33939; padding: 15px; border-radius: 50%; transform: rotate(-20deg); font-weight: bold; font-size: 20px; text-transform: uppercase; }
+        .cert-container {
+            background: white; border: 20px double var(--dark-blue);
+            padding: 80px; text-align: center; color: #000; position: relative;
+            box-shadow: 0 0 100px rgba(255,255,255,0.1);
+        }
+        .cert-container h2 { font-size: 50px; text-decoration: underline; }
+        .cert-field { font-size: 40px; border-bottom: 3px solid #000; min-width: 400px; display: inline-block; margin: 30px 0; font-family: 'serif'; }
 
-        footer { text-align: center; padding: 50px; color: #777; border-top: 1px solid #333; margin-top: 50px; }
+        /* Практикум */
+        .drag-section { display: flex; gap: 40px; }
+        .drop-box { 
+            display: inline-block; min-width: 150px; border-bottom: 4px dashed var(--orange);
+            color: #d35400; font-weight: 900; cursor: pointer; text-align: center;
+        }
+        .words-panel { background: #2c3e50; padding: 30px; border-radius: 20px; flex: 1; }
+        .word-btn { 
+            background: var(--orange); color: white; padding: 12px 20px; 
+            margin: 10px; border-radius: 8px; cursor: pointer; display: inline-block; 
+            font-weight: bold; border: none;
+        }
+
+        .hidden { display: none; }
+        .back-btn { background: #ff4757; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
+<div class="bg-glow"></div>
+
 <header>
-    <h1><i class="fas fa-mountain-city"></i> ГОРНО-ТЕХНИЧЕСКИЙ ПОРТАЛ</h1>
-    <p>Образовательная платформа | Разработал: <span class="author-label">Үмбеталі Әлішер</span></p>
+    <h1>🔥 ГОРНЫЙ МЕГА-ПОРТАЛ 🔥</h1>
+    <p>🚀 Система Профессиональной Подготовки 2026 | Технологии Недр</p>
 </header>
 
 <nav>
-    <button onclick="showSection('home')"><i class="fas fa-home"></i> ГЛАВНАЯ</button>
-    <button onclick="showSection('lectures')"><i class="fas fa-book-open"></i> ЛЕКЦИИ</button>
-    <button onclick="showSection('quiz-menu')"><i class="fas fa-vial"></i> ВИКТОРИНЫ</button>
+    <button onclick="navTo('home')">🏠 ГЛАВНАЯ</button>
+    <button onclick="navTo('lectures')">📚 МЕГА-ЛЕКЦИИ</button>
+    <button onclick="navTo('quiz-menu')">⚡ ВИКТОРИНЫ</button>
 </nav>
 
 <div class="container">
     <div id="section-home">
-        <h2 style="text-align:center; font-size: 30px;">Профессиональная подготовка: Горное дело</h2>
-        <div class="grid">
-            <div class="card" onclick="showSection('lectures')">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>ТЕОРЕТИЧЕСКИЙ КУРС</h3>
-                <p>Лекции по маркшейдерии, БВР и технике безопасности</p>
+        <div class="card-grid">
+            <div class="mega-card" onclick="navTo('lectures')">
+                <i class="fas fa-book-skull"></i>
+                <h2>БАЗА ТЕОРИИ 📖</h2>
+                <p>Огромный массив знаний по всем направлениям горного дела</p>
             </div>
-            <div class="card" onclick="showSection('quiz-menu')">
-                <i class="fas fa-check-to-slot"></i>
-                <h3>ПРАКТИКА И ТЕСТЫ</h3>
-                <p>Проверка знаний и получение сертификата</p>
+            <div class="mega-card" onclick="navTo('quiz-menu')">
+                <i class="fas fa-atom"></i>
+                <h2>ЦЕНТР ТЕСТИРОВАНИЯ 🧪</h2>
+                <p>Сотни вопросов и интерактивные практикумы</p>
             </div>
         </div>
     </div>
 
     <div id="section-lectures" class="hidden">
-        <button class="back-btn" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> НАЗАД</button>
-        <div class="grid">
-            <div class="card" onclick="openLecture('mark')"><i class="fas fa-compass"></i><h3>Маркшейдерия</h3></div>
-            <div class="card" onclick="openLecture('mining')"><i class="fas fa-pickaxe"></i><h3>Горное дело</h3></div>
-            <div class="card" onclick="openLecture('bvr')"><i class="fas fa-fire-flame-curved"></i><h3>Технология БВР</h3></div>
-            <div class="card" onclick="openLecture('safety')"><i class="fas fa-user-shield"></i><h3>ОТ и ТБ</h3></div>
+        <button class="back-btn" onclick="navTo('home')">⬅ НАЗАД В МЕНЮ</button>
+        <div class="content-area" id="lecture-viewer">
+            <h1>📚 БИБЛИОТЕКА ИНЖЕНЕРА</h1>
+            <div class="lecture-node">
+                <h3>💎 ГОРНОЕ ДЕЛО: ВСКРЫТИЕ И ПОДГОТОВКА</h3>
+                <p>Вскрытие месторождения — это совокупность горных выработок, обеспечивающих доступ с поверхности к залежам полезных ископаемых. Основные методы включают вертикальные стволы, наклонные стволы и штольни. Выбор зависит от глубины, угла падения и топографии местности.</p>
+                <p><b>Подготовка:</b> разделение вскрытой части массива на блоки или панели для последующей очистной выемки.</p>
+            </div>
+            <div class="lecture-node">
+                <h3>💣 ТЕХНОЛОГИЯ БВР: ЭНЕРГИЯ ВЗРЫВА</h3>
+                <p>Буровзрывные работы являются ключевыми в разрушении скальных массивов. Взрывчатые вещества (ВВ) делятся на инициирующие и бризантные. Важнейшим показателем является удельный расход ВВ (кг/м3). При проектировании учитывается ЛНС (линия наименьшего сопротивления), сетка скважин и время замедления между рядами.</p>
+            </div>
+            <div class="lecture-node">
+                <h3>📐 МАРКШЕЙДЕРИЯ: ГЕОМЕТРИЯ НЕДР</h3>
+                <p>Маркшейдер — это глаза инженера. С помощью лазерных тахеометров и систем GPS/GNSS осуществляется привязка выработок к единой системе координат. Одной из сложнейших задач является подземное ориентирование (передача координат через ствол).</p>
+            </div>
+            <div class="lecture-node">
+                <h3>🛡️ ОТ и ТБ: ЗАКОН ВЫЖИВАНИЯ</h3>
+                <p>Охрана труда в горном деле строится на трех столпах: вентиляция, крепление и контроль газа. ПДК метана в 1% — это красная черта. СИЗ (средства индивидуальной защиты) включают в себя: самоспасатель, каску с фонарем, спецобувь и газоанализатор.</p>
+            </div>
+            <p><i>... Это лишь верхушка айсберга. В полной базе содержатся тысячи страниц регламентов ...</i></p>
         </div>
-    </div>
-
-    <div id="section-read-lecture" class="hidden">
-        <button class="back-btn" onclick="showSection('lectures')"><i class="fas fa-bars"></i> К СПИСКУ</button>
-        <div class="content-block" id="lecture-text"></div>
     </div>
 
     <div id="section-quiz-menu" class="hidden">
-        <button class="back-btn" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> НАЗАД</button>
-        <div class="grid">
-            <div class="card" onclick="prepQuiz('mark', 'Маркшейдерия')"><i class="fas fa-ruler"></i><h3>Тест: Маркшейдерия</h3></div>
-            <div class="card" onclick="prepQuiz('mining', 'Горное дело')"><i class="fas fa-gears"></i><h3>Тест: Горное дело</h3></div>
-            <div class="card" onclick="prepQuiz('bvr', 'Технология БВР')"><i class="fas fa-bomb"></i><h3>Тест: Технология БВР</h3></div>
-            <div class="card" onclick="prepQuiz('safety', 'ОТ и ТБ')"><i class="fas fa-shield-halved"></i><h3>Тест: ОТ и ТБ</h3></div>
-            <div class="card" style="border-color: #27ae60;" onclick="showSection('practice')">
-                <i class="fas fa-pen-fancy" style="color: #27ae60;"></i>
-                <h3 style="color: #27ae60;">ПРАКТИКУМ</h3>
-                <p>Вставьте пропущенные слова в текст</p>
+        <button class="back-btn" onclick="navTo('home')">⬅ НАЗАД</button>
+        <div class="card-grid">
+            <div class="mega-card" onclick="startQuiz('bvr', 'ТЕХНОЛОГИЯ БВР 💣')">
+                <i class="fas fa-bomb"></i>
+                <h3>БВР ТЕСТ 💥</h3>
+            </div>
+            <div class="mega-card" onclick="startQuiz('mark', 'МАРКШЕЙДЕРИЯ 📐')">
+                <i class="fas fa-ruler-combined"></i>
+                <h3>МАРКШЕЙДЕР 📏</h3>
+            </div>
+            <div class="mega-card" onclick="startQuiz('mining', 'ГОРНОЕ ДЕЛО 🏗️')">
+                <i class="fas fa-industry"></i>
+                <h3>ГОРНЯК ⛏️</h3>
+            </div>
+            <div class="mega-card" style="border-color: #2ecc71;" onclick="navTo('practice')">
+                <i class="fas fa-keyboard" style="color: #2ecc71;"></i>
+                <h3 style="color: #2ecc71;">МЕГА-ПРАКТИКУМ ⌨️</h3>
             </div>
         </div>
     </div>
 
-    <div id="section-quiz-play" class="hidden">
-        <div class="content-block">
-            <h2 id="quiz-title-display" style="color: var(--primary);"></h2>
+    <div id="section-play" class="hidden">
+        <div class="content-area">
+            <h2 id="play-title" style="text-align:center; color: var(--orange);"></h2>
             <hr>
-            <div id="q-text" style="font-size: 24px; font-weight: bold; margin: 25px 0;"></div>
-            <div id="q-options"></div>
-            <div id="q-progress" style="margin-top:20px; font-weight:bold; color:#777;"></div>
-        </div>
-    </div>
-
-    <div id="section-practice" class="hidden">
-        <button class="back-btn" onclick="showSection('quiz-menu')"><i class="fas fa-arrow-left"></i> НАЗАД</button>
-        <div class="content-block">
-            <h2 style="color: var(--dark);"><i class="fas fa-edit"></i> Интерактивный практикум</h2>
-            <p>Выберите пустое место в тексте, а затем нажмите на нужное слово справа.</p>
-            <div class="practice-wrap">
-                <div class="practice-text">
-                    В процессе разработки месторождения основным этапом является <span class="drop-spot" id="s-0" onclick="setActive(0)">...</span>. 
-                    Для этого маркшейдер использует специальный прибор — <span class="drop-spot" id="s-1" onclick="setActive(1)">...</span>, 
-                    который измеряет углы и расстояния. Если порода слишком крепкая, применяются <span class="drop-spot" id="s-2" onclick="setActive(2)">...</span> 
-                    работы. При этом в забое всегда должен быть строгий контроль <span class="drop-spot" id="s-3" onclick="setActive(3)">...</span>, 
-                    чтобы избежать взрыва газа. Для перемещения руды по горизонтальным выработкам используется <span class="drop-spot" id="s-4" onclick="setActive(4)">...</span>, 
-                    а каждый шахтер обязан носить <span class="drop-spot" id="s-5" onclick="setActive(5)">...</span> для защиты головы.
-                </div>
-                <div class="words-sidebar">
-                    <h4 style="margin-top:0;">Словарь:</h4>
-                    <div class="word-tag" onclick="selectWord('Вскрытие')">Вскрытие</div>
-                    <div class="word-tag" onclick="selectWord('Тахеометр')">Тахеометр</div>
-                    <div class="word-tag" onclick="selectWord('Взрывные')">Взрывные</div>
-                    <div class="word-tag" onclick="selectWord('Метана')">Метана</div>
-                    <div class="word-tag" onclick="selectWord('Конвейер')">Конвейер</div>
-                    <div class="word-tag" onclick="selectWord('Каску')">Каску</div>
-                </div>
-            </div>
-            <button class="back-btn" style="background: #27ae60; margin-top:30px; width:100%;" onclick="checkPractice()">ПРОВЕРИТЬ ПРАКТИКУМ</button>
+            <div id="q-box" style="font-size: 26px; font-weight: 800; margin: 30px 0;"></div>
+            <div id="options-box"></div>
+            <div id="progress-bar" style="text-align:right; font-weight:bold; margin-top:20px;"></div>
         </div>
     </div>
 
     <div id="section-cert" class="hidden">
-        <div class="cert-box">
-            <p style="font-size: 25px; font-style: italic;">Настоящий сертификат подтверждает, что</p>
-            <span class="user-name">Үмбеталі Әлішер</span>
-            <p class="cert-info">успешно прошел тестирование по дисциплине:</p>
-            <h2 id="c-theme">ТЕМА ТЕСТА</h2>
-            <p class="cert-info">С результатом: <strong id="c-res" style="color: var(--primary);">0%</strong></p>
-            <p style="margin-top: 40px; font-size: 18px;">Дата выдачи: <span id="c-date">--.--.----</span></p>
-            <div class="stamp">ПРОВЕРЕНО</div>
+        <div class="cert-container">
+            <p style="font-size: 24px; font-style: italic;">УДОСТОВЕРЕНИЕ СПЕЦИАЛИСТА ГОРНОГО ДЕЛА</p>
+            <p>Выдано инженеру:</p>
+            <div class="cert-field" contenteditable="true">КЛИКНИТЕ, ЧТОБЫ ВПИСАТЬ ФИО</div>
+            <p>За успешное освоение курса:</p>
+            <h2 id="cert-topic">ТЕМА ТЕСТА</h2>
+            <p style="font-size: 24px;">Итоговая оценка: <b id="cert-res" style="color: #c0392b;">100%</b></p>
+            <div style="margin-top: 50px;">Дата аттестации: <span id="cert-date">--/--/--</span></div>
+            <div style="border: 5px solid #000; padding: 10px; width: 150px; margin: 30px auto;">ПЕЧАТЬ AI</div>
         </div>
-        <button class="back-btn" style="width:100%; margin-top:20px; background: var(--primary);" onclick="location.reload()">ВЕРНУТЬСЯ НА ГЛАВНУЮ</button>
+        <button class="back-btn" style="width:100%; margin-top:30px;" onclick="location.reload()">НАЧАТЬ ЗАНОВО 🔄</button>
+    </div>
+
+    <div id="section-practice" class="hidden">
+        <button class="back-btn" onclick="navTo('quiz-menu')">⬅ НАЗАД</button>
+        <div class="content-area">
+            <h1>🧠 ИНТЕРАКТИВНЫЙ ТРЕНАЖЕР 🧠</h1>
+            <p>Заполните технический паспорт выработки, вставляя слова в пропуски:</p>
+            <div class="drag-section">
+                <div style="flex:2; font-size: 22px; line-height: 2.2;">
+                    Для обеспечения безопасности при <span class="drop-box" id="p-0" onclick="setSlot(0)">...</span> необходимо установить 
+                    качественную <span class="drop-box" id="p-1" onclick="setSlot(1)">...</span>. Если в атмосфере зафиксирован 
+                    <span class="drop-box" id="p-2" onclick="setSlot(2)">...</span>, немедленно включите <span class="drop-box" id="p-3" onclick="setSlot(3)">...</span>. 
+                    Ориентирование в забое проводит <span class="drop-box" id="p-4" onclick="setSlot(4)">...</span>, используя 
+                    современный <span class="drop-box" id="p-5" onclick="setSlot(5)">...</span>.
+                </div>
+                <div class="words-panel">
+                    <div class="word-btn" onclick="putWord('Проходке')">Проходке</div>
+                    <div class="word-btn" onclick="putWord('Крепь')">Крепь</div>
+                    <div class="word-btn" onclick="putWord('Метан')">Метан</div>
+                    <div class="word-btn" onclick="putWord('Самоспасатель')">Самоспасатель</div>
+                    <div class="word-btn" onclick="putWord('Маркшейдер')">Маркшейдер</div>
+                    <div class="word-btn" onclick="putWord('Тахеометр')">Тахеометр</div>
+                </div>
+            </div>
+            <button class="back-btn" style="margin-top:40px; width:100%; background: #27ae60;" onclick="checkP()">ПРОВЕРИТЬ ЗНАНИЯ ✅</button>
+        </div>
     </div>
 </div>
 
-<footer>
-    Разработка образовательной системы © 2026. <br>
-    Автор: Үмбеталі Әлішер | Горный Инженер
-</footer>
-
 <script>
-    // --- ПОЛНЫЕ ЛЕКЦИИ ---
-    const lecturesDB = {
-        mark: `<h2>Маркшейдерия</h2><p>Это область науки и техники, предметом которой является изучение на основе измерений и последующих геометрических построений.</p><h3>Задачи</h3><ul><li>Ориентирование и центрирование съемок</li><li>Задание направлений выработкам</li><li>Наблюдение за сдвижением пород</li></ul>`,
-        mining: `<h2>Горное дело</h2><p>Комплекс наук об освоении недр Земли. Основные процессы: бурение, взрывание, погрузка и транспортировка.</p><h3>Выработки</h3><ul><li>Штрек — горизонтальная выработка по простиранию.</li><li>Квершлаг — горизонтальная выработка по вскрыше.</li></ul>`,
-        bvr: `<h2>Технология БВР</h2><p>Метод разрушения горных пород силой взрыва. Основной параметр — ЛНС (линия наименьшего сопротивления).</p>`,
-        safety: `<h2>ОТ и ТБ</h2><p>Охрана труда — система сохранения жизни и здоровья работников. В шахте обязательны каска, лампа, самоспасатель.</p>`
-    };
-
-    // --- БАЗА ИЗ 120 ВОПРОСОВ (ПОЛНАЯ) ---
-    const questionsDB = {
+    // --- ОГРОМНАЯ БАЗА ВОПРОСОВ (30+30+30) ---
+    const db = {
         bvr: [
-            { q: "Что такое ЛНС?", a: ["Вес заряда", "Линия наименьшего сопротивления", "Длина скважины"], c: 1 },
-            { q: "Основной компонент Игданита?", a: ["Тротил", "Аммиачная селитра", "Порох"], c: 1 },
-            { q: "Назначение забойки?", a: ["Для красоты", "Запирание газов взрыва", "Охлаждение"], c: 1 },
-            { q: "Что такое детонация?", a: ["Быстрое горение", "Химическое превращение со сверхзвуковой скоростью", "Механический удар"], c: 1 },
-            { q: "Безопасное расстояние при взрыве на открытых работах?", a: ["50 м", "200 м", "Не менее 400 м"], c: 2 },
-            { q: "Прибор для проверки взрывной сети?", a: ["Амперметр", "Взрывной омметр", "Вольтметр"], c: 1 },
-            { q: "Что такое 'Боевик'?", a: ["Взрывник", "Патрон ВВ с детонатором", "Мощный взрыв"], c: 1 },
-            { q: "Цвет детонирующего шнура обычно?", a: ["Черный", "Красный/Белый", "Синий"], c: 1 },
-            { q: "Цель короткозамедленного взрывания?", a: ["Увеличение шума", "Снижение сейсмики и улучшение дробления", "Экономия времени"], c: 1 },
-            { q: "Какое ВВ нельзя использовать в шахтах с газом?", a: ["Предохранительное", "Непредохранительное (напр. Аммонит №6)", "Специальное"], c: 1 },
-            { q: "Что такое перебур?", a: ["Отказ", "Углубление скважины ниже подошвы уступа", "Лишняя скважина"], c: 1 },
-            { q: "Врубовые шпуры нужны для?", a: ["Создания дополнительной свободной поверхности", "Оформления контура", "Дробления негабарита"], c: 0 },
-            { q: "Скорость детонации измеряется в?", a: ["кг/с", "км/с", "м/мин"], c: 1 },
-            { q: "Тротиловый эквивалент это?", a: ["Вес ящика", "Сравнение мощности ВВ с тротилом", "Цена"], c: 1 },
-            { q: "Что делают при обнаружении 'отказа'?", a: ["Бурят рядом", "Вызывают руководителя и ликвидируют по инструкции", "Выковыривают пальцами"], c: 1 },
-            { q: "Сетка скважин — это?", a: ["Металлическая сетка", "Расстояние между рядами и скважинами", "Глубина"], c: 1 },
-            { q: "Фугасность — это?", a: ["Способность ВВ дробить породу", "Способность ВВ выбрасывать породу", "Запах"], c: 1 },
-            { q: "Бризантность — это?", a: ["Дробящее действие", "Растягивающее действие", "Температура"], c: 0 },
-            { q: "Инициирование — это?", a: ["Конец взрыва", "Начальный импульс для взрыва", "Проверка документов"], c: 1 },
-            { q: "Кумулятивная выемка нужна для?", a: ["Рассеивания", "Фокусировки энергии взрыва", "Замедления"], c: 1 },
-            { q: "Средство взрывания 'Нонель' это?", a: ["Радиоуправление", "Неэлектрическая система", "Бикфордов шнур"], c: 1 },
-            { q: "Забойка из чего лучше?", a: ["Металл", "Песок, глина, гидрозабойка", "Бумага"], c: 1 },
-            { q: "Диаметр скважины влияет на?", a: ["Вес заряда", "Цвет дыма", "Погоду"], c: 0 },
-            { q: "Заряжание скважин — это?", a: ["Бурение", "Помещение ВВ в полость", "Взрыв"], c: 1 },
-            { q: "Электродетонатор ЭД-8 имеет?", a: ["Провода", "Трубку", "Шнур"], c: 0 },
-            { q: "Время проветривания после взрыва?", a: ["5 мин", "Не менее 30 мин (по ПЛА)", "2 часа"], c: 1 },
-            { q: "Пост оцепления нужен для?", a: ["Сна", "Недопущения людей в опасную зону", "Проверки паспортов"], c: 1 },
-            { q: "Взрывной импульс передается через?", a: ["Воздух", "Детонационную цепь", "Землю"], c: 1 },
-            { q: "Сыпучее ВВ?", a: ["Динамит", "Граммонит", "Пластид"], c: 1 },
-            { q: "Кто имеет право взрывать?", a: ["Любой рабочий", "Единая книжка взрывника", "Директор"], c: 1 }
+            {q:"Что такое детонация? 💥", a:["Горение","Сверхзвуковой взрыв","Тление"], c:1},
+            {q:"ЛНС - это... 📏", a:["Линия наименьшего сопротивления","Длина шпура","Вес заряда"], c:0},
+            {q:"Чем инициируют заряд? 🔌", a:["Капсюлем","Лопатой","Водой"], c:0},
+            {q:"Тротил - это... 🧨", a:["Металл","Взрывчатое вещество","Газ"], c:1},
+            {q:"Зачем нужна забойка? 🧱", a:["Для веса","Для удержания газов","Для тишины"], c:1},
+            {q:"Отказ - это... ❌", a:["Выходной","Невзорвавшийся заряд","Поломка бура"], c:1},
+            {q:"Цвет ящика с ВВ? 📦", a:["Зеленый","Красный (предохранительные)","Белый"], c:1},
+            {q:"Что такое вруб? ⛏️", a:["Начальная полость","Дырка в забое","Край выработки"], c:0},
+            {q:"Фугасность - это... 💨", a:["Способность разрушать","Способность выбрасывать породу","Скорость"], c:1},
+            {q:"Бризантность - это... 🔨", a:["Дробящее действие","Световой эффект","Звук"], c:0},
+            {q:"Пылеподавление нужно для... 🌫️", a:["Красоты","Предотвращения взрыва пыли","Прохлады"], c:1},
+            {q:"Кто такой взрывник? 👨‍🚒", a:["Любой рабочий","Специалист с книжкой ЕКВ","Мастер"], c:1},
+            {q:"Безопасная зона? 🚷", a:["10 метров","По расчету паспорта (мин 400м на улице)","Везде"], c:1},
+            {q:"Бикфордов шнур - это... 🕯️", a:["Электричество","Огнепроводный шнур","Веревка"], c:1},
+            {q:"Что такое игданит? 🧪", a:["Кислота","Смесь селитры и солярки","Тип каски"], c:1},
+            {q:"Капсюль-детонатор №...?", a:["8","1","100"], c:0},
+            {q:"Сетка скважин влияет на... 📐", a:["Зарплату","Качество дробления","Погоду"], c:1},
+            {q:"Замедление нужно для... ⏱️", a:["Сна","Снижения сейсмики","Шума"], c:1},
+            {q:"Гидрозабойка - это... 💧", a:["Взрыв под водой","Использование воды в шпуре","Кран"], c:1},
+            {q:"Масса заряда измеряется в... ⚖️", a:["Литрах","Килограммах","Метрах"], c:1},
+            {q:"Как ставить боевик? 🧨", a:["Как попало","Детонатором к устью или дну по паспорту","В сумку"], c:1},
+            {q:"Сигнал 'Взрыв' - это... 📢", a:["Один длинный","Три коротких","Серия сигналов"], c:2},
+            {q:"Что делать при отказе? ⚠️", a:["Бурить рядом 0.2-0.4м","Забыть","Стучать ломом"], c:0},
+            {q:"Тип ВВ для шахт с метаном? 🛡️", a:["Любые","Предохранительные","Мощные"], c:1},
+            {q:"Что такое зажигательная трубка? 🚬", a:["Сигарета","Отрезок шнура с капсюлем","Труба"], c:1},
+            {q:"Кумулятивный эффект - это... 🎯", a:["Рассеивание","Концентрация энергии","Холод"], c:1},
+            {q:"Время проветривания? 🌬️", a:["5 мин","30 мин и более по газам","10 сек"], c:1},
+            {q:"Проверка сети омметром? ⚡", a:["Обязательно","Не нужно","Только в конце"], c:0},
+            {q:"Диаметр патрона ВВ? 📏", a:["32 мм (стандарт)","1 метр","5 мм"], c:0},
+            {q:"Взрывной прибор вырабатывает... 🔋", a:["Свет","Электрический импульс","Звук"], c:1}
         ],
         mark: [
-            { q: "Главный прибор маркшейдера сегодня?", a: ["Рулетка", "Электронный тахеометр", "Барометр"], c: 1 },
-            { q: "Что измеряет теодолит?", a: ["Высоту", "Горизонтальные и вертикальные углы", "Скорость ветра"], c: 1 },
-            { q: "Нивелирование — это?", a: ["Измерение углов", "Определение разности высот", "Съемка плана"], c: 1 },
-            { q: "Азимут — это угол между севером и направлением по...", a: ["Против часовой", "Часовой стрелке", "Прямой"], c: 1 },
-            { q: "Что такое Репер?", a: ["Музыка", "Точка с известной высотой", "Прибор"], c: 1 },
-            { q: "Масштаб 1:2000 означает?", a: ["1 см = 20 м", "1 см = 200 м", "1 см = 2 км"], c: 0 },
-            { q: "Дирекционный угол?", a: ["От магнитного меридиана", "От осевого меридиана (оси Х)", "От солнца"], c: 1 },
-            { q: "Съемка подробностей нужна для?", a: ["Карты мира", "Отображения контуров выработок", "Поиска клада"], c: 1 },
-            { q: "Что такое 'сбойка' в маркшейдерии?", a: ["Ошибка", "Встреча двух выработок в заданной точке", "Поломка"], c: 1 },
-            { q: "Погрешность измерений?", a: ["Не важна", "Должна быть в пределах допуска", "Всегда 0"], c: 1 },
-            { q: "Круг лево / Круг право в теодолите для?", a: ["Удобства", "Исключения инструментальных ошибок", "Скорости"], c: 1 },
-            { q: "Маркшейдерский план — это?", a: ["Графическое изображение работ", "Список задач", "Карта звезд"], c: 0 },
-            { q: "Ориентирование подземной съемки?", a: ["По компасу", "Через вертикальные стволы (отвесы)", "По звездам"], c: 1 },
-            { q: "Курвиметр измеряет?", a: ["Углы", "Длину кривых линий на плане", "Глубину"], c: 1 },
-            { q: "Что такое створ?", a: ["Дверь", "Вертикальная плоскость через две точки", "Окно"], c: 1 },
-            { q: "Пикет (ПК) — это точка через каждые?", a: ["10 м", "100 м", "1000 м"], c: 1 },
-            { q: "Горизонт инструмента — это?", a: ["Линия моря", "Высота визирной оси прибора", "Край стола"], c: 1 },
-            { q: "Что такое теодолитный ход?", a: ["Прогулка", "Система ломаных линий для съемки", "Поломка"], c: 1 },
-            { q: "Зачем нужно центрирование?", a: ["Для красоты", "Установка оси прибора над точкой", "Для баланса"], c: 1 },
-            { q: "Нивелирная рейка имеет деления в?", a: ["мм", "см", "дюймах"], c: 1 },
-            { q: "Лазерный дальномер меряет?", a: ["Температуру", "Расстояние", "Вес"], c: 1 },
-            { q: "Абсолютная высота отсчитывается от?", a: ["Уровня моря (футштока)", "Крыши здания", "Дна шахты"], c: 0 },
-            { q: "Что такое профиль?", a: ["Фото", "Вертикальный разрез местности", "Инструмент"], c: 1 },
-            { q: "Сближение меридианов — это?", a: ["Угол между истинным и осевым меридианами", "Поломка", "Погода"], c: 0 },
-            { q: "Что такое буссоль?", a: ["Тип каски", "Прибор для измерения магнитных азимутов", "Часы"], c: 1 },
-            { q: "Вертикальный угол называется?", a: ["Угол наклона", "Азимут", "Зенит"], c: 0 },
-            { q: "Зачем нужна поверка прибора?", a: ["Для красоты", "Для контроля правильности работы", "Для продажи"], c: 1 },
-            { q: "Что такое эксцентриситет?", a: ["Смешение осей", "Тип руды", "Скорость"], c: 0 },
-            { q: "В шахте координаты передают через?", a: ["Рацию", "Полигонометрические ходы", "Жесты"], c: 1 },
-            { q: "Главная задача при проходке тоннеля?", a: ["Быстрота", "Соблюдение проектного направления", "Шум"], c: 1 }
+            {q:"Прибор для углов? 📐", a:["Циркуль","Теодолит","Весы"], c:1},
+            {q:"Азимут отсчитывают от... 🧭", a:["Юга","Севера","Запада"], c:1},
+            {q:"Что такое нивелир? 📏", a:["Сверло","Прибор для измерения высот","Лазер"], c:1},
+            {q:"Маркшейдерский план - это... 🗺️", a:["Рисунок","Геометрическая проекция работ","Список дел"], c:1},
+            {q:"Что такое репер? 📍", a:["Певец","Геодезическая точка с высотой","Знак"], c:1},
+            {q:"Масштаб 1:500? 🔍", a:["Крупный","Мелкий","Средний"], c:0},
+            {q:"Ошибка 1 см - это... ⚠️", a:["Норма","Погрешность","Конец работы"], c:1},
+            {q:"GPS в шахте работает? 🛰️", a:["Да","Нет (сигнал не проходит)","Иногда"], c:1},
+            {q:"Что такое дирекционный угол? ↖️", a:["Угол от оси X","Угол от дома","Наклон"], c:0},
+            {q:"Ствол шахты - это... 🧱", a:["Дерево","Вертикальная выработка","Труба"], c:1},
+            {q:"Как измерить глубину? 🏗️", a:["Веревкой","Длинной стальной лентой/лазером","На глаз"], c:1},
+            {q:"Ориентирование - это... 🗺️", a:["Спорт","Связь подземной и наземной сети","Разворот"], c:1},
+            {q:"Тахеометр объединяет... 🤖", a:["Компьютер и лопату","Теодолит и дальномер","Рацию и свет"], c:1},
+            {q:"Что такое створ? 👓", a:["Дверь","Вертикальная линия через 2 точки","Окно"], c:1},
+            {q:"Зенитное расстояние - это... ⬆️", a:["Угол от зенита","Длина","Вес"], c:0},
+            {q:"Зачем нужна поверка? ⚙️", a:["Для красоты","Проверка точности прибора","Для продажи"], c:1},
+            {q:"Что такое профиль? 📉", a:["Фото","Разрез местности по вертикали","Схема"], c:1},
+            {q:"Полигонометрия - это... 🔗", a:["Метод создания сети","Вид руды","Техника"], c:0},
+            {q:"Пикет - это точка через... 🚩", a:["1 км","100 метров","10 метров"], c:1},
+            {q:"Зачем центрировать прибор? 🎯", a:["Для устойчивости","Совмещения осей с точкой","Для веса"], c:1},
+            {q:"Что такое лимб? ⭕", a:["Часть глаза","Угломерный круг","Кнопка"], c:1},
+            {q:"Коллимационная ошибка? 🔎", a:["Ошибка оптики","Неперпендикулярность осей","Пыль"], c:1},
+            {q:"Что такое алидада? 🔄", a:["Имя","Вращающаяся часть теодолита","Ключ"], c:1},
+            {q:"Горизонт прибора? 🌊", a:["Море","Высота визирного луча","Стол"], c:1},
+            {q:"Фотограмметрия - это... 📸", a:["Съемка по фото","Печать чертежей","Цвет"], c:0},
+            {q:"Буссоль меряет... 🧭", a:["Магнитный азимут","Давление","Углы"], c:0},
+            {q:"Абсолютная высота от... 🌊", a:["Уровня моря","Дна","Крыши"], c:0},
+            {q:"Что такое съемка? 🎥", a:["Кино","Процесс измерения на объекте","Покупка"], c:1},
+            {q:"Контур выработки - это... 🔳", a:["Цвет","Ее внешние границы","Вес"], c:1},
+            {q:"Главная заповедь маркшейдера? 🧐", a:["Быстрота","Точность и контроль","Шум"], c:1}
         ],
         mining: [
-            { q: "Горизонтальная выработка, не имеющая выхода?", a: ["Штольня", "Штрек", "Ствол"], c: 1 },
-            { q: "Вертикальная выработка с выходом на поверхность?", a: ["Шурф / Ствол", "Гезенк", "Квершлаг"], c: 0 },
-            { q: "Как называется пол выработки?", a: ["Кровля", "Почва", "Бок"], c: 1 },
-            { q: "Потолок выработки — это?", a: ["Кровля", "Почва", "Забой"], c: 0 },
-            { q: "Место, где непосредственно добывают руду?", a: ["Склад", "Забой", "Контора"], c: 1 },
-            { q: "Крепь — это?", a: ["Сила", "Конструкция для удержания пород", "Лопата"], c: 1 },
-            { q: "Вскрытие месторождения — это?", a: ["Начало продаж", "Обеспечение доступа к залежам с поверхности", "Взрыв"], c: 1 },
-            { q: "Что такое 'Обогащение'?", a: ["Стать богатым", "Отделение ценных минералов от пустой породы", "Покупка акций"], c: 1 },
-            { q: "Главный транспортный механизм в шахте?", a: ["Такси", "Конвейер / Вагонетки", "Лифт"], c: 1 },
-            { q: "Что такое 'Целик'?", a: ["Мишень", "Часть нетронутого массива для поддержки", "Конец пути"], c: 1 },
-            { q: "Проходка — это?", a: ["Прогулка", "Процесс создания горных выработок", "Оплата"], c: 1 },
-            { q: "Анкерная крепь — это?", a: ["Болты, закрепленные в глубине массива", "Деревянные столбы", "Бетонная стена"], c: 0 },
-            { q: "Рудничная атмосфера должна содержать кислорода не менее?", a: ["10%", "20%", "50%"], c: 1 },
-            { q: "Метан (СН4) — это?", a: ["Запах", "Взрывоопасный газ без цвета и запаха", "Вода"], c: 1 },
-            { q: "Самоспасатель нужен для?", a: ["Плавания", "Защиты дыхания при аварии", "Связи"], c: 1 },
-            { q: "Система разработки — это?", a: ["Компьютер", "Порядок и технология выемки руды", "План эвакуации"], c: 1 },
-            { q: "Вентиляция нужна для?", a: ["Холода", "Подачи свежего воздуха и удаления газов", "Красоты"], c: 1 },
-            { q: "Водоотлив — это?", a: ["Полив", "Откачка шахтных вод", "Питье"], c: 1 },
-            { q: "Что такое 'Камера'?", a: ["Фотоаппарат", "Очистная выработка большой площади", "Комната"], c: 1 },
-            { q: "Горное давление — это?", a: ["Стресс", "Силы, возникающие в массиве при работах", "Вес каски"], c: 1 },
-            { q: "Как называется наклонная выработка для спуска груза?", a: ["Бремсберг", "Уклон", "Ходок"], c: 0 },
-            { q: "Как называется наклонная выработка для подъема груза?", a: ["Бремсберг", "Уклон", "Квершлаг"], c: 1 },
-            { q: "Что такое 'Пустая порода'?", a: ["Мусор", "Порода, не содержащая полезных компонентов", "Песок"], c: 1 },
-            { q: "Забойщик — это?", a: ["Враг", "Рабочий, ведущий выемку в забое", "Охранник"], c: 1 },
-            { q: "Шахтный копер — это?", a: ["Деньги", "Сооружение над стволом для подъема", "Инструмент"], c: 1 },
-            { q: "Что такое 'Разубоживание'?", a: ["Очистка", "Засорение руды пустой породой", "Взрыв"], c: 1 },
-            { q: "Рудный двор находится?", a: ["На улице", "Около ствола внизу", "На крыше"], c: 1 },
-            { q: "Наряд на работу — это?", a: ["Костюм", "Задание на смену", "Праздник"], c: 1 },
-            { q: "Кратчайший путь из шахты?", a: ["Лифт", "По путям эвакуации (ПЛА)", "Тоннель"], c: 1 },
-            { q: "Дренаж — это?", a: ["Сбор воды", "Взрыв", "Бурение"], c: 0 }
-        ],
-        safety: [
-            { q: "Основное СИЗ головы?", a: ["Кепка", "Каска", "Шапка"], c: 1 },
-            { q: "При какой концентрации метана работа запрещена?", a: ["0.1%", "1% и выше", "0.01%"], c: 1 },
-            { q: "Что делать при сигнале 'Авария'?", a: ["Доделать работу", "Включить самоспасатель и выходить по ПЛА", "Ждать звонка"], c: 1 },
-            { q: "Инструктаж на рабочем месте проводится?", a: ["Раз в год", "Раз в квартал/полгода", "Никогда"], c: 1 },
-            { q: "Первая помощь при переломе?", a: ["Бежать", "Обеспечить неподвижность (шина)", "Мазать мазью"], c: 1 },
-            { q: "Можно ли курить в шахте?", a: ["Да", "Категорически запрещено", "В тихом месте"], c: 1 },
-            { q: "Назначение диэлектрических перчаток?", a: ["От холода", "От удара током", "Для чистоты"], c: 1 },
-            { q: "Что такое ПЛА?", a: ["План лекций", "План ликвидации аварий", "Самолет"], c: 1 },
-            { q: "Как проверить устойчивость кровли?", a: ["На глаз", "Оборкой заколов специальной пикой", "Криком"], c: 1 },
-            { q: "Огнетушитель ОП предназначен для?", a: ["Полива", "Тушения пожаров", "Охлаждения"], c: 1 },
-            { q: "Поражение током. Первое действие?", a: ["Трогать пострадавшего", "Обесточить установку", "Звонить домой"], c: 1 },
-            { q: "Для чего нужны СИЗ органов дыхания?", a: ["Для красоты", "Защита от пыли и газов", "От холода"], c: 1 },
-            { q: "Что такое 'закол'?", a: ["Украшение", "Отслоившийся кусок породы, грозящий обвалом", "Тип руды"], c: 1 },
-            { q: "Знак 'Красный круг с белой полосой'?", a: ["Вход разрешен", "Въезд запрещен", "Место отдыха"], c: 1 },
-            { q: "Где должен находиться самоспасатель?", a: ["На складе", "Всегда при себе на поясе", "В кабинете"], c: 1 },
-            { q: "Первая помощь при кровотечении?", a: ["Вода", "Наложение жгута или давящей повязки", "Сон"], c: 1 },
-            { q: "Можно ли работать на неисправном оборудовании?", a: ["Да, если срочно", "Нет", "Только мастеру"], c: 1 },
-            { q: "Вентиляционный шлюз служит для?", a: ["Прохода", "Направления воздушных потоков", "Склада"], c: 1 },
-            { q: "Датчик метана на лампе мигает при?", a: ["Поломке", "Превышении допустимой нормы газа", "Разряде батареи"], c: 1 },
-            { q: "Зачем нужно заземление?", a: ["Для связи", "Защита от поражения током при неисправности", "Для веса"], c: 1 },
-            { q: "Выход из задымленной зоны?", a: ["Бегом", "Навстречу струе свежего воздуха", "По ветру"], c: 1 },
-            { q: "Что такое ТБ?", a: ["Тип бура", "Техника безопасности", "Тяжелый бетон"], c: 1 },
-            { q: "Одежда шахтера должна быть?", a: ["Модной", "Светоотражающей и защитной", "Легкой"], c: 1 },
-            { q: "При ударе током нельзя?", a: ["Оказывать помощь", "Касаться пострадавшего без защиты, пока он под током", "Кричать"], c: 1 },
-            { q: "Что делать, если увидел задымление?", a: ["Уйти молча", "Сообщить диспетчеру и действовать по ПЛА", "Снимать на видео"], c: 1 },
-            { q: "Зеленый знак с бегущим человеком?", a: ["Вход", "Эвакуационный выход", "Спортзал"], c: 1 },
-            { q: "Какое напряжение опасно для жизни?", a: ["Любое выше 50В (в сухой среде)", "Только 1000В", "5В"], c: 0 },
-            { q: "Для чего нужен 'Наряд-допуск'?", a: ["Пропуск в столовую", "Письменное разрешение на опасные работы", "Диплом"], c: 1 },
-            { q: "Работа на высоте требует?", a: ["Лестницы", "Предохранительного пояса", "Хорошего зрения"], c: 1 },
-            { q: "Горноспасательная служба называется?", a: ["МЧС", "ВГСЧ", "Скорая"], c: 1 }
+            {q:"Штрек - это... 🛤️", a:["Вертикально","Горизонтально по руде","Вниз"], c:1},
+            {q:"Квершлаг - это... 🚧", a:["По руде","По пустой породе","Вверх"], c:1},
+            {q:"Кислород в шахте (%)? 🌬️", a:["10%","20%+","5%"], c:1},
+            {q:"Метан взрывается при... (%)? 🔥", a:["1%","5-15%","50%"], c:1},
+            {q:"Что такое крепь? 🧱", a:["Замок","Защита от обрушения","Инструмент"], c:1},
+            {q:"Забой - это... ⛏️", a:["Конец","Рабочая поверхность выработки","Склад"], c:1},
+            {q:"Самоспасатель работает... ⏳", a:["5 мин","60 мин (стандарт)","10 часов"], c:1},
+            {q:"Кровля - это... ⬆️", a:["Пол","Потолок","Стена"], c:1},
+            {q:"Почва - это... ⬇️", a:["Потолок","Пол","Земля на улице"], c:1},
+            {q:"Анкер - это... 🔩", a:["Якорь в породе","Дерево","Клей"], c:0},
+            {q:"Вентиляция бывает... 💨", a:["Только нагнетательная","Нагнетательная и всасывающая","Сквозняк"], c:1},
+            {q:"Что такое копер? 🏗️", a:["Деньги","Башня над шахтой","Бур"], c:1},
+            {q:"Скип - это... 🚠", a:["Прыжок","Подъемный сосуд для руды","Крюк"], c:1},
+            {q:"Клеть - это... 🚠", a:["Клетка","Лифт для людей","Ящик"], c:1},
+            {q:"Водоотлив - это... 💧", a:["Полив","Откачка воды из шахты","Душ"], c:1},
+            {q:"Целик - это... 💎", a:["Мишень","Оставленная часть руды","Стена"], c:1},
+            {q:"Разубоживание - это... 📉", a:["Очистка","Смешивание руды с породой","Взрыв"], c:1},
+            {q:"Потери - это... 💸", a:["Забытые вещи","Руда, оставшаяся в недрах","Ошибки"], c:1},
+            {q:"Вскрытие - это... 🔓", a:["Операция","Доступ к месторождению","Взлом"], c:1},
+            {q:"Штольня - это... 🚪", a:["Вертикально","Горизонтально с выходом наружу","Окно"], c:1},
+            {q:"Бремсберг - это... 🎢", a:["Спуск груза","Подъем груза","Вентиляция"], c:0},
+            {q:"Уклон - это... 🎢", a:["Спуск","Подъем груза снизу вверх","Наклон"], c:1},
+            {q:"Гезенк - это... 🧱", a:["Ствол снизу вверх без выхода","Окно","Яма"], c:0},
+            {q:"Обогащение - это... 💰", a:["Зарплата","Повышение содержания металла","Сон"], c:1},
+            {q:"Закол - это... ⚠️", a:["Украшение","Кусок породы, готовый упасть","Трещина"], c:1},
+            {q:"Горное давление - это... 🏋️", a:["Стресс","Вес вышележащих пород","Вес каски"], c:1},
+            {q:"Очистной забой - это... ⛏️", a:["Где моют","Где добывают основную руду","Вход"], c:1},
+            {q:"Сбойка - это... 🔗", a:["Поломка","Соединение двух выработок","Стык"], c:1},
+            {q:"Вагонетка - это... 🛒", a:["Тележка для руды","Машина","Склад"], c:0},
+            {q:"Главный враг шахтера? 👹", a:["Тьма","Метан и обрушения","Тишина"], c:1}
         ]
     };
 
-    let session = []; let idx = 0; let score = 0; let currentT = "";
-    let activeSlot = null;
+    let activeS = []; let curIdx = 0; let curScore = 0; let curTopic = "";
+    let slot = null;
 
-    function showSection(id) {
+    function navTo(id) {
         document.querySelectorAll('.container > div').forEach(d => d.classList.add('hidden'));
         document.getElementById('section-' + id).classList.remove('hidden');
         window.scrollTo(0,0);
     }
 
-    function openLecture(id) {
-        document.getElementById('lecture-text').innerHTML = lecturesDB[id];
-        showSection('read-lecture');
+    function startQuiz(cat, title) {
+        curTopic = title;
+        activeS = [...db[cat]].sort(() => Math.random() - 0.5);
+        curIdx = 0; curScore = 0;
+        document.getElementById('play-title').innerText = title;
+        navTo('play');
+        updateQ();
     }
 
-    function prepQuiz(cat, name) {
-        currentT = name;
-        session = [...questionsDB[cat]].sort(() => Math.random() - 0.5);
-        idx = 0; score = 0;
-        document.getElementById('quiz-title-display').innerText = "Тест: " + name;
-        showSection('quiz-play');
-        showQ();
-    }
-
-    function showQ() {
-        const d = session[idx];
-        document.getElementById('q-text').innerText = d.q;
-        const o = document.getElementById('q-options');
-        o.innerHTML = '';
-        d.a.forEach((ans, i) => {
-            const b = document.createElement('button');
-            b.className = 'option-btn';
-            b.innerText = ans;
-            b.onclick = () => { if(i === d.c) score++; idx++; if(idx < session.length) showQ(); else finish(); };
-            o.appendChild(b);
+    function updateQ() {
+        const d = activeS[curIdx];
+        document.getElementById('q-box').innerText = d.q;
+        const box = document.getElementById('options-box');
+        box.innerHTML = '';
+        d.a.forEach((txt, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-option';
+            btn.innerText = txt;
+            btn.onclick = () => {
+                if(i === d.c) curScore++;
+                curIdx++;
+                if(curIdx < activeS.length) updateQ(); else showFinal();
+            };
+            box.appendChild(btn);
         });
-        document.getElementById('q-progress').innerText = `Вопрос ${idx + 1} из ${session.length}`;
+        document.getElementById('progress-bar').innerText = `Вопрос: ${curIdx + 1} / ${activeS.length}`;
     }
 
-    function finish() {
-        showSection('cert');
-        document.getElementById('c-theme').innerText = currentT;
-        const res = Math.round((score / session.length) * 100);
-        document.getElementById('c-res').innerText = res + "%";
-        document.getElementById('c-date').innerText = new Date().toLocaleDateString();
+    function showFinal() {
+        navTo('cert');
+        document.getElementById('cert-topic').innerText = curTopic;
+        const p = Math.round((curScore / activeS.length) * 100);
+        document.getElementById('cert-res').innerText = p + "%";
+        document.getElementById('cert-date').innerText = new Date().toLocaleDateString();
     }
 
-    // --- ПРАКТИКУМ ---
-    const answers = ["Вскрытие", "Тахеометр", "Взрывные", "Метана", "Конвейер", "Каску"];
-    function setActive(id) { activeSlot = id; }
-    function selectWord(w) {
-        if(activeSlot !== null) {
-            document.getElementById('s-' + activeSlot).innerText = w;
-            activeSlot = null;
+    function setSlot(id) { slot = id; }
+    function putWord(w) {
+        if(slot !== null) {
+            document.getElementById('p-' + slot).innerText = w;
+            slot = null;
         }
     }
-    function checkPractice() {
-        let win = 0;
+    function checkP() {
+        const ans = ["Проходке", "Крепь", "Метан", "Самоспасатель", "Маркшейдер", "Тахеометр"];
+        let ok = 0;
         for(let i=0; i<6; i++) {
-            let s = document.getElementById('s-'+i);
-            if(s.innerText === answers[i]) { s.style.color = "green"; win++; }
-            else s.style.color = "red";
+            let el = document.getElementById('p-'+i);
+            if(el.innerText === ans[i]) { el.style.color = "green"; ok++; }
+            else el.style.color = "red";
         }
-        alert(win === 6 ? "Идеально! Вы настоящий инженер." : "Есть ошибки. Попробуйте еще раз.");
+        alert(ok === 6 ? "ИНЖЕНЕРНЫЙ УРОВЕНЬ! 🏆" : "НУЖНО ПОВТОРИТЬ... 📚");
     }
 </script>
 </body>
