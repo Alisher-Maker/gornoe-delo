@@ -1,7 +1,3 @@
-Спокойно, брат, косяк мой. В прошлом коде из-за огромного массива вопросов я случайно затер функции, которые отвечают за переключение вкладок. Сейчас я всё перепроверил: кнопки «ЛЕКЦИИ» и «ВИКТОРИНЫ» теперь стопудово рабочие, и все 120 вопросов на месте.
-
-Просто удали старый код под чистую и вставь этот. Я проверил каждую строчку, теперь всё переключается как надо.
-
 HTML
 <!DOCTYPE html>
 <html lang="ru">
@@ -9,104 +5,156 @@ HTML
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Горный Портал | Үмбеталі Әлішер</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #e67e22; --dark: #2c3e50; --light: #ecf0f1; --bg: #1a1a1a; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--light); line-height: 1.7; }
-        header { background: var(--dark); padding: 50px 20px; text-align: center; border-bottom: 5px solid var(--primary); }
-        header h1 { margin: 0; font-size: 2.8em; text-transform: uppercase; letter-spacing: 3px; }
-        nav { display: flex; justify-content: center; background: #34495e; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        nav button { background: none; border: none; color: white; padding: 18px 30px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s; }
-        nav button:hover, nav button.active { background: var(--primary); }
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; min-height: 75vh; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: #2c3e50; border-radius: 15px; padding: 30px; transition: 0.4s; cursor: pointer; border: 1px solid #444; text-align: center; }
-        .card:hover { border-color: var(--primary); transform: translateY(-8px); box-shadow: 0 10px 25px rgba(230,126,34,0.3); }
-        .card h3 { color: var(--primary); font-size: 22px; margin-bottom: 15px; }
-        .content-block { background: #fff; color: #222; padding: 45px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
-        .content-block h2 { color: var(--dark); border-bottom: 4px solid var(--primary); padding-bottom: 15px; margin-top: 0; }
-        .content-block h3 { color: #d35400; font-size: 24px; margin-top: 35px; border-left: 5px solid var(--primary); padding-left: 15px; }
-        .content-block p, .content-block li { font-size: 18px; margin-bottom: 15px; }
+        :root { --primary: #e67e22; --dark: #2c3e50; --light: #ecf0f1; --bg: #1a1a1a; --accent: #d35400; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background: var(--bg); color: var(--light); line-height: 1.7; }
+        
+        header { background: var(--dark); padding: 60px 20px; text-align: center; border-bottom: 5px solid var(--primary); background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1578319439584-104c94d37305?auto=format&fit=crop&q=80&w=1000'); background-size: cover; background-position: center; }
+        header h1 { margin: 0; font-size: 3em; text-transform: uppercase; letter-spacing: 4px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        header p { font-size: 1.2em; opacity: 0.9; }
+
+        nav { display: flex; justify-content: center; background: #34495e; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        nav button { background: none; border: none; color: white; padding: 20px 35px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        nav button i { font-size: 20px; color: var(--primary); }
+        nav button:hover { background: var(--primary); color: white; }
+        nav button:hover i { color: white; }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 25px; min-height: 70vh; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        .card { background: #2c3e50; border-radius: 20px; padding: 40px; transition: 0.4s; cursor: pointer; border: 1px solid #3e4f5f; text-align: center; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--primary); transform: scaleX(0); transition: 0.4s; }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(230,126,34,0.2); border-color: var(--primary); }
+        .card i { font-size: 50px; color: var(--primary); margin-bottom: 20px; }
+        .card h3 { font-size: 24px; margin: 10px 0; }
+
+        .content-block { background: #fff; color: #333; padding: 50px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .content-block h2 { color: var(--dark); border-bottom: 4px solid var(--primary); padding-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        .content-block h3 { color: var(--accent); margin-top: 30px; border-left: 5px solid var(--primary); padding-left: 15px; }
+        .content-block p, .content-block li { font-size: 18px; color: #444; }
+        
         .hidden { display: none; }
-        .option-btn { display: block; width: 100%; padding: 18px; margin: 12px 0; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; background: #f9f9f9; font-size: 17px; text-align: left; transition: 0.2s; font-weight: 500; }
-        .option-btn:hover { border-color: var(--primary); background: #fff5eb; }
-        .back-btn { background: #7f8c8d; color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; margin-bottom: 25px; font-weight: bold; }
-        footer { background: var(--dark); text-align: center; padding: 40px; margin-top: 60px; border-top: 2px solid #444; }
-        .author { color: var(--primary); font-size: 1.4em; font-weight: bold; }
+        
+        .option-btn { display: block; width: 100%; padding: 20px; margin: 15px 0; border: 2px solid #eee; border-radius: 12px; cursor: pointer; background: #fdfdfd; font-size: 18px; text-align: left; transition: 0.3s; font-weight: 500; }
+        .option-btn:hover { border-color: var(--primary); background: #fff9f3; transform: scale(1.01); }
+        
+        .back-btn { background: #95a5a6; color: white; border: none; padding: 12px 25px; border-radius: 10px; cursor: pointer; margin-bottom: 30px; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
+        .back-btn:hover { background: #7f8c8d; }
+
+        footer { background: var(--dark); text-align: center; padding: 50px; margin-top: 80px; border-top: 3px solid #333; }
+        .author { color: var(--primary); font-size: 1.5em; font-weight: bold; text-decoration: none; }
         .quiz-res { text-align: center; padding: 40px; }
+        
+        @media (max-width: 768px) { 
+            header h1 { font-size: 2em; }
+            nav { flex-direction: column; }
+            .content-block { padding: 25px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>⛏ Цифровой Горный Университет</h1>
-    <p>Профессиональный портал обучения | Разработчик: Үмбеталі Әлішер</p>
+    <h1><i class="fas fa-mountain-city"></i> Цифровой Горный Университет</h1>
+    <p>Образовательная экосистема будущего | Разработчик: <b>Үмбеталі Әлішер</b></p>
 </header>
 
 <nav id="main-nav">
-    <button onclick="showSection('home')" id="nav-home">ГЛАВНАЯ</button>
-    <button onclick="showSection('lectures')" id="nav-lectures">ЛЕКЦИИ</button>
-    <button onclick="showSection('quiz-menu')" id="nav-quiz">ВИКТОРИНЫ</button>
+    <button onclick="showSection('home')"><i class="fas fa-house"></i> ГЛАВНАЯ</button>
+    <button onclick="showSection('lectures')"><i class="fas fa-book-open"></i> ЛЕКЦИИ</button>
+    <button onclick="showSection('quiz-menu')"><i class="fas fa-vial"></i> ВИКТОРИНЫ</button>
 </nav>
 
 <div class="container">
     <div id="section-home">
-        <h2 style="text-align:center; font-size: 32px;">Добро пожаловать в систему обучения</h2>
-        <p style="text-align:center; font-size: 20px; max-width: 800px; margin: 0 auto 40px;">Ниже представлены разделы с глубоким изучением материалов и проверочные тесты для закрепления знаний.</p>
+        <h2 style="text-align:center; font-size: 36px; margin-bottom: 10px;">Профессиональное обучение</h2>
+        <p style="text-align:center; font-size: 20px; color: #bbb; max-width: 800px; margin: 0 auto 50px;">Интерактивная платформа для изучения горного дела, маркшейдерии и техники безопасности.</p>
         <div class="grid">
-            <div class="card" onclick="showSection('lectures')"><h3>📖 ИЗУЧИТЬ ЛЕКЦИИ</h3><p>Полные учебные пособия по 4 ключевым дисциплинам.</p></div>
-            <div class="card" onclick="showSection('quiz-menu')"><h3>🎯 ПРОЙТИ ТЕСТЫ</h3><p>120 уникальных вопросов для контроля знаний.</p></div>
+            <div class="card" onclick="showSection('lectures')">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>ЛЕКТОРИЙ</h3>
+                <p>Углубленные теоретические материалы</p>
+            </div>
+            <div class="card" onclick="showSection('quiz-menu')">
+                <i class="fas fa-bullseye"></i>
+                <h3>ТЕСТИРОВАНИЕ</h3>
+                <p>Проверка знаний (120 вопросов)</p>
+            </div>
         </div>
     </div>
 
     <div id="section-lectures" class="hidden">
-        <button class="back-btn" onclick="showSection('home')">← НА ГЛАВНУЮ</button>
+        <button class="back-btn" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> НА ГЛАВНУЮ</button>
         <div class="grid">
-            <div class="card" onclick="openLecture('mark')"><h3>📐 Маркшейдерское дело</h3></div>
-            <div class="card" onclick="openLecture('mining')"><h3>🏗 Горное дело</h3></div>
-            <div class="card" onclick="openLecture('bvr')"><h3>💥 Технология БВР</h3></div>
-            <div class="card" onclick="openLecture('safety')"><h3>🛡 Техника безопасности</h3></div>
+            <div class="card" onclick="openLecture('mark')"><i class="fas fa-compass"></i><h3>Маркшейдерия</h3></div>
+            <div class="card" onclick="openLecture('mining')"><i class="fas fa-trowel-bricks"></i><h3>Горное дело</h3></div>
+            <div class="card" onclick="openLecture('bvr')"><i class="fas fa-burst"></i><h3>Технология БВР</h3></div>
+            <div class="card" onclick="openLecture('safety')"><i class="fas fa-hard-hat"></i><h3>Безопасность</h3></div>
         </div>
     </div>
 
     <div id="section-read-lecture" class="hidden">
-        <button class="back-btn" onclick="showSection('lectures')">← К СПИСКУ РАЗДЕЛОВ</button>
+        <button class="back-btn" onclick="showSection('lectures')"><i class="fas fa-list"></i> К СПИСКУ ЛЕКЦИЙ</button>
         <div class="content-block" id="lecture-text"></div>
     </div>
 
     <div id="section-quiz-menu" class="hidden">
-        <button class="back-btn" onclick="showSection('home')">← НА ГЛАВНУЮ</button>
+        <button class="back-btn" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> НА ГЛАВНУЮ</button>
         <div class="grid">
-            <div class="card" onclick="prepQuiz('mark')"><h3>Тест: Маркшейдерское дело</h3></div>
-            <div class="card" onclick="prepQuiz('mining')"><h3>Тест: Горное дело</h3></div>
-            <div class="card" onclick="prepQuiz('bvr')"><h3>Тест: Технология БВР</h3></div>
-            <div class="card" onclick="prepQuiz('safety')"><h3>Тест: Техника безопасности</h3></div>
+            <div class="card" onclick="prepQuiz('mark')"><i class="fas fa-ruler-combined"></i><h3>Тест: Маркшейдерия</h3></div>
+            <div class="card" onclick="prepQuiz('mining')"><i class="fas fa-gears"></i><h3>Тест: Горное дело</h3></div>
+            <div class="card" onclick="prepQuiz('bvr')"><i class="fas fa-bomb"></i><h3>Тест: Технология БВР</h3></div>
+            <div class="card" onclick="prepQuiz('safety')"><i class="fas fa-shield-halved"></i><h3>Тест: Безопасность</h3></div>
         </div>
     </div>
 
     <div id="section-quiz-play" class="hidden">
         <div class="content-block" id="quiz-ui-box">
-            <div id="q-text" style="font-size: 24px; font-weight: bold; margin-bottom: 30px; color: #333;"></div>
+            <div id="q-text" style="font-size: 26px; font-weight: bold; margin-bottom: 35px; color: #222;"></div>
             <div id="q-options"></div>
-            <div id="q-progress" style="margin-top:25px; font-weight:bold; color:var(--primary);"></div>
+            <div id="q-progress" style="margin-top:30px; font-weight:bold; color:var(--primary); font-size: 1.1em;"></div>
         </div>
     </div>
 </div>
 
 <footer>
-    Разработал проект: <span class="author">Үмбеталі Әлішер</span><br>
-    © 2026 Все права защищены. Образовательная платформа.
+    Разработал проект: <a href="#" class="author">Үмбеталі Әлішер</a><br>
+    <p style="opacity: 0.6; margin-top: 15px;">© 2026 Горно-технический портал. Все права защищены.</p>
 </footer>
 
 <script>
-    // База лекций
+    // МАТЕРИАЛЫ ЛЕКЦИЙ (Расширенные)
     const lecturesDB = {
-        mark: `<h2>Маркшейдерское дело</h2><p>Маркшейдерия — это измерения в недрах Земли и на поверхности для ведения горных работ.</p><h3>Основные приборы</h3><ul><li>Теодолит (углы)</li><li>Нивелир (высоты)</li><li>Тахеометр (комплекс)</li></ul>`,
-        mining: `<h2>Горное дело</h2><p>Добыча полезных ископаемых включает вскрытие и подготовку месторождения.</p><h3>Системы разработки</h3><ul><li>С обрушением</li><li>С закладкой</li><li>С магазинированием</li></ul>`,
-        bvr: `<h2>Технология БВР</h2><p>Буровзрывные работы — основной способ разрушения крепких пород.</p><h3>Средства взрывания</h3><ul><li>Электродетонаторы</li><li>Детонирующий шнур</li><li>Взрывчатые вещества (ВВ)</li></ul>`,
-        safety: `<h2>Техника безопасности</h2><p>Охрана труда — приоритет номер один в шахте.</p><h3>СИЗ</h3><ul><li>Каска</li><li>Фонарь (коногонка)</li><li>Самоспасатель</li></ul>`
+        mark: `<h2><i class="fas fa-compass"></i> Маркшейдерское дело</h2>
+               <h3>1. Понятие о Маркшейдерии</h3>
+               <p>Маркшейдерия — это отрасль горной науки, занимающаяся измерениями в недрах Земли и последующим геометрическим отображением этих измерений на чертежах.</p>
+               <h3>2. Геодезическая основа</h3>
+               <p>Основными приборами маркшейдера являются <b>электронный тахеометр</b>, <b>теодолит</b> и <b>нивелир</b>. В современных условиях активно внедряется лазерное сканирование и использование GPS/ГЛОНАСС систем для привязки координат.</p>
+               <h3>3. Системы координат</h3>
+               <p>В горном деле используется прямоугольная система координат X, Y и высотная отметка Z. Основным документом является план горных работ, который обновляется ежемесячно.</p>`,
+        
+        mining: `<h2><i class="fas fa-trowel-bricks"></i> Горное дело и Системы разработки</h2>
+                <h3>1. Основные понятия</h3>
+                <p>Горное дело включает в себя процессы извлечения полезных ископаемых. Процесс делится на три этапа: вскрытие, подготовка и очистная выемка.</p>
+                <h3>2. Системы разработки</h3>
+                <p><b>Системы с открытым очистным пространством:</b> применяются в устойчивых породах. <b>Системы с обрушением:</b> наиболее экономичны, используются при добыче руд средней ценности. <b>Системы с закладкой:</b> самые дорогие, но позволяют избежать просадки поверхности.</p>`,
+        
+        bvr: `<h2><i class="fas fa-burst"></i> Технология Буровзрывных работ</h2>
+              <h3>1. Процесс разрушения массива</h3>
+              <p>Разрушение породы происходит за счет энергии расширяющихся газов при детонации взрывчатого вещества (ВВ). Ключевым параметром является ЛНС (Линия наименьшего сопротивления).</p>
+              <h3>2. Средства инициирования</h3>
+              <p>Для взрыва используются электродетонаторы, волноводы (системы "Нонель") и детонирующие шнуры. В современных шахтах применяется короткозамедленное взрывание (КЗВ) для снижения сейсмического удара.</p>`,
+        
+        safety: `<h2><i class="fas fa-hard-hat"></i> Техника безопасности (ТБ)</h2>
+                <h3>1. Средства Индивидуальной Защиты (СИЗ)</h3>
+                <p>Каждый работник обязан иметь: защитную каску, спецобувь, аккумуляторный фонарь с датчиком метана и самоспасатель (время защитного действия от 60 минут).</p>
+                <h3>2. Газовый режим</h3>
+                <p>Наибольшую опасность в шахте представляет метан (CH4). При концентрации 5-15% в смеси с воздухом он становится взрывоопасным. Постоянный мониторинг состава воздуха — обязанность каждого ИТР.</p>`
     };
 
-    // База вопросов (120 штук)
+    // БАЗА ВОПРОСОВ (Полные 120 штук)
     const questionsDB = {
         bvr: [
             { q: "Что такое ЛНС?", a: ["Вес заряда", "Кратчайшее расстояние до свободной поверхности", "Длина скважины"], c: 1 },
@@ -144,7 +192,7 @@ HTML
             { q: "Форма Земли в геодезии?", a: ["Шар", "Эллипсоид Красовского", "Диск"], c: 1 },
             { q: "Теодолит измеряет?", a: ["Давление", "Углы", "Высоты"], c: 1 },
             { q: "Азимут отсчитывается от?", a: ["Юга", "Севера", "Запада"], c: 1 },
-            { q: "Нивелир определяет?", a: ["Углы", "Превышения (высоты)", "Длину"], c: 1 },
+            { q: "Нивелир определяет?", a: ["Углы", "Превышения", "Длину"], c: 1 },
             { q: "Прибор для центрирования?", a: ["Линейка", "Отвес", "Уровень"], c: 1 },
             { q: "Репер это?", a: ["Прибор", "Знак с известной высотой", "Карта"], c: 1 },
             { q: "Зона в проекции Гаусса?", a: ["3 градуса", "6 градусов", "12 градусов"], c: 1 },
@@ -221,17 +269,17 @@ HTML
             { q: "При задымлении нужно?", a: ["Бежать", "Использовать самоспасатель", "Прыгать"], c: 1 },
             { q: "Изолирующая перемычка для?", a: ["Вентиляции", "Изоляции пожара", "Красоты"], c: 1 },
             { q: "Реанимация это?", a: ["Массаж сердца и ИВЛ", "Сон", "Еда"], c: 0 },
-            { q: "Пульс проверяют на?", a: ["Шее (сонная артерия)", "Волосах", "Ногтях"], c: 0 },
-            { q: "Кровотечение останавливают?", a: ["Жгутом или повязкой", "Водой", "Маслом"], c: 0 },
+            { q: "Пульс проверяют на?", a: ["Шее", "Волосах", "Ногтях"], c: 0 },
+            { q: "Кровотечение останавливают?", a: ["Жгутом", "Водой", "Маслом"], c: 0 },
             { q: "Перелом фиксируют?", a: ["Шиной", "Клеем", "Бинтом"], c: 0 },
             { q: "Ожог промывают?", a: ["Холодной водой", "Спиртом", "Маслом"], c: 0 },
-            { q: "При ударе током нельзя?", a: ["Трогать голыми руками", "Звонить", "Кричать"], c: 0 },
+            { q: "При ударе током нельзя?", a: ["Трогать руками", "Звонить", "Кричать"], c: 0 },
             { q: "ПДК это?", a: ["Концентрация", "Предельно допустимая концентрация", "Скорость"], c: 1 },
             { q: "Газоанализатор измеряет?", a: ["Газы", "Вес", "Свет"], c: 0 },
-            { q: "Азот используется для?", a: ["Тушения пожаров", "Дыхания", "Взрыва"], c: 0 },
+            { q: "Азот используется для?", a: ["Тушения", "Дыхания", "Взрыва"], c: 0 },
             { q: "Горноспасатели это?", a: ["ВГСЧ", "Полиция", "Врачи"], c: 0 },
             { q: "План ликвидации аварий?", a: ["ПЛА", "Схема", "Закон"], c: 0 },
-            { q: "Путь эвакуации обозначен?", a: ["Зелеными знаками", "Красными", "Черными"], c: 0 },
+            { q: "Путь эвакуации обозначен?", a: ["Зеленым", "Красным", "Черным"], c: 0 },
             { q: "Вторичный инструктаж?", a: ["Повторный", "Первый", "Последний"], c: 0 },
             { q: "Заземление защищает от?", a: ["Тока", "Пыли", "Шума"], c: 0 },
             { q: "Алкоголь на смене?", a: ["Запрещен", "Разрешен", "Немного"], c: 0 }
@@ -240,16 +288,12 @@ HTML
 
     let session = []; let idx = 0; let score = 0;
 
-    // ФУНКЦИИ ПЕРЕКЛЮЧЕНИЯ (ТЕПЕРЬ ВСЁ РАБОТАЕТ)
     function showSection(id) {
-        // Прячем всё
-        document.getElementById('section-home').classList.add('hidden');
-        document.getElementById('section-lectures').classList.add('hidden');
-        document.getElementById('section-read-lecture').classList.add('hidden');
-        document.getElementById('section-quiz-menu').classList.add('hidden');
-        document.getElementById('section-quiz-play').classList.add('hidden');
-        
-        // Показываем нужное
+        // Список всех ID секций
+        const sections = ['home', 'lectures', 'read-lecture', 'quiz-menu', 'quiz-play'];
+        sections.forEach(s => {
+            document.getElementById('section-' + s).classList.add('hidden');
+        });
         document.getElementById('section-' + id).classList.remove('hidden');
         window.scrollTo(0,0);
     }
@@ -288,10 +332,11 @@ HTML
     function finish() {
         document.getElementById('quiz-ui-box').innerHTML = `
             <div class="quiz-res">
+                <i class="fas fa-trophy" style="font-size: 80px; color: gold; margin-bottom: 20px;"></i>
                 <h2 style="color: #333;">ТЕСТ ЗАВЕРШЕН!</h2>
-                <p style="font-size: 40px; color: var(--primary); font-weight: bold;">${score} / ${session.length}</p>
-                <p style="color: #666;">Правильных ответов</p>
-                <button class="back-btn" onclick="location.reload()">НА ГЛАВНУЮ</button>
+                <p style="font-size: 48px; color: var(--primary); font-weight: bold; margin: 10px 0;">${score} / ${session.length}</p>
+                <p style="color: #666; font-size: 18px;">Ваш результат готов.</p>
+                <button class="back-btn" style="margin-top: 20px;" onclick="location.reload()"><i class="fas fa-rotate-right"></i> НА ГЛАВНУЮ</button>
             </div>`;
     }
 </script>
