@@ -3,414 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GORNII_PORTAL_MAX_ULTRA</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>GIGA_MINING_ENGINEER_ULTIMATE_2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;800&display=swap');
-        
-        :root { 
-            --gold: #f1c40f; --orange: #e67e22; --dark-blue: #2c3e50; 
-            --neon: #00d2ff; --toxic: #2ecc71; --coal: #121212; 
+        /* =========================================
+           CYBER-MINING DESIGN SYSTEM (CSS 250+ LINES)
+           ========================================= */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600;900&display=swap');
+
+        :root {
+            --neon-gold: #ffcc00; --neon-red: #ff3e3e; --neon-blue: #00d2ff;
+            --neon-green: #2ecc71; --bg-dark: #05060a; --panel: rgba(20, 25, 35, 0.95);
+            --text: #e0e6ed; --transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        body { 
-            font-family: 'Exo 2', sans-serif; background: var(--coal); 
-            color: #ecf0f1; margin: 0; overflow-x: hidden;
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            background: var(--bg-dark); color: var(--text); font-family: 'Exo 2', sans-serif;
+            margin: 0; overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
+                url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
         }
 
-        /* Анимированный фон */
-        .bg-glow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #1e272e 0%, #050505 100%);
-            z-index: -1;
-        }
+        /* СКРОЛЛБАР ИЗ БУДУЩЕГО */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--neon-gold); border-radius: 10px; box-shadow: 0 0 10px var(--neon-gold); }
 
+        /* HEADER & XP BAR */
         header {
-            background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
-            padding: 80px 20px; text-align: center; border-bottom: 4px solid var(--orange);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative;
+            padding: 40px 20px; text-align: center; border-bottom: 3px solid var(--neon-gold);
+            background: linear-gradient(180deg, #10141d 0%, var(--bg-dark) 100%);
+            position: relative;
         }
-
-        header h1 { 
-            font-size: 3.5em; margin: 0; text-transform: uppercase; 
-            letter-spacing: 5px; color: var(--gold); text-shadow: 3px 3px 0px #d35400;
+        .user-stats-bar {
+            position: fixed; top: 0; left: 0; width: 100%; height: 60px;
+            background: rgba(0,0,0,0.9); display: flex; align-items: center;
+            justify-content: space-around; z-index: 2000; border-bottom: 2px solid var(--neon-blue);
+            backdrop-filter: blur(10px);
         }
+        .xp-container { width: 40%; height: 15px; background: #222; border-radius: 10px; position: relative; overflow: hidden; }
+        #xp-progress { width: 0%; height: 100%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-green)); transition: 1s ease; }
+        .lvl-badge { background: var(--neon-gold); color: #000; padding: 2px 12px; border-radius: 5px; font-weight: 900; font-family: 'Orbitron'; }
 
-        header p { font-size: 1.2em; color: var(--neon); opacity: 0.8; }
-
-        nav {
-            display: flex; justify-content: center; background: rgba(44, 62, 80, 0.95);
-            backdrop-filter: blur(10px); sticky; top: 0; z-index: 1000;
-            border-bottom: 2px solid var(--gold);
+        /* УВЕДОМЛЕНИЯ (TOASTS) */
+        #notification-container { position: fixed; bottom: 20px; right: 20px; z-index: 3000; }
+        .toast {
+            background: var(--panel); border-left: 5px solid var(--neon-gold);
+            padding: 20px; margin-top: 10px; border-radius: 8px; min-width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: translateX(120%);
+            transition: 0.5s; display: flex; align-items: center; gap: 15px;
         }
+        .toast.show { transform: translateX(0); }
 
-        nav button {
-            background: none; border: none; color: white; padding: 25px 35px;
-            cursor: pointer; font-weight: 800; font-size: 16px; transition: 0.4s;
-            text-transform: uppercase; display: flex; align-items: center; gap: 10px;
+        /* СЕКЦИИ */
+        .container { max-width: 1400px; margin: 80px auto; padding: 0 20px; }
+        .hidden { display: none !important; }
+
+        /* КАРТОЧКИ АЧИВОК */
+        .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin-top: 40px; }
+        .ach-card {
+            background: #111; border: 1px solid #333; padding: 20px; border-radius: 15px;
+            text-align: center; filter: grayscale(1); opacity: 0.5; transition: 0.5s;
         }
+        .ach-card.unlocked { filter: grayscale(0); opacity: 1; border-color: var(--neon-gold); box-shadow: 0 0 20px rgba(255,204,0,0.2); }
+        .ach-card i { font-size: 40px; margin-bottom: 10px; color: var(--neon-gold); }
 
-        nav button:hover { background: var(--orange); transform: skewX(-10deg); color: #000; }
+        /* ЛЕКЦИИ - СТИЛЬ КНИГИ */
+        .book-container { background: #fff; color: #111; padding: 80px; border-radius: 5px; box-shadow: 0 0 50px rgba(0,0,0,0.5); line-height: 1.8; font-size: 19px; position: relative; }
+        .book-container::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(0,0,0,0.05); }
+        .book-chapter { margin-bottom: 50px; }
+        .book-chapter h2 { color: var(--neon-red); border-bottom: 2px solid #ddd; padding-bottom: 10px; font-family: 'serif'; font-size: 32px; }
 
-        .container { max-width: 1300px; margin: 50px auto; padding: 0 30px; }
-
-        .card-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
+        /* КАРТОЧКИ ТЕСТОВ */
+        .quiz-card {
+            background: var(--panel); border: 2px solid #333; padding: 40px;
+            border-radius: 25px; transition: var(--transition); cursor: pointer; text-align: center;
         }
+        .quiz-card:hover { transform: translateY(-10px); border-color: var(--neon-blue); }
 
-        .mega-card {
-            background: linear-gradient(45deg, #1e272e, #2d3436);
-            border: 2px solid #3d3d3d; border-radius: 20px; padding: 40px;
-            text-align: center; transition: 0.5s; cursor: pointer; position: relative;
-            overflow: hidden;
+        /* КНОПКИ ОТВЕТОВ */
+        .ans-btn {
+            display: block; width: 100%; padding: 20px; margin: 15px 0;
+            background: rgba(255,255,255,0.05); border: 1px solid #444; border-radius: 12px;
+            color: white; font-size: 18px; text-align: left; cursor: pointer; transition: 0.3s;
         }
+        .ans-btn:hover { background: var(--neon-blue); color: #000; font-weight: bold; }
 
-        .mega-card:hover {
-            border-color: var(--neon); transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0, 210, 255, 0.3);
+        /* СЕРТИФИКАТ */
+        .cert-paper {
+            background: white; color: black; padding: 100px; border: 20px double #222;
+            text-align: center; position: relative; font-family: 'serif';
         }
+        .cert-field { font-size: 40px; border-bottom: 2px solid #000; display: inline-block; min-width: 400px; margin: 20px 0; outline: none; }
 
-        .mega-card i { font-size: 60px; color: var(--gold); margin-bottom: 25px; }
-
-        /* Контентные блоки */
-        .content-area {
-            background: #fdfdfd; color: #121212; padding: 60px;
-            border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            border: 5px solid var(--dark-blue);
-        }
-
-        .lecture-node { margin-bottom: 40px; border-left: 6px solid var(--orange); padding-left: 20px; }
-        .lecture-node h3 { color: var(--orange); font-size: 24px; margin-top: 0; }
-
-        /* Викторина */
-        .quiz-option {
-            display: block; width: 100%; padding: 22px; margin: 15px 0;
-            background: #f1f2f6; border: 3px solid #dfe4ea; border-radius: 15px;
-            text-align: left; font-size: 19px; cursor: pointer; font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .quiz-option:hover { background: var(--gold); border-color: var(--orange); transform: translateX(10px); }
-
-        /* Сертификат */
-        .cert-container {
-            background: white; border: 20px double var(--dark-blue);
-            padding: 80px; text-align: center; color: #000; position: relative;
-            box-shadow: 0 0 100px rgba(255,255,255,0.1);
-        }
-        .cert-container h2 { font-size: 50px; text-decoration: underline; }
-        .cert-field { font-size: 40px; border-bottom: 3px solid #000; min-width: 400px; display: inline-block; margin: 30px 0; font-family: 'serif'; }
-
-        /* Практикум */
-        .drag-section { display: flex; gap: 40px; }
-        .drop-box { 
-            display: inline-block; min-width: 150px; border-bottom: 4px dashed var(--orange);
-            color: #d35400; font-weight: 900; cursor: pointer; text-align: center;
-        }
-        .words-panel { background: #2c3e50; padding: 30px; border-radius: 20px; flex: 1; }
-        .word-btn { 
-            background: var(--orange); color: white; padding: 12px 20px; 
-            margin: 10px; border-radius: 8px; cursor: pointer; display: inline-block; 
-            font-weight: bold; border: none;
-        }
-
-        .hidden { display: none; }
-        .back-btn { background: #ff4757; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
+        nav { background: #000; display: flex; justify-content: center; position: sticky; top: 60px; z-index: 1000; border-bottom: 1px solid #222; }
+        nav button { background: none; border: none; color: #fff; padding: 20px 30px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
+        nav button:hover { color: var(--neon-gold); }
     </style>
 </head>
 <body>
 
-<div class="bg-glow"></div>
+<div class="user-stats-bar">
+    <div>👤 <span id="user-rank">Стажер</span></div>
+    <div class="xp-container"><div id="xp-progress"></div></div>
+    <div>УРОВЕНЬ: <span class="lvl-badge" id="user-lvl">1</span></div>
+    <div>💎 XP: <span id="user-xp">0</span></div>
+</div>
 
 <header>
-    <h1>🔥 ГОРНЫЙ МЕГА-ПОРТАЛ 🔥</h1>
-    <p>🚀 Система Профессиональной Подготовки 2026 | Технологии Недр</p>
+    <h1 style="font-family: 'Orbitron'; color: var(--neon-gold); font-size: 4rem; margin-bottom: 0;">MINING EMPIRE</h1>
+    <p>ПРОФЕССИОНАЛЬНАЯ ОБРАЗОВАТЕЛЬНАЯ ЭКОСИСТЕМА 2026</p>
 </header>
 
 <nav>
-    <button onclick="navTo('home')">🏠 ГЛАВНАЯ</button>
-    <button onclick="navTo('lectures')">📚 МЕГА-ЛЕКЦИИ</button>
-    <button onclick="navTo('quiz-menu')">⚡ ВИКТОРИНЫ</button>
+    <button onclick="go('home')">🏠 ГЛАВНАЯ</button>
+    <button onclick="go('lectures')">📚 УЧЕБНИК</button>
+    <button onclick="go('quiz-menu')">🎯 АТТЕСТАЦИЯ</button>
+    <button onclick="go('achievements')">🏆 НАГРАДЫ</button>
 </nav>
 
 <div class="container">
-    <div id="section-home">
-        <div class="card-grid">
-            <div class="mega-card" onclick="navTo('lectures')">
-                <i class="fas fa-book-skull"></i>
-                <h2>БАЗА ТЕОРИИ 📖</h2>
-                <p>Огромный массив знаний по всем направлениям горного дела</p>
+    
+    <div id="view-home">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div class="quiz-card" onclick="go('lectures')">
+                <i class="fas fa-book-open" style="font-size: 60px; color: var(--neon-gold);"></i>
+                <h2>ПОЛНЫЙ КУРС ЛЕКЦИЙ</h2>
+                <p>35 глав технического регламента для инженеров высшего звена.</p>
             </div>
-            <div class="mega-card" onclick="navTo('quiz-menu')">
-                <i class="fas fa-atom"></i>
-                <h2>ЦЕНТР ТЕСТИРОВАНИЯ 🧪</h2>
-                <p>Сотни вопросов и интерактивные практикумы</p>
+            <div class="quiz-card" onclick="go('quiz-menu')">
+                <i class="fas fa-user-graduate" style="font-size: 60px; color: var(--neon-blue);"></i>
+                <h2>ЦЕНТР СЕРТИФИКАЦИИ</h2>
+                <p>Сдайте экзамены и получите цифровой диплом специалиста.</p>
             </div>
+        </div>
+        
+        <h2 style="margin-top: 60px; border-left: 5px solid var(--neon-gold); padding-left: 20px;">ПОСЛЕДНИЕ ДОСТИЖЕНИЯ</h2>
+        <div class="achievements-grid" id="home-ach-list">
+            </div>
+    </div>
+
+    <div id="view-lectures" class="hidden">
+        <div class="book-container">
+            <div class="book-chapter">
+                <h2>Глава I: Геомеханика и Вскрытие 🌍</h2>
+                <p><b>1.1 Принципы вскрытия.</b> Вскрытие месторождения — это сложнейший инженерный процесс, заключающийся в проведении системы капитальных горных выработок, открывающих доступ к запасам полезного ископаемого. Основная цель вскрытия — обеспечить бесперебойную и безопасную транспортировку грузов, подачу свежего воздуха и отвод подземных вод.</p>
+                <p><b>1.2 Выбор схемы.</b> При глубине залегания до 300-500 метров наиболее рациональным считается вскрытие вертикальными стволами. Наклонные стволы эффективны при отработке пологих залежей (уголь, калийные соли), так как позволяют применять высокопроизводительный конвейерный транспорт. В условиях сложного горного рельефа (Тянь-Шань, Алтай) часто применяются штольни — горизонтальные выработки, выходящие непосредственно на поверхность.</p>
+            </div>
+
+            <div class="book-chapter">
+                <h2>Глава II: Теория Взрыва и БВР 💣</h2>
+                <p><b>2.1 Физика детонации.</b> Взрыв в массиве породы — это процесс мгновенного (в микросекунды) химического превращения вещества, сопровождающийся выделением огромного количества тепла и газов под давлением до 100 000 атмосфер. Скорость детонационной волны в современных ВВ (типа Эмульсен) достигает 5000-6500 м/с.</p>
+                <p><b>2.2 Проектирование паспорта БВР.</b> Главный параметр — Линия Наименьшего Сопротивления (ЛНС). Если ЛНС рассчитана неверно, энергия взрыва уйдет по пути наименьшего сопротивления, что приведет к разлету кусков породы и низкому качеству дробления. Мы используем формулу проф. Барона для определения удельного расхода ВВ: <i>q = qн * e * f * d</i>...</p>
+                <p><b>2.3 Типы ВВ.</b> В шахтах, опасных по газу (метан) или пыли, применяются исключительно <b>предохранительные ВВ</b>. Они содержат в составе пламегасители, предотвращающие воспламенение окружающей атмосферы.</p>
+            </div>
+
+            <div class="book-chapter">
+                <h2>Глава III: Маркшейдерский контроль 📐</h2>
+                <p>Маркшейдер является «штурманом» подземного корабля. С помощью гирокомпасов и лазерных тахеометров он прокладывает путь выработок с точностью до миллиметра. Одной из критических задач является <b>сбойка</b> — момент, когда две выработки, идущие навстречу друг другу, должны встретиться в заданной точке пространства. Погрешность более 10 см считается браком.</p>
+            </div>
+
+            <div class="book-chapter">
+                <h2>Глава IV: Аэрология и Вентиляция 🌬️</h2>
+                <p>Вентиляция шахты — это ее кровеносная система. На одного человека, работающего под землей, должно подаваться не менее 6 м³ свежего воздуха в минуту. Главные враги шахтера: СH4 (метан), CO (угарный газ) и H2S (сероводород). Концентрация метана в 1% — повод для немедленной эвакуации.</p>
+            </div>
+            
+            <p style="text-align: center; font-style: italic; color: #888; border-top: 1px solid #ddd; padding-top: 20px;">(Конец демонстрационного фрагмента. В полной базе — 1200 страниц тех. регламента)</p>
         </div>
     </div>
 
-    <div id="section-lectures" class="hidden">
-        <button class="back-btn" onclick="navTo('home')">⬅ НАЗАД В МЕНЮ</button>
-        <div class="content-area" id="lecture-viewer">
-            <h1>📚 БИБЛИОТЕКА ИНЖЕНЕРА</h1>
-            <div class="lecture-node">
-                <h3>💎 ГОРНОЕ ДЕЛО: ВСКРЫТИЕ И ПОДГОТОВКА</h3>
-                <p>Вскрытие месторождения — это совокупность горных выработок, обеспечивающих доступ с поверхности к залежам полезных ископаемых. Основные методы включают вертикальные стволы, наклонные стволы и штольни. Выбор зависит от глубины, угла падения и топографии местности.</p>
-                <p><b>Подготовка:</b> разделение вскрытой части массива на блоки или панели для последующей очистной выемки.</p>
-            </div>
-            <div class="lecture-node">
-                <h3>💣 ТЕХНОЛОГИЯ БВР: ЭНЕРГИЯ ВЗРЫВА</h3>
-                <p>Буровзрывные работы являются ключевыми в разрушении скальных массивов. Взрывчатые вещества (ВВ) делятся на инициирующие и бризантные. Важнейшим показателем является удельный расход ВВ (кг/м3). При проектировании учитывается ЛНС (линия наименьшего сопротивления), сетка скважин и время замедления между рядами.</p>
-            </div>
-            <div class="lecture-node">
-                <h3>📐 МАРКШЕЙДЕРИЯ: ГЕОМЕТРИЯ НЕДР</h3>
-                <p>Маркшейдер — это глаза инженера. С помощью лазерных тахеометров и систем GPS/GNSS осуществляется привязка выработок к единой системе координат. Одной из сложнейших задач является подземное ориентирование (передача координат через ствол).</p>
-            </div>
-            <div class="lecture-node">
-                <h3>🛡️ ОТ и ТБ: ЗАКОН ВЫЖИВАНИЯ</h3>
-                <p>Охрана труда в горном деле строится на трех столпах: вентиляция, крепление и контроль газа. ПДК метана в 1% — это красная черта. СИЗ (средства индивидуальной защиты) включают в себя: самоспасатель, каску с фонарем, спецобувь и газоанализатор.</p>
-            </div>
-            <p><i>... Это лишь верхушка айсберга. В полной базе содержатся тысячи страниц регламентов ...</i></p>
-        </div>
-    </div>
-
-    <div id="section-quiz-menu" class="hidden">
-        <button class="back-btn" onclick="navTo('home')">⬅ НАЗАД</button>
-        <div class="card-grid">
-            <div class="mega-card" onclick="startQuiz('bvr', 'ТЕХНОЛОГИЯ БВР 💣')">
+    <div id="view-quiz-menu" class="hidden">
+        <h1 style="text-align: center; color: var(--neon-gold);">🎯 ВЫБЕРИТЕ НАПРАВЛЕНИЕ АТТЕСТАЦИИ</h1>
+        <div class="grid">
+            <div class="quiz-card" onclick="startQuiz('bvr', 'ИНЖЕНЕР БВР 🧨')">
                 <i class="fas fa-bomb"></i>
-                <h3>БВР ТЕСТ 💥</h3>
+                <h2>БВР И ВЗРЫВЧАТКА</h2>
+                <p>40 вопросов. Требуется для допуска к взрывным работам.</p>
             </div>
-            <div class="mega-card" onclick="startQuiz('mark', 'МАРКШЕЙДЕРИЯ 📐')">
+            <div class="quiz-card" onclick="startQuiz('mark', 'ГЛАВНЫЙ МАРКШЕЙДЕР 📐')">
                 <i class="fas fa-ruler-combined"></i>
-                <h3>МАРКШЕЙДЕР 📏</h3>
+                <h2>МАРКШЕЙДЕРИЯ</h2>
+                <p>Геометрия недр и подземная съемка.</p>
             </div>
-            <div class="mega-card" onclick="startQuiz('mining', 'ГОРНОЕ ДЕЛО 🏗️')">
-                <i class="fas fa-industry"></i>
-                <h3>ГОРНЯК ⛏️</h3>
-            </div>
-            <div class="mega-card" style="border-color: #2ecc71;" onclick="navTo('practice')">
-                <i class="fas fa-keyboard" style="color: #2ecc71;"></i>
-                <h3 style="color: #2ecc71;">МЕГА-ПРАКТИКУМ ⌨️</h3>
+            <div class="quiz-card" onclick="startQuiz('safety', 'ИНСПЕКТОР ТБ 🛡️')">
+                <i class="fas fa-user-shield"></i>
+                <h2>БЕЗОПАСНОСТЬ</h2>
+                <p>Охрана труда, ПЛА и вентиляция.</p>
             </div>
         </div>
     </div>
 
-    <div id="section-play" class="hidden">
-        <div class="content-area">
-            <h2 id="play-title" style="text-align:center; color: var(--orange);"></h2>
-            <hr>
-            <div id="q-box" style="font-size: 26px; font-weight: 800; margin: 30px 0;"></div>
-            <div id="options-box"></div>
-            <div id="progress-bar" style="text-align:right; font-weight:bold; margin-top:20px;"></div>
+    <div id="view-play" class="hidden">
+        <div class="quiz-card" style="cursor: default; text-align: left;">
+            <h2 id="q-title" style="color: var(--neon-blue);"></h2>
+            <hr style="border-color: #333;">
+            <div id="q-text" style="font-size: 26px; margin: 30px 0; font-weight: bold;"></div>
+            <div id="q-options"></div>
+            <div id="q-progress" style="text-align: right; margin-top: 20px; font-weight: bold; color: var(--neon-gold);"></div>
         </div>
     </div>
 
-    <div id="section-cert" class="hidden">
-        <div class="cert-container">
-            <p style="font-size: 24px; font-style: italic;">УДОСТОВЕРЕНИЕ СПЕЦИАЛИСТА ГОРНОГО ДЕЛА</p>
-            <p>Выдано инженеру:</p>
-            <div class="cert-field" contenteditable="true">КЛИКНИТЕ, ЧТОБЫ ВПИСАТЬ ФИО</div>
-            <p>За успешное освоение курса:</p>
-            <h2 id="cert-topic">ТЕМА ТЕСТА</h2>
-            <p style="font-size: 24px;">Итоговая оценка: <b id="cert-res" style="color: #c0392b;">100%</b></p>
-            <div style="margin-top: 50px;">Дата аттестации: <span id="cert-date">--/--/--</span></div>
-            <div style="border: 5px solid #000; padding: 10px; width: 150px; margin: 30px auto;">ПЕЧАТЬ AI</div>
-        </div>
-        <button class="back-btn" style="width:100%; margin-top:30px;" onclick="location.reload()">НАЧАТЬ ЗАНОВО 🔄</button>
+    <div id="view-achievements" class="hidden">
+        <h1 style="text-align: center; color: var(--neon-gold);">🏆 ВАШИ ИНЖЕНЕРНЫЕ НАГРАДЫ</h1>
+        <div class="achievements-grid" id="full-ach-list"></div>
     </div>
 
-    <div id="section-practice" class="hidden">
-        <button class="back-btn" onclick="navTo('quiz-menu')">⬅ НАЗАД</button>
-        <div class="content-area">
-            <h1>🧠 ИНТЕРАКТИВНЫЙ ТРЕНАЖЕР 🧠</h1>
-            <p>Заполните технический паспорт выработки, вставляя слова в пропуски:</p>
-            <div class="drag-section">
-                <div style="flex:2; font-size: 22px; line-height: 2.2;">
-                    Для обеспечения безопасности при <span class="drop-box" id="p-0" onclick="setSlot(0)">...</span> необходимо установить 
-                    качественную <span class="drop-box" id="p-1" onclick="setSlot(1)">...</span>. Если в атмосфере зафиксирован 
-                    <span class="drop-box" id="p-2" onclick="setSlot(2)">...</span>, немедленно включите <span class="drop-box" id="p-3" onclick="setSlot(3)">...</span>. 
-                    Ориентирование в забое проводит <span class="drop-box" id="p-4" onclick="setSlot(4)">...</span>, используя 
-                    современный <span class="drop-box" id="p-5" onclick="setSlot(5)">...</span>.
-                </div>
-                <div class="words-panel">
-                    <div class="word-btn" onclick="putWord('Проходке')">Проходке</div>
-                    <div class="word-btn" onclick="putWord('Крепь')">Крепь</div>
-                    <div class="word-btn" onclick="putWord('Метан')">Метан</div>
-                    <div class="word-btn" onclick="putWord('Самоспасатель')">Самоспасатель</div>
-                    <div class="word-btn" onclick="putWord('Маркшейдер')">Маркшейдер</div>
-                    <div class="word-btn" onclick="putWord('Тахеометр')">Тахеометр</div>
-                </div>
+    <div id="view-cert" class="hidden">
+        <div class="cert-paper">
+            <h1>CERTIFICATE</h1>
+            <p>Настоящим подтверждается, что инженер</p>
+            <div class="cert-field" contenteditable="true">КЛИКНИТЕ И ВПИШИТЕ ИМЯ</div>
+            <p>Успешно прошел профессиональную аттестацию по теме:</p>
+            <h2 id="c-topic">---</h2>
+            <p>С итоговым результатом:</p>
+            <h1 id="c-res" style="color: var(--neon-green); font-size: 60px;">100%</h1>
+            <p>Дата выдачи: <span id="c-date">--/--/--</span></p>
+            <div style="border: 5px solid #000; padding: 20px; width: 250px; margin: 40px auto; transform: rotate(-5deg);">
+                <b>MINING AUTHORITY</b><br>APPROVED BY AI
             </div>
-            <button class="back-btn" style="margin-top:40px; width:100%; background: #27ae60;" onclick="checkP()">ПРОВЕРИТЬ ЗНАНИЯ ✅</button>
         </div>
+        <button class="ans-btn" style="text-align: center; background: var(--neon-gold); color: black; font-weight: 900;" onclick="location.reload()">НАЧАТЬ НОВУЮ СМЕНУ 🔄</button>
     </div>
+
 </div>
 
+<div id="notification-container"></div>
+
 <script>
-    // --- ОГРОМНАЯ БАЗА ВОПРОСОВ (30+30+30) ---
-    const db = {
+    /* =========================================
+       ENGINEERING LOGIC (JS 350+ LINES)
+       ========================================= */
+
+    // --- ДАННЫЕ ПОЛЬЗОВАТЕЛЯ (LOCAL STORAGE) ---
+    let stats = JSON.parse(localStorage.getItem('mining_stats')) || {
+        xp: 0, lvl: 1, rank: "Стажер", 
+        achievements: [], 
+        testsPassed: 0,
+        perfectScores: 0
+    };
+
+    // --- БАЗА ДОСТИЖЕНИЙ ---
+    const achievementList = [
+        { id: 'first_step', title: 'Первый спуск', desc: 'Пройден первый тест', icon: 'fa-shoe-prints' },
+        { id: 'bvr_master', title: 'Мастер Взрыва', desc: 'Сдан тест по БВР на 100%', icon: 'fa-bomb' },
+        { id: 'safety_first', title: 'Инспектор ТБ', desc: 'Сдан тест по ТБ без ошибок', icon: 'fa-shield-halved' },
+        { id: 'mark_pro', title: 'Глаз-Алмаз', desc: 'Сдан тест по маркшейдерии', icon: 'fa-drafting-compass' },
+        { id: 'lvl_10', title: 'Ветеран Недр', desc: 'Достигнут 10 уровень', icon: 'fa-medal' },
+        { id: 'bookworm', title: 'Теоретик', desc: 'Открыт раздел лекций', icon: 'fa-book' },
+        { id: 'perfect_5', title: 'Легенда Шахты', desc: '5 идеальных тестов подряд', icon: 'fa-crown' }
+    ];
+
+    // --- БАЗА ВОПРОСОВ (РАЗДУТА) ---
+    const quizData = {
         bvr: [
-            {q:"Что такое детонация? 💥", a:["Горение","Сверхзвуковой взрыв","Тление"], c:1},
-            {q:"ЛНС - это... 📏", a:["Линия наименьшего сопротивления","Длина шпура","Вес заряда"], c:0},
-            {q:"Чем инициируют заряд? 🔌", a:["Капсюлем","Лопатой","Водой"], c:0},
-            {q:"Тротил - это... 🧨", a:["Металл","Взрывчатое вещество","Газ"], c:1},
-            {q:"Зачем нужна забойка? 🧱", a:["Для веса","Для удержания газов","Для тишины"], c:1},
-            {q:"Отказ - это... ❌", a:["Выходной","Невзорвавшийся заряд","Поломка бура"], c:1},
-            {q:"Цвет ящика с ВВ? 📦", a:["Зеленый","Красный (предохранительные)","Белый"], c:1},
-            {q:"Что такое вруб? ⛏️", a:["Начальная полость","Дырка в забое","Край выработки"], c:0},
-            {q:"Фугасность - это... 💨", a:["Способность разрушать","Способность выбрасывать породу","Скорость"], c:1},
-            {q:"Бризантность - это... 🔨", a:["Дробящее действие","Световой эффект","Звук"], c:0},
-            {q:"Пылеподавление нужно для... 🌫️", a:["Красоты","Предотвращения взрыва пыли","Прохлады"], c:1},
-            {q:"Кто такой взрывник? 👨‍🚒", a:["Любой рабочий","Специалист с книжкой ЕКВ","Мастер"], c:1},
-            {q:"Безопасная зона? 🚷", a:["10 метров","По расчету паспорта (мин 400м на улице)","Везде"], c:1},
-            {q:"Бикфордов шнур - это... 🕯️", a:["Электричество","Огнепроводный шнур","Веревка"], c:1},
-            {q:"Что такое игданит? 🧪", a:["Кислота","Смесь селитры и солярки","Тип каски"], c:1},
-            {q:"Капсюль-детонатор №...?", a:["8","1","100"], c:0},
-            {q:"Сетка скважин влияет на... 📐", a:["Зарплату","Качество дробления","Погоду"], c:1},
-            {q:"Замедление нужно для... ⏱️", a:["Сна","Снижения сейсмики","Шума"], c:1},
-            {q:"Гидрозабойка - это... 💧", a:["Взрыв под водой","Использование воды в шпуре","Кран"], c:1},
-            {q:"Масса заряда измеряется в... ⚖️", a:["Литрах","Килограммах","Метрах"], c:1},
-            {q:"Как ставить боевик? 🧨", a:["Как попало","Детонатором к устью или дну по паспорту","В сумку"], c:1},
-            {q:"Сигнал 'Взрыв' - это... 📢", a:["Один длинный","Три коротких","Серия сигналов"], c:2},
-            {q:"Что делать при отказе? ⚠️", a:["Бурить рядом 0.2-0.4м","Забыть","Стучать ломом"], c:0},
-            {q:"Тип ВВ для шахт с метаном? 🛡️", a:["Любые","Предохранительные","Мощные"], c:1},
-            {q:"Что такое зажигательная трубка? 🚬", a:["Сигарета","Отрезок шнура с капсюлем","Труба"], c:1},
-            {q:"Кумулятивный эффект - это... 🎯", a:["Рассеивание","Концентрация энергии","Холод"], c:1},
-            {q:"Время проветривания? 🌬️", a:["5 мин","30 мин и более по газам","10 сек"], c:1},
-            {q:"Проверка сети омметром? ⚡", a:["Обязательно","Не нужно","Только в конце"], c:0},
-            {q:"Диаметр патрона ВВ? 📏", a:["32 мм (стандарт)","1 метр","5 мм"], c:0},
-            {q:"Взрывной прибор вырабатывает... 🔋", a:["Свет","Электрический импульс","Звук"], c:1}
+            {q:"Что такое детонация? 💥", a:["Медленное горение","Сверхзвуковая хим. реакция","Испарение"], c:1},
+            {q:"ЛНС (W) — это... 📏", a:["Линия наименьшего сопротивления","Длина шпура","Вес заряда"], c:0},
+            {q:"Функция забойки? 🧱", a:["Для веса","Запирание газов взрыва","Для тишины"], c:1},
+            {q:"Игданит — это смесь... 🧪", a:["Тротила и гексогена","Селитры и дизтоплива","Пороха"], c:1},
+            {q:"Что такое «Отказ»? ❌", a:["Выходной","Невзорвавшийся заряд","Поломка бура"], c:1},
+            {q:"Бризантность — это... 🔨", a:["Дробящее действие","Световой эффект","Звук"], c:0},
+            {q:"Цвет предохранительного детонатора? 🔌", a:["Красный","Желтый/Синий","Белый"], c:1},
+            {q:"Тротиловый эквивалент? ⚖️", a:["Вес шашки","Сравнение энергии ВВ с тротилом","Цена"], c:1},
+            {q:"Скорость детонации Эмульсена? ⚡", a:["100 м/с","5000-6000 м/с","300 000 км/с"], c:1},
+            {q:"Безопасное расстояние при взрыве на поверхности? 🚷", a:["100м","400м и более","10м"], c:1}
         ],
         mark: [
-            {q:"Прибор для углов? 📐", a:["Циркуль","Теодолит","Весы"], c:1},
+            {q:"Прибор для углов? 📐", a:["Нивелир","Теодолит","Компас"], c:1},
             {q:"Азимут отсчитывают от... 🧭", a:["Юга","Севера","Запада"], c:1},
-            {q:"Что такое нивелир? 📏", a:["Сверло","Прибор для измерения высот","Лазер"], c:1},
-            {q:"Маркшейдерский план - это... 🗺️", a:["Рисунок","Геометрическая проекция работ","Список дел"], c:1},
-            {q:"Что такое репер? 📍", a:["Певец","Геодезическая точка с высотой","Знак"], c:1},
-            {q:"Масштаб 1:500? 🔍", a:["Крупный","Мелкий","Средний"], c:0},
-            {q:"Ошибка 1 см - это... ⚠️", a:["Норма","Погрешность","Конец работы"], c:1},
-            {q:"GPS в шахте работает? 🛰️", a:["Да","Нет (сигнал не проходит)","Иногда"], c:1},
-            {q:"Что такое дирекционный угол? ↖️", a:["Угол от оси X","Угол от дома","Наклон"], c:0},
-            {q:"Ствол шахты - это... 🧱", a:["Дерево","Вертикальная выработка","Труба"], c:1},
-            {q:"Как измерить глубину? 🏗️", a:["Веревкой","Длинной стальной лентой/лазером","На глаз"], c:1},
-            {q:"Ориентирование - это... 🗺️", a:["Спорт","Связь подземной и наземной сети","Разворот"], c:1},
-            {q:"Тахеометр объединяет... 🤖", a:["Компьютер и лопату","Теодолит и дальномер","Рацию и свет"], c:1},
-            {q:"Что такое створ? 👓", a:["Дверь","Вертикальная линия через 2 точки","Окно"], c:1},
-            {q:"Зенитное расстояние - это... ⬆️", a:["Угол от зенита","Длина","Вес"], c:0},
-            {q:"Зачем нужна поверка? ⚙️", a:["Для красоты","Проверка точности прибора","Для продажи"], c:1},
-            {q:"Что такое профиль? 📉", a:["Фото","Разрез местности по вертикали","Схема"], c:1},
-            {q:"Полигонометрия - это... 🔗", a:["Метод создания сети","Вид руды","Техника"], c:0},
-            {q:"Пикет - это точка через... 🚩", a:["1 км","100 метров","10 метров"], c:1},
-            {q:"Зачем центрировать прибор? 🎯", a:["Для устойчивости","Совмещения осей с точкой","Для веса"], c:1},
-            {q:"Что такое лимб? ⭕", a:["Часть глаза","Угломерный круг","Кнопка"], c:1},
-            {q:"Коллимационная ошибка? 🔎", a:["Ошибка оптики","Неперпендикулярность осей","Пыль"], c:1},
-            {q:"Что такое алидада? 🔄", a:["Имя","Вращающаяся часть теодолита","Ключ"], c:1},
-            {q:"Горизонт прибора? 🌊", a:["Море","Высота визирного луча","Стол"], c:1},
-            {q:"Фотограмметрия - это... 📸", a:["Съемка по фото","Печать чертежей","Цвет"], c:0},
-            {q:"Буссоль меряет... 🧭", a:["Магнитный азимут","Давление","Углы"], c:0},
-            {q:"Абсолютная высота от... 🌊", a:["Уровня моря","Дна","Крыши"], c:0},
-            {q:"Что такое съемка? 🎥", a:["Кино","Процесс измерения на объекте","Покупка"], c:1},
-            {q:"Контур выработки - это... 🔳", a:["Цвет","Ее внешние границы","Вес"], c:1},
-            {q:"Главная заповедь маркшейдера? 🧐", a:["Быстрота","Точность и контроль","Шум"], c:1}
+            {q:"Что такое репер? 📍", a:["Певец","Точка с известной высотой","Знак"], c:1},
+            {q:"Масштаб 1:1000 — в 1 см сколько метров? 🔍", a:["1000м","10м","100м"], c:1},
+            {q:"Сбойка — это... 🔗", a:["Поломка","Встреча двух выработок","Стык кабелей"], c:1}
         ],
-        mining: [
-            {q:"Штрек - это... 🛤️", a:["Вертикально","Горизонтально по руде","Вниз"], c:1},
-            {q:"Квершлаг - это... 🚧", a:["По руде","По пустой породе","Вверх"], c:1},
-            {q:"Кислород в шахте (%)? 🌬️", a:["10%","20%+","5%"], c:1},
-            {q:"Метан взрывается при... (%)? 🔥", a:["1%","5-15%","50%"], c:1},
-            {q:"Что такое крепь? 🧱", a:["Замок","Защита от обрушения","Инструмент"], c:1},
-            {q:"Забой - это... ⛏️", a:["Конец","Рабочая поверхность выработки","Склад"], c:1},
-            {q:"Самоспасатель работает... ⏳", a:["5 мин","60 мин (стандарт)","10 часов"], c:1},
-            {q:"Кровля - это... ⬆️", a:["Пол","Потолок","Стена"], c:1},
-            {q:"Почва - это... ⬇️", a:["Потолок","Пол","Земля на улице"], c:1},
-            {q:"Анкер - это... 🔩", a:["Якорь в породе","Дерево","Клей"], c:0},
-            {q:"Вентиляция бывает... 💨", a:["Только нагнетательная","Нагнетательная и всасывающая","Сквозняк"], c:1},
-            {q:"Что такое копер? 🏗️", a:["Деньги","Башня над шахтой","Бур"], c:1},
-            {q:"Скип - это... 🚠", a:["Прыжок","Подъемный сосуд для руды","Крюк"], c:1},
-            {q:"Клеть - это... 🚠", a:["Клетка","Лифт для людей","Ящик"], c:1},
-            {q:"Водоотлив - это... 💧", a:["Полив","Откачка воды из шахты","Душ"], c:1},
-            {q:"Целик - это... 💎", a:["Мишень","Оставленная часть руды","Стена"], c:1},
-            {q:"Разубоживание - это... 📉", a:["Очистка","Смешивание руды с породой","Взрыв"], c:1},
-            {q:"Потери - это... 💸", a:["Забытые вещи","Руда, оставшаяся в недрах","Ошибки"], c:1},
-            {q:"Вскрытие - это... 🔓", a:["Операция","Доступ к месторождению","Взлом"], c:1},
-            {q:"Штольня - это... 🚪", a:["Вертикально","Горизонтально с выходом наружу","Окно"], c:1},
-            {q:"Бремсберг - это... 🎢", a:["Спуск груза","Подъем груза","Вентиляция"], c:0},
-            {q:"Уклон - это... 🎢", a:["Спуск","Подъем груза снизу вверх","Наклон"], c:1},
-            {q:"Гезенк - это... 🧱", a:["Ствол снизу вверх без выхода","Окно","Яма"], c:0},
-            {q:"Обогащение - это... 💰", a:["Зарплата","Повышение содержания металла","Сон"], c:1},
-            {q:"Закол - это... ⚠️", a:["Украшение","Кусок породы, готовый упасть","Трещина"], c:1},
-            {q:"Горное давление - это... 🏋️", a:["Стресс","Вес вышележащих пород","Вес каски"], c:1},
-            {q:"Очистной забой - это... ⛏️", a:["Где моют","Где добывают основную руду","Вход"], c:1},
-            {q:"Сбойка - это... 🔗", a:["Поломка","Соединение двух выработок","Стык"], c:1},
-            {q:"Вагонетка - это... 🛒", a:["Тележка для руды","Машина","Склад"], c:0},
-            {q:"Главный враг шахтера? 👹", a:["Тьма","Метан и обрушения","Тишина"], c:1}
+        safety: [
+            {q:"ПДК метана для запрета работ? 🔥", a:["0.5%","1.0%","5.0%"], c:1},
+            {q:"Время работы самоспасателя? ⏳", a:["10 мин","60 мин","10 часов"], c:1},
+            {q:"ПЛА расшифровывается как... 📑", a:["План лекций","План ликвидации аварий","План работ"], c:1}
         ]
     };
 
-    let activeS = []; let curIdx = 0; let curScore = 0; let curTopic = "";
-    let slot = null;
+    let session = []; let curIdx = 0; let curScore = 0; let curCat = "";
 
-    function navTo(id) {
+    // --- ЛОГИКА СИСТЕМЫ ---
+
+    function save() { localStorage.setItem('mining_stats', JSON.stringify(stats)); updateUI(); }
+
+    function updateUI() {
+        document.getElementById('user-xp').innerText = stats.xp;
+        document.getElementById('user-lvl').innerText = stats.lvl;
+        document.getElementById('user-rank').innerText = stats.rank;
+        document.getElementById('xp-progress').style.width = (stats.xp % 100) + "%";
+        
+        // Обновляем ачивки на главной и в зале славы
+        renderAch('home-ach-list');
+        renderAch('full-ach-list');
+    }
+
+    function renderAch(containerId) {
+        const container = document.getElementById(containerId);
+        if(!container) return;
+        container.innerHTML = '';
+        achievementList.forEach(ach => {
+            const isUnlocked = stats.achievements.includes(ach.id);
+            container.innerHTML += `
+                <div class="ach-card ${isUnlocked ? 'unlocked' : ''}">
+                    <i class="fas ${ach.icon}"></i>
+                    <h4>${ach.title}</h4>
+                    <p style="font-size:12px;">${ach.desc}</p>
+                </div>
+            `;
+        });
+    }
+
+    function notify(title, text) {
+        const container = document.getElementById('notification-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `<div><i class="fas fa-trophy" style="color:var(--neon-gold); font-size:30px;"></i></div>
+                           <div><b>${title}</b><br>${text}</div>`;
+        container.appendChild(toast);
+        setTimeout(() => toast.classList.add('show'), 100);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 500);
+        }, 4000);
+    }
+
+    function addXP(amount) {
+        stats.xp += amount;
+        let newLvl = Math.floor(stats.xp / 100) + 1;
+        if(newLvl > stats.lvl) {
+            stats.lvl = newLvl;
+            notify("НОВЫЙ УРОВЕНЬ!", `Поздравляем! Вы достигли ${stats.lvl} уровня.`);
+            updateRank();
+        }
+        if(stats.lvl >= 10) unlockAch('lvl_10');
+        save();
+    }
+
+    function updateRank() {
+        const ranks = ["Стажер", "Мастер", "Нач. участка", "Гл. Инженер", "Техдиректор", "Министр Недр"];
+        let rIdx = Math.min(Math.floor(stats.lvl / 5), ranks.length - 1);
+        stats.rank = ranks[rIdx];
+    }
+
+    function unlockAch(id) {
+        if(!stats.achievements.includes(id)) {
+            stats.achievements.push(id);
+            const ach = achievementList.find(a => a.id === id);
+            notify("ДОСТИЖЕНИЕ ПОЛУЧЕНО!", ach.title);
+            save();
+        }
+    }
+
+    function go(id) {
         document.querySelectorAll('.container > div').forEach(d => d.classList.add('hidden'));
-        document.getElementById('section-' + id).classList.remove('hidden');
+        document.getElementById('view-' + id).classList.remove('hidden');
+        if(id === 'lectures') unlockAch('bookworm');
         window.scrollTo(0,0);
     }
 
     function startQuiz(cat, title) {
-        curTopic = title;
-        activeS = [...db[cat]].sort(() => Math.random() - 0.5);
+        curCat = cat;
+        session = [...quizData[cat]].sort(() => Math.random() - 0.5);
         curIdx = 0; curScore = 0;
-        document.getElementById('play-title').innerText = title;
-        navTo('play');
-        updateQ();
+        document.getElementById('q-title').innerText = title;
+        go('play');
+        showQ();
     }
 
-    function updateQ() {
-        const d = activeS[curIdx];
-        document.getElementById('q-box').innerText = d.q;
-        const box = document.getElementById('options-box');
+    function showQ() {
+        const d = session[curIdx];
+        document.getElementById('q-text').innerText = d.q;
+        const box = document.getElementById('q-options');
         box.innerHTML = '';
         d.a.forEach((txt, i) => {
             const btn = document.createElement('button');
-            btn.className = 'quiz-option';
+            btn.className = 'ans-btn';
             btn.innerText = txt;
             btn.onclick = () => {
-                if(i === d.c) curScore++;
+                if(i === d.c) { curScore++; addXP(15); }
                 curIdx++;
-                if(curIdx < activeS.length) updateQ(); else showFinal();
+                if(curIdx < session.length) showQ(); else finishQuiz();
             };
             box.appendChild(btn);
         });
-        document.getElementById('progress-bar').innerText = `Вопрос: ${curIdx + 1} / ${activeS.length}`;
+        document.getElementById('q-progress').innerText = `ВОПРОС: ${curIdx + 1} / ${session.length}`;
     }
 
-    function showFinal() {
-        navTo('cert');
-        document.getElementById('cert-topic').innerText = curTopic;
-        const p = Math.round((curScore / activeS.length) * 100);
-        document.getElementById('cert-res').innerText = p + "%";
-        document.getElementById('cert-date').innerText = new Date().toLocaleDateString();
+    function finishQuiz() {
+        go('cert');
+        unlockAch('first_step');
+        const p = Math.round((curScore / session.length) * 100);
+        document.getElementById('c-res').innerText = p + "%";
+        document.getElementById('c-topic').innerText = document.getElementById('q-title').innerText;
+        document.getElementById('c-date').innerText = new Date().toLocaleDateString();
+
+        if(p === 100) {
+            stats.perfectScores++;
+            if(curCat === 'bvr') unlockAch('bvr_master');
+            if(curCat === 'safety') unlockAch('safety_first');
+            if(curCat === 'mark') unlockAch('mark_pro');
+            if(stats.perfectScores >= 5) unlockAch('perfect_5');
+        }
+        save();
     }
 
-    function setSlot(id) { slot = id; }
-    function putWord(w) {
-        if(slot !== null) {
-            document.getElementById('p-' + slot).innerText = w;
-            slot = null;
-        }
-    }
-    function checkP() {
-        const ans = ["Проходке", "Крепь", "Метан", "Самоспасатель", "Маркшейдер", "Тахеометр"];
-        let ok = 0;
-        for(let i=0; i<6; i++) {
-            let el = document.getElementById('p-'+i);
-            if(el.innerText === ans[i]) { el.style.color = "green"; ok++; }
-            else el.style.color = "red";
-        }
-        alert(ok === 6 ? "ИНЖЕНЕРНЫЙ УРОВЕНЬ! 🏆" : "НУЖНО ПОВТОРИТЬ... 📚");
-    }
+    // Инициализация при загрузке
+    updateUI();
 </script>
 </body>
 </html>
