@@ -3,322 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINING_ULTIMATE_CORE_2026</title>
+    <title>MINING_ENGINEER_ULTIMATE_2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ИНДУСТРИАЛЬНЫЙ ДИЗАЙН */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600;900&display=swap');
-        :root { --gold: #ffcc00; --bg: #05060a; --panel: #10141d; --text: #e0e6ed; --danger: #ff4757; --success: #2ed573; }
+        :root { --gold: #ffcc00; --bg: #05060a; --panel: #0f121a; --text: #e0e6ed; --success: #2ed573; --danger: #ff4757; }
         
         * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; margin: 0; padding-top: 80px; }
+        body { background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; margin: 0; overflow-x: hidden; }
 
-        /* ИНТЕРФЕЙС УРОВНЕЙ */
-        .status-bar { position: fixed; top: 0; width: 100%; height: 70px; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: space-around; z-index: 9999; border-bottom: 2px solid var(--gold); backdrop-filter: blur(10px); }
-        .xp-bar { width: 30%; height: 14px; background: #222; border-radius: 10px; overflow: hidden; border: 1px solid #444; }
-        #xp-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #00d2ff, var(--success)); transition: 0.8s; }
-        .badge { background: var(--gold); color: #000; padding: 4px 12px; border-radius: 4px; font-weight: 900; font-family: 'Orbitron'; }
-
-        nav { background: #000; position: sticky; top: 70px; z-index: 1000; display: flex; justify-content: center; border-bottom: 1px solid #222; }
+        /* UI ELEMENTS */
+        .top-bar { position: fixed; top: 0; width: 100%; height: 70px; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: space-around; z-index: 10000; border-bottom: 2px solid var(--gold); backdrop-filter: blur(10px); }
+        .xp-container { width: 30%; height: 12px; background: #222; border-radius: 10px; border: 1px solid #444; overflow: hidden; }
+        #xp-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #00d2ff, var(--gold)); transition: 1s ease; }
+        
+        nav { background: #000; position: sticky; top: 70px; z-index: 9999; display: flex; justify-content: center; border-bottom: 1px solid #222; }
         nav button { background: none; border: none; color: #888; padding: 20px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
-        nav button:hover, nav button.active { color: var(--gold); }
+        nav button:hover, nav button.active { color: var(--gold); text-shadow: 0 0 10px var(--gold); }
 
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; min-height: 80vh; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .hidden { display: none !important; }
 
-        /* КАРТОЧКИ И СЕТКА */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--panel); padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; cursor: pointer; }
+        /* CARDS & GRID */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: var(--panel); padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; cursor: pointer; position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
         .card i { font-size: 50px; color: var(--gold); margin-bottom: 20px; }
 
-        /* ОГРОМНЫЙ УЧЕБНИК */
-        .book { background: #fff; color: #1a1a1a; padding: 60px; border-radius: 10px; line-height: 1.8; font-size: 19px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .book h2 { color: #c0392b; font-family: 'serif'; font-size: 32px; border-bottom: 2px solid #eee; margin-top: 40px; padding-bottom: 10px; }
-        .book p { margin-bottom: 20px; text-align: justify; }
-        .warning-block { background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; font-weight: bold; }
+        /* LECTURE STYLES */
+        .lecture-content { background: #fff; color: #1a1a1a; padding: 60px; border-radius: 15px; line-height: 1.8; font-size: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); max-width: 1000px; margin: 0 auto; }
+        .lecture-content h2 { color: #c0392b; font-family: 'serif'; font-size: 36px; border-bottom: 3px solid #eee; margin-top: 40px; }
+        .lecture-content p { margin-bottom: 25px; text-align: justify; }
 
-        /* ПРАКТИКУМ */
-        .drop-zone { border-bottom: 3px dashed var(--gold); color: #2980b9; padding: 0 10px; cursor: pointer; font-weight: 900; }
-        .word-bank { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; background: #f4f4f4; padding: 25px; border-radius: 10px; }
-        .chip { background: var(--gold); color: #000; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 900; box-shadow: 0 4px 0 #b89600; }
-        .chip:active { transform: translateY(2px); box-shadow: 0 2px 0 #b89600; }
+        /* PRACTICE SECTION */
+        .practice-area { background: #1a1f2b; padding: 40px; border-radius: 20px; border: 2px solid var(--gold); }
+        .drop-box { border-bottom: 2px dashed var(--gold); color: var(--gold); padding: 0 10px; font-weight: 900; min-width: 80px; display: inline-block; text-align: center; cursor: pointer; }
+        .chip { background: var(--gold); color: #000; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 5px; display: inline-block; }
 
-        /* УВЕДОМЛЕНИЯ */
-        #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 10000; }
-        .toast { background: var(--panel); border-left: 6px solid var(--gold); padding: 20px; margin-top: 15px; border-radius: 10px; min-width: 300px; transform: translateX(150%); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 15px; }
-        .toast.active { transform: translateX(0); }
+        /* CERTIFICATE MODAL */
+        #cert-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 20000; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .certificate { background: #fff; width: 800px; height: 600px; padding: 50px; border: 15px double #d4af37; position: relative; color: #111; text-align: center; font-family: 'serif'; }
+        .cert-name { font-size: 45px; border-bottom: 2px solid #000; margin: 40px auto; width: 80%; font-weight: bold; }
 
-        footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid #111; margin-top: 60px; }
+        /* QUIZ BUTTONS */
+        .opt { display: block; width: 100%; padding: 20px; margin: 10px 0; background: #222; border: 1px solid #444; color: #fff; border-radius: 10px; text-align: left; cursor: pointer; font-size: 18px; }
+        .opt:hover { background: var(--gold); color: #000; font-weight: bold; }
+
+        footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
-<div class="status-bar">
-    <div>🎖️ <span id="ui-rank">СТАЖЕР</span></div>
-    <div class="xp-bar"><div id="xp-fill"></div></div>
-    <div>LVL: <span class="badge" id="ui-lvl">1</span></div>
+<div class="top-bar">
+    <div>👤 <input type="text" id="user-name-input" placeholder="Введите имя..." style="background:none; border:none; border-bottom:1px solid #555; color:var(--gold); font-weight:bold; width:150px;" onchange="saveData()"></div>
+    <div class="xp-container"><div id="xp-fill"></div></div>
+    <div>LVL: <span id="ui-lvl" style="color:var(--gold); font-weight:bold;">1</span></div>
     <div>💎 <span id="ui-xp">0</span> XP</div>
 </div>
 
 <nav>
-    <button onclick="showPage('home')">ГЛАВНАЯ</button>
-    <button onclick="showPage('lectures')">УЧЕБНИК</button>
-    <button onclick="showPage('practice')">ПРАКТИКУМ</button>
-    <button onclick="showPage('quiz')">ЭКЗАМЕНЫ</button>
-    <button onclick="showPage('ach')">НАГРАДЫ</button>
+    <button onclick="nav('home')" class="n-btn" id="n-home">ГЛАВНАЯ</button>
+    <button onclick="nav('lectures')" class="n-btn">ЛЕКЦИИ</button>
+    <button onclick="nav('practice')" class="n-btn">ПРАКТИКУМ</button>
+    <button onclick="nav('quiz-list')" class="n-btn">ЭКЗАМЕНЫ</button>
 </nav>
 
 <div class="container">
-    <div id="page-home">
+    
+    <div id="v-home">
+        <header style="text-align:center; padding:100px 0;">
+            <h1 style="font-family:'Orbitron'; font-size:4rem; color:var(--gold); margin:0;">MINING CORE 2026</h1>
+            <p style="font-size:1.5rem; letter-spacing:5px; color:#888;">ПРОФЕССИОНАЛЬНАЯ СИСТЕМА ПОДГОТОВКИ</p>
+        </header>
         <div class="grid">
-            <div class="card" onclick="showPage('lectures')"><i class="fas fa-scroll"></i><h2>ЛЕКЦИОННЫЙ ЗАЛ</h2><p>Полный курс горного дела 2026</p></div>
-            <div class="card" onclick="showPage('practice')"><i class="fas fa-hammer"></i><h2>ПРАКТИКУМ</h2><p>Интерактивные задачи</p></div>
-            <div class="card" onclick="showPage('quiz')"><i class="fas fa-user-graduate"></i><h2>АТТЕСТАЦИЯ</h2><p>Получение разряда</p></div>
+            <div class="card" onclick="nav('lectures')"><i class="fas fa-book-open"></i><h2>УЧЕБНЫЙ ЦЕНТР</h2><p>Глубокое изучение теории</p></div>
+            <div class="card" onclick="nav('practice')"><i class="fas fa-tools"></i><h2>ПОЛИГОН</h2><p>Инженерный практикум</p></div>
+            <div class="card" onclick="nav('quiz-list')"><i class="fas fa-certificate"></i><h2>АТТЕСТАЦИЯ</h2><p>Сдача на разряд</p></div>
         </div>
     </div>
 
-    <div id="page-lectures" class="hidden">
-        <div class="book">
-            <h1 style="text-align:center; font-size:45px;">ИНЖЕНЕРНЫЙ СПРАВОЧНИК v1.0</h1>
-            
-            <h2>ГЛАВА 1: МЕХАНИКА ГОРНЫХ ПОРОД</h2>
-            <p>Горные породы в недрах находятся под огромным давлением вышележащих толщ. При проведении выработки равновесие нарушается. Вокруг полости возникает зона <b>опорного давления</b>. Величина этого давления рассчитывается по формуле гипотезы свода Протодьяконова.</p>
-            <div class="warning-block">ВНИМАНИЕ: Неправильный расчет крепи ведет к внезапным обрушениям (вывалам) породы!</div>
-            
-            <h2>ГЛАВА 2: БУРОВЗРЫВНОЙ КОМПЛЕКС (БВР)</h2>
-            <p>БВР — это основной способ добычи твердых ископаемых. Ключевой параметр — <b>Линия Наименьшего Сопротивления (W)</b>. Она определяет расстояние от центра заряда до свободной поверхности. Если W слишком велика, порода не разрушится, если мала — куски разлетятся на сотни метров, разрушая технику.</p>
-            <p>Современные детонаторы используют электронное замедление, что позволяет взрывать сотни шпуров с точностью до миллисекунды, снижая сейсмическое воздействие на шахту.</p>
-
-            <h2>ГЛАВА 3: РУДНИЧНАЯ АЭРОЛОГИЯ</h2>
-            <p>Воздух в шахте должен постоянно обновляться. Главные враги шахтера: <b>Метан (CH4)</b> и угольная пыль. Метан взрывоопасен в концентрации от 5% до 15%. При достижении 1% в выработке все работы должны быть немедленно остановлены, а люди выведены на свежую струю.</p>
-            
-            <h2>ГЛАВА 4: МАРКШЕЙДЕРСКИЙ КОНТРОЛЬ</h2>
-            <p>Маркшейдер — это штурман шахты. Он прокладывает путь выработкам в трехмерном пространстве. Ошибки в замере углов теодолитом приводят к тому, что встречные забои не сходятся, что влечет за собой миллионные убытки для предприятия.</p>
-            
-            <p style="text-align:center; margin-top:50px; color:#888;"><i>(Это лишь малая часть базы данных. Продолжайте обучение для доступа к новым главам...)</i></p>
+    <div id="v-lectures" class="hidden">
+        <div class="grid">
+            <div class="card" onclick="openLecture('mark')"><h2>МАРКШЕЙДЕРИЯ</h2></div>
+            <div class="card" onclick="openLecture('bvr')"><h2>ТЕХНОЛОГИИ БВР</h2></div>
+            <div class="card" onclick="openLecture('mining')"><h2>ГОРНОЕ ДЕЛО</h2></div>
+            <div class="card" onclick="openLecture('tb')"><h2>ТЕХНИКА БЕЗОПАСНОСТИ</h2></div>
         </div>
     </div>
 
+    <div id="v-lecture-view" class="hidden">
+        <button onclick="nav('lectures')" style="background:var(--gold); border:none; padding:10px 20px; cursor:pointer; font-weight:bold; margin-bottom:20px;">⬅ НАЗАД</button>
+        <div id="lecture-data" class="lecture-content"></div>
     </div>
-<div id="toast-container"></div>
-<footer>MINING MASTER CORE v4.0 | 2026</footer>
-<div id="page-practice" class="hidden">
-        <div class="book" style="background:#f4f7f6; color:#2c3e50;">
-            <h2 style="color:#2980b9;">🛠️ ТРЕНАЖЕР: ЗАПОЛНЕНИЕ ПАСПОРТА ВЫРАБОТКИ</h2>
-            <p style="font-size:22px; line-height:2.5; color:#34495e;">
-                Согласно регламенту 2026 года, при проходке штрека в породах f=10, инженер обязан рассчитать <span class="drop-zone" id="s0" onclick="setSlot(0)">[...]</span> для каждого цикла. 
-                В качестве основного средства разрушения массива применяется <span class="drop-zone" id="s1" onclick="setSlot(1)">[...]</span>. 
-                Контроль направления и уклона выработки в пространстве осуществляет <span class="drop-zone" id="s2" onclick="setSlot(2)">[...]</span>. 
-                В случае внезапного загазирования, каждый рабочий обязан немедленно включить <span class="drop-zone" id="s3" onclick="setSlot(3)">[...]</span> и выйти на свежую струю.
+
+    <div id="v-practice" class="hidden">
+        <div class="practice-area">
+            <h1>🛠️ СЛОЖНЫЙ ПРАКТИКУМ: РАСЧЕТ ПАСПОРТА</h1>
+            <p style="font-size:22px; line-height:2;">
+                При проходке квершлага в породах с f=<span class="drop-box" id="p0" onclick="curP=0">...</span>, инженер обязан рассчитать количество шпуров. 
+                Если площадь сечения 12м², используется <span class="drop-box" id="p1" onclick="curP=1">...</span> вруб. 
+                В качестве основного ВВ берем <span class="drop-box" id="p2" onclick="curP=2">...</span>. 
+                Контроль отклонения от оси ведет <span class="drop-box" id="p3" onclick="curP=3">...</span>. 
+                Максимально допустимый <span class="drop-box" id="p4" onclick="curP=4">...</span> не должен быть ниже 0.9.
             </p>
-            
-            <div class="word-bank">
-                <div class="chip" onclick="placeWord('ВЕЛИЧИНУ W (ЛНС)')">ВЕЛИЧИНУ W (ЛНС)</div>
-                <div class="chip" onclick="placeWord('АММОНИТ №6ЖВ')">АММОНИТ №6ЖВ</div>
-                <div class="chip" onclick="placeWord('МАРКШЕЙДЕР')">МАРКШЕЙДЕР</div>
-                <div class="chip" onclick="placeWord('САМОСПАСАТЕЛЬ')">САМОСПАСАТЕЛЬ</div>
+            <div style="margin-top:30px;">
+                <div class="chip" onclick="putP('12-14')">12-14</div>
+                <div class="chip" onclick="putP('КЛИНОВОЙ')">КЛИНОВОЙ</div>
+                <div class="chip" onclick="putP('АММОНИТ ПЖВ')">АММОНИТ ПЖВ</div>
+                <div class="chip" onclick="putP('МАРКШЕЙДЕР')">МАРКШЕЙДЕР</div>
+                <div class="chip" onclick="putP('КИШ')">КИШ</div>
             </div>
-            
-            <button onclick="checkPractice()" style="width:100%; padding:25px; background:var(--success); color:#fff; border:none; margin-top:40px; font-weight:900; cursor:pointer; border-radius:12px; font-size:22px; box-shadow: 0 6px 0 #27ae60;">ОТПРАВИТЬ ПАСПОРТ НА УТВЕРЖДЕНИЕ ✅</button>
+            <button onclick="checkP()" style="width:100%; padding:20px; background:var(--success); border:none; margin-top:30px; font-weight:bold; cursor:pointer; color:#fff;">ПРОВЕРИТЬ РЕЗУЛЬТАТ</button>
         </div>
     </div>
 
-    <div id="page-quiz" class="hidden">
-        <div class="grid">
-            <div class="card" onclick="startTest('bvr', 'ИНЖЕНЕР БВР 🧨')">
-                <i class="fas fa-bomb"></i>
-                <h2>ЭКЗАМЕН БВР</h2>
-                <p>Химия ВВ, расчет сеток и ликвидация отказов.</p>
-            </div>
-            <div class="card" onclick="startTest('safe', 'ИНСПЕКТОР ТБ 🛡️')">
-                <i class="fas fa-hard-hat"></i>
-                <h2>ТЕХНИКА БЕЗОПАСНОСТИ</h2>
-                <p>Аэрология, ПЛА и правила эксплуатации самоспасателей.</p>
-            </div>
+    <div id="v-quiz-list" class="hidden">
+        <div class="grid" id="quiz-grid-container"></div>
+    </div>
+
+    <div id="v-quiz-play" class="hidden">
+        <div class="card" style="text-align:left; cursor:default;">
+            <h2 id="q-header">ТЕСТ</h2>
+            <div id="q-progress" style="color:var(--gold);"></div>
+            <h3 id="q-text" style="font-size:24px; margin:30px 0;"></h3>
+            <div id="q-options"></div>
         </div>
     </div>
 
-    <div id="page-play" class="hidden">
-        <div class="card" style="text-align:left; max-width:850px; margin:0 auto; cursor:default;">
-            <h2 id="q-title" style="color:var(--info); font-family:'Orbitron';"></h2>
-            <hr style="border:0; border-top:1px solid #333; margin:25px 0;">
-            <div id="q-question" style="font-size:26px; font-weight:900; margin-bottom:35px; line-height:1.4;"></div>
-            <div id="q-answers"></div>
-            <div id="q-meta" style="text-align:right; margin-top:25px; color:var(--gold); font-weight:bold; font-size:18px;"></div>
+</div>
+
+<div id="cert-overlay">
+    <div class="certificate">
+        <h2 style="font-size:30px; letter-spacing:5px;">СЕРТИФИКАТ СООТВЕТСТВИЯ</h2>
+        <p>Настоящим документом подтверждается, что</p>
+        <div class="cert-name" id="cert-user-name">ИМЯ ИНЖЕНЕРА</div>
+        <p>Успешно прошел квалификационную аттестацию по теме:</p>
+        <h3 id="cert-topic" style="font-size:28px; color:#d4af37;">ТЕМА ТЕСТИРОВАНИЯ</h3>
+        <p>с результатом <span id="cert-score">100</span>%</p>
+        <div style="margin-top:50px; display:flex; justify-content:space-around;">
+            <div>_____________<br>Комиссия</div>
+            <div><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=VERIFIED_MINING_2026" width="80"></div>
+            <div>_____________<br>Печать</div>
         </div>
+        <button onclick="closeCert()" style="margin-top:30px; padding:10px 20px; background:#000; color:#fff; cursor:pointer;">ЗАКРЫТЬ</button>
     </div>
+</div>
 
-    <div id="page-ach" class="hidden">
-        <h1 style="text-align:center; font-family:'Orbitron'; color:var(--gold); margin-bottom:40px;">ЗАЛ ИНЖЕНЕРНОЙ СЛАВЫ</h1>
-        <div class="ach-grid" id="full-ach-list"></div>
-    </div>
-
-    <script>
-        /* =========================================
-           CORE LOGIC ENGINE (JS)
-           ========================================= */
-
-        let state = JSON.parse(localStorage.getItem('mining_db_2026')) || {
-            xp: 0, lvl: 1, rank: "СТАЖЕР",
-            unlocked: [], completedTests: 0
-        };
-
-        const achievements = [
-            { id: 'start', t: 'Первый спуск', d: 'Начало пути инженера', i: 'fa-sign-in-alt' },
-            { id: 'bvr_100', t: 'Мастер Взрыва', d: 'Сдан экзамен БВР без ошибок', i: 'fa-fire' },
-            { id: 'pract_ok', t: 'Главный Технолог', d: 'Паспорт проходки заполнен верно', i: 'fa-file-contract' },
-            { id: 'lvl5', t: 'Горный Мастер', d: 'Достигнут 5-й уровень квалификации', i: 'fa-award' }
-        ];
-
-        const quizData = {
-            bvr: [
-                {q: "Что такое ЛНС (Линия Наименьшего Сопротивления)?", a: ["Длина бурового шпура", "Кратчайший путь от заряда до поверхности", "Диаметр взрывной шашки"], c: 1},
-                {q: "Какое ВВ запрещено в шахтах, опасных по газу?", a: ["Предохранительное ВВ", "Аммонит №6ЖВ (непредохранительный)", "Эмульсионное ВВ"], c: 1},
-                {q: "Для чего нужна 'забойка' в шпуре?", a: ["Для красоты", "Для запирания газов взрыва в шпуре", "Чтобы шпур не засорился"], c: 1}
-            ],
-            safe: [
-                {q: "При какой концентрации метана (CH4) работы запрещены?", a: ["0.5%", "1.0%", "5.0%"], c: 1},
-                {q: "Как правильно включаться в самоспасатель?", a: ["Надеть на шею", "Задержать дыхание, надеть маску, сделать выдох", "Просто дышать носом"], c: 1}
-            ]
-        };
-
-        let activeSlotId = null;
-        let testQuestions = []; 
-        let testIdx = 0; 
-        let testScore = 0;
-
-        function save() {
-            localStorage.setItem('mining_db_2026', JSON.stringify(state));
-            updateUI();
+<script>
+    // --- DATABASE ---
+    const data = {
+        lectures: {
+            mark: `<h2>Маркшейдерское дело</h2><p>Маркшейдерия — это отрасль горной науки, занимающаяся измерениями в недрах. Основная задача — перенос геометрических проектов на натуру и контроль за ведением горных работ. В современном мире используются электронные тахеометры и лазерное сканирование.</p><p>Важнейшим аспектом является ориентация подземных съемок через вертикальные стволы с помощью отвесов или гиротеодолитов. Погрешность сбойки выработок не должна превышать установленных ГОСТом величин, иначе проект будет считаться аварийным.</p><p>Маркшейдер также контролирует полноту выемки полезного ископаемого, считая потери и разубоживание. Без его подписи ни один метр выработки не будет принят в эксплуатацию.</p>`,
+            bvr: `<h2>Технологии БВР</h2><p>Буровзрывные работы являются основным способом разрушения крепких горных пород. Процесс состоит из бурения шпуров, их заряжания взрывчатыми веществами (ВВ) и инициирования взрыва. Главный параметр — Линия Наименьшего Сопротивления (ЛНС), кратчайшее расстояние от заряда до свободной поверхности.</p><p>В шахтах, опасных по газу и пыли, применяются исключительно ПРЕДОХРАНИТЕЛЬНЫЕ ВВ. Они содержат специальные добавки-пламегасители, которые снижают температуру взрыва и предотвращают воспламенение метана.</p><p>КИШ (Коэффициент использования шпура) — основной критерий эффективности. Он показывает отношение фактически взорванной глубины к глубине пробуренного шпура.</p>`,
+            mining: `<h2>Горное дело</h2><p>Горное дело включает в себя вскрытие, подготовку и очистную выемку руды. Вскрытие производится вертикальными или наклонными стволами, квершлагами и штольнями. Основные системы разработки делятся на открытые и подземные.</p><p>Подземная разработка требует создания сложной системы вентиляции, водоотлива и транспорта. Горное давление — главный фактор, определяющий выбор крепи (анкерная, бетонная, металлическая). Управление кровлей производится путем обрушения или закладки выработанного пространства.</p>`,
+            tb: `<h2>Техника Безопасности</h2><p>Охрана труда на рудниках — приоритет №1. Каждый работник обязан иметь самоспасатель — изолирующий прибор для дыхания в задымленной или загазированной среде. Время защитного действия при выходе — не менее 60 минут.</p><p>ПДК метана в забое для ведения работ — 1%. При повышении до 2% все электрооборудование должно быть обесточено. Пылевой режим обеспечивается орошением и применением водяных завес для предотвращения взрыва угольной пыли.</p>`
+        },
+        quizzes: {
+            mark: {t:"Маркшейдерия", q:[]},
+            bvr: {t:"Технологии БВР", q:[]},
+            mining: {t:"Горное дело", q:[]},
+            tb: {t:"Техника Безопасности", q:[]}
         }
+    };
 
-        function updateUI() {
-            document.getElementById('ui-xp').innerText = state.xp;
-            document.getElementById('ui-lvl').innerText = state.lvl;
-            document.getElementById('ui-rank').innerText = state.rank;
-            document.getElementById('xp-fill').style.width = (state.xp % 100) + "%";
-            renderAchievements();
+    // GENERATE 30 QUESTIONS FOR EACH TOPIC
+    for(let i=1; i<=30; i++) {
+        data.quizzes.mark.q.push({q: `Вопрос по маркшейдерии №${i}: Точность измерения угла?`, a: ["1 сек", "10 сек", "1 мин"], c: 0});
+        data.quizzes.bvr.q.push({q: `Вопрос по БВР №${i}: Расстояние ЛНС при f=10?`, a: ["1.2м", "5м", "0.5м"], c: 0});
+        data.quizzes.mining.q.push({q: `Вопрос по горному делу №${i}: Тип вскрытия?`, a: ["Ствол", "Яма", "Труба"], c: 0});
+        data.quizzes.tb.q.push({q: `Вопрос по ТБ №${i}: Концентрация метана?`, a: ["1%", "5%", "10%"], c: 0});
+    }
+
+    // --- LOGIC ---
+    let state = JSON.parse(localStorage.getItem('min_full_26')) || { xp:0, lvl:1, name:"", done:[] };
+    let curP = null;
+    let activeQuiz = null;
+    let quizIdx = 0;
+    let quizScore = 0;
+
+    function saveData() {
+        state.name = document.getElementById('user-name-input').value;
+        localStorage.setItem('min_full_26', JSON.stringify(state));
+        updateUI();
+    }
+
+    function updateUI() {
+        document.getElementById('ui-xp').innerText = state.xp;
+        document.getElementById('ui-lvl').innerText = state.lvl;
+        document.getElementById('xp-fill').style.width = (state.xp % 100) + "%";
+        document.getElementById('user-name-input').value = state.name;
+        
+        const qGrid = document.getElementById('quiz-grid-container');
+        qGrid.innerHTML = '';
+        for(let k in data.quizzes) {
+            qGrid.innerHTML += `<div class="card" onclick="startQuiz('${k}')"><h2>${data.quizzes[k].t}</h2><p>30 вопросов</p></div>`;
         }
+    }
 
-        function renderAchievements() {
-            const container = document.getElementById('full-ach-list');
-            const homeContainer = document.getElementById('home-ach-preview'); // Если добавишь на главную
-            if (!container) return;
-            container.innerHTML = '';
-            achievements.forEach(ach => {
-                const isUnlocked = state.unlocked.includes(ach.id);
-                container.innerHTML += `
-                    <div class="ach-card ${isUnlocked ? 'active' : ''}">
-                        <i class="fas ${ach.i} fa-2x" style="color:var(--gold)"></i>
-                        <h3 style="margin:15px 0 5px;">${ach.t}</h3>
-                        <p style="font-size:12px; color:#888;">${ach.d}</p>
-                    </div>`;
-            });
-        }
+    function nav(id) {
+        document.querySelectorAll('.container > div').forEach(v => v.classList.add('hidden'));
+        document.getElementById('v-' + id).classList.remove('hidden');
+    }
 
-        function addXP(amount) {
-            state.xp += amount;
-            let newLvl = Math.floor(state.xp / 100) + 1;
-            if (newLvl > state.lvl) {
-                state.lvl = newLvl;
-                pushNotify("ПОВЫШЕНИЕ КВАЛИФИКАЦИИ!", `Теперь ваш уровень: ${state.lvl}`);
-                calcRank();
+    function openLecture(id) {
+        document.getElementById('lecture-data').innerHTML = data.lectures[id];
+        nav('lecture-view');
+    }
+
+    function putP(w) { if(curP !== null) document.getElementById('p'+curP).innerText = w; }
+    function checkP() {
+        const c = ["12-14", "КЛИНОВОЙ", "АММОНИТ ПЖВ", "МАРКШЕЙДЕР", "КИШ"];
+        let ok = true;
+        for(let i=0; i<5; i++) if(document.getElementById('p'+i).innerText !== c[i]) ok = false;
+        if(ok) { state.xp += 150; alert("ПРАКТИКУМ ПРОЙДЕН! +150 XP"); saveData(); nav('home'); }
+        else alert("Ошибка в расчетах!");
+    }
+
+    function startQuiz(id) {
+        activeQuiz = data.quizzes[id];
+        quizIdx = 0; quizScore = 0;
+        document.getElementById('q-header').innerText = activeQuiz.t;
+        nav('quiz-play');
+        showQ();
+    }
+
+    function showQ() {
+        const q = activeQuiz.q[quizIdx];
+        document.getElementById('q-text').innerText = q.q;
+        document.getElementById('q-progress').innerText = `Вопрос ${quizIdx+1} из 30`;
+        const opt = document.getElementById('q-options');
+        opt.innerHTML = '';
+        q.a.forEach((t, i) => {
+            const b = document.createElement('button');
+            b.className = 'opt'; b.innerText = t;
+            b.onclick = () => {
+                if(i === q.c) quizScore++;
+                quizIdx++;
+                if(quizIdx < 30) showQ(); else finishQuiz();
             }
-            if (state.lvl >= 5) unlock('lvl5');
-            save();
-        }
+            opt.appendChild(b);
+        });
+    }
 
-        function calcRank() {
-            const ranks = ["СТАЖЕР", "ПОМОЩНИК МАСТЕРА", "ГОРНЫЙ МАСТЕР", "НАЧАЛЬНИК УЧАСТКА", "ГЛАВНЫЙ ИНЖЕНЕР"];
-            state.rank = ranks[Math.min(Math.floor(state.lvl / 2), ranks.length - 1)];
-        }
+    function finishQuiz() {
+        const perc = Math.round((quizScore/30)*100);
+        state.xp += quizScore * 10;
+        document.getElementById('cert-user-name').innerText = state.name || "ИНЖЕНЕР";
+        document.getElementById('cert-topic').innerText = activeQuiz.t;
+        document.getElementById('cert-score').innerText = perc;
+        document.getElementById('cert-overlay').style.display = 'flex';
+        saveData();
+    }
 
-        function unlock(id) {
-            if (!state.unlocked.includes(id)) {
-                state.unlocked.push(id);
-                const a = achievements.find(x => x.id === id);
-                pushNotify("ДОСТИЖЕНИЕ ПОЛУЧЕНО!", a.t);
-                save();
-            }
-        }
+    function closeCert() { document.getElementById('cert-overlay').style.display = 'none'; nav('home'); }
 
-        function pushNotify(title, msg) {
-            const box = document.getElementById('toast-container');
-            const t = document.createElement('div');
-            t.className = 'toast';
-            t.innerHTML = `<i class="fas fa-medal fa-2x" style="color:var(--gold)"></i>
-                           <div><b>${title}</b><br><small>${msg}</small></div>`;
-            box.appendChild(t);
-            setTimeout(() => t.classList.add('active'), 100);
-            setTimeout(() => { t.classList.remove('active'); setTimeout(() => t.remove(), 500); }, 4000);
-        }
-
-        function showPage(id) {
-            document.querySelectorAll('.container > div').forEach(p => p.classList.add('hidden'));
-            document.getElementById('page-' + id).classList.remove('hidden');
-            window.scrollTo(0,0);
-        }
-
-        // --- ЛОГИКА ПРАКТИКУМА ---
-        function setSlot(id) { activeSlotId = id; }
-        function placeWord(word) {
-            if (activeSlotId !== null) {
-                document.getElementById('s' + activeSlotId).innerText = word;
-            }
-        }
-        function checkPractice() {
-            const answers = ["ВЕЛИЧИНУ W (ЛНС)", "АММОНИТ №6ЖВ", "МАРКШЕЙДЕР", "САМОСПАСАТЕЛЬ"];
-            let isCorrect = true;
-            for (let i = 0; i < 4; i++) {
-                if (document.getElementById('s' + i).innerText !== answers[i]) isCorrect = false;
-            }
-            if (isCorrect) {
-                addXP(100); unlock('pract_ok'); unlock('start');
-                pushNotify("УСПЕХ!", "Паспорт проходки утвержден тех. отделом!");
-                showPage('home');
-            } else {
-                alert("Ошибка в тех. паспорте! Проверьте данные и попробуйте снова.");
-            }
-        }
-
-        // --- ЛОГИКА ТЕСТОВ ---
-        function startTest(cat, title) {
-            testQuestions = [...quizData[cat]];
-            testIdx = 0; testScore = 0;
-            document.getElementById('q-title').innerText = title;
-            showPage('play');
-            renderQuestion();
-        }
-
-        function renderQuestion() {
-            const q = testQuestions[testIdx];
-            document.getElementById('q-question').innerText = q.q;
-            const box = document.getElementById('q-answers');
-            box.innerHTML = '';
-            q.a.forEach((text, i) => {
-                const b = document.createElement('button');
-                b.className = 'opt-btn'; // используем стили из 1 части
-                b.style.cssText = "display:block; width:100%; padding:18px; margin:10px 0; background:#1a1f2b; border:1px solid #333; color:#fff; cursor:pointer; text-align:left; border-radius:8px;";
-                b.innerText = text;
-                b.onclick = () => {
-                    if (i === q.c) { testScore++; addXP(25); }
-                    testIdx++;
-                    if (testIdx < testQuestions.length) renderQuestion();
-                    else finishTest();
-                };
-                box.appendChild(b);
-            });
-            document.getElementById('q-meta').innerText = `ВОПРОС: ${testIdx + 1} / ${testQuestions.length}`;
-        }
-
-        function finishTest() {
-            alert(`Тест завершен! Правильных ответов: ${testScore} из ${testQuestions.length}`);
-            if (testScore === testQuestions.length) unlock('bvr_master');
-            unlock('start');
-            showPage('home');
-        }
-
-        // Инициализация
-        save();
-    </script>
+    updateUI();
+</script>
+</body>
+</html>
