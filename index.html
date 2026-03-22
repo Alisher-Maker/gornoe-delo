@@ -19,7 +19,6 @@
             margin: 0; min-height: 100vh; background-image: radial-gradient(circle at top right, #1a202c, #0b0e14);
         }
 
-        /* HEADER & XP */
         .header { 
             position: fixed; top: 0; width: 100%; height: 80px; background: rgba(0,0,0,0.85);
             display: flex; align-items: center; justify-content: space-around; z-index: 1000;
@@ -34,7 +33,6 @@
         .container { max-width: 1200px; margin: 120px auto 50px; padding: 0 20px; }
         .hidden { display: none !important; }
 
-        /* CARDS */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         .card { 
             background: var(--glass); border: 1px solid rgba(255,255,255,0.1); 
@@ -44,7 +42,6 @@
         .card:hover { transform: translateY(-8px); border-color: var(--gold); background: rgba(255,204,0,0.05); }
         .card i { font-size: 45px; color: var(--gold); margin-bottom: 20px; }
 
-        /* QUIZ ENGINE */
         .quiz-box { background: rgba(0,0,0,0.4); padding: 40px; border-radius: 25px; border: 1px solid #333; max-width: 900px; margin: 0 auto; }
         .opt { 
             display: block; width: 100%; padding: 20px; margin: 12px 0; background: rgba(255,255,255,0.03);
@@ -52,14 +49,12 @@
         }
         .opt:hover { background: var(--gold); color: #000; font-weight: 900; }
 
-        /* PRACTICE EXPERT MODE */
         .practice-area { background: #161a23; padding: 45px; border-radius: 30px; border-left: 5px solid var(--accent); line-height: 2; font-size: 22px; }
         .drop { border-bottom: 2px dashed var(--accent); color: var(--accent); padding: 0 12px; font-weight: 900; cursor: pointer; min-width: 130px; display: inline-block; text-align: center; }
         .chip { background: var(--accent); color: #000; padding: 10px 18px; border-radius: 8px; margin: 6px; cursor: pointer; font-weight: 900; display: inline-block; font-size: 16px; }
-        .chip:hover { background: #fff; transform: scale(1.1); }
 
-        /* CERTIFICATE */
-        #cert-modal { 
+        /* MODAL CERTIFICATE */
+        #cert-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95);
             z-index: 5000; display: none; align-items: center; justify-content: center; 
         }
@@ -67,7 +62,6 @@
             background: #fff; width: 850px; padding: 60px; border: 20px double #d4af37; 
             color: #111; text-align: center; font-family: 'serif'; position: relative;
         }
-
         #lvl-up-anim { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Orbitron'; font-size: 5rem; color: var(--gold); text-shadow: 0 0 30px var(--gold); z-index: 9999; display: none; pointer-events: none; }
     </style>
 </head>
@@ -96,7 +90,7 @@
             <div class="card" onclick="startExam('bvr')"><i class="fas fa-bomb"></i><h2>ТЕХНОЛОГИИ БВР</h2><p>50 вопросов: Искусство взрыва</p></div>
             <div class="card" onclick="startExam('mine')"><i class="fas fa-mountain"></i><h2>ГОРНОЕ ДЕЛО</h2><p>50 вопросов: Разработка</p></div>
             <div class="card" onclick="startExam('tb')"><i class="fas fa-shield-alt"></i><h2>БЕЗОПАСНОСТЬ</h2><p>50 вопросов: Охрана труда</p></div>
-            <div class="card" onclick="nav('pract')" style="grid-column: span 2; border-color:var(--accent)"><i class="fas fa-microchip" style="color:var(--accent)"></i><h2>ИНЖЕНЕРНЫЙ ПРАКТИКУМ</h2><p>Сложные расчеты в перемешку</p></div>
+            <div class="card" onclick="nav('pract')" style="grid-column: span 2; border-color:var(--accent)"><i class="fas fa-microchip" style="color:var(--accent)"></i><h2>ИНЖЕНЕРНЫЙ ПРАКТИКУМ</h2><p>Расчеты в перемешку</p></div>
         </div>
     </div>
 
@@ -113,40 +107,42 @@
 
     <div id="v-pract" class="hidden">
         <div class="practice-area">
-            <h2 style="color:var(--accent); font-family:'Orbitron';">HARDCORE PRACTICE: ТЕХПРОЦЕСС</h2>
+            <h2 style="color:var(--accent); font-family:'Orbitron';">HARDCORE PRACTICE</h2>
             <p>
                 При проходке выработки в массиве с крепостью f=14, инженер выбирает <b>(1)</b> <span class="drop" id="d0" onclick="curD=0">...</span> крепь. 
-                Для создания компенсационной полости в центре забоя проектируется <b>(2)</b> <span class="drop" id="d1" onclick="curD=1">...</span> вруб. 
-                В угольных шахтах, опасных по газу, применяются только <b>(3)</b> <span class="drop" id="d2" onclick="curD=2">...</span> взрывчатые вещества. 
-                Эффективность взрыва оценивается через показатель <b>(4)</b> <span class="drop" id="d3" onclick="curD=3">...</span>, который должен быть выше 0.9. 
-                В случае загазирования выработки метан будет скапливаться <b>(5)</b> <span class="drop" id="d4" onclick="curD=4">...</span>, так как его плотность ниже воздуха. 
-                Работы немедленно прекращаются, если концентрация CH4 достигла <b>(6)</b> <span class="drop" id="d5" onclick="curD=5">...</span>. 
-                Каждый шахтер при аварии обязан включиться в <b>(7)</b> <span class="drop" id="d6" onclick="curD=6">...</span>, а направление проходки контролирует участковый <b>(8)</b> <span class="drop" id="d7" onclick="curD=7">...</span>.
+                Для создания полости в центре забоя проектируется <b>(2)</b> <span class="drop" id="d1" onclick="curD=1">...</span> вруб. 
+                В опасных шахтах применяются только <b>(3)</b> <span class="drop" id="d2" onclick="curD=2">...</span> ВВ. 
+                Эффективность взрыва — это показатель <b>(4)</b> <span class="drop" id="d3" onclick="curD=3">...</span>. 
+                Метан скапливается <b>(5)</b> <span class="drop" id="d4" onclick="curD=4">...</span>. 
+                Работы прекращаются, если CH4 достиг <b>(6)</b> <span class="drop" id="d5" onclick="curD=5">...</span>. 
+                При аварии рабочий включает <b>(7)</b> <span class="drop" id="d6" onclick="curD=6">...</span>, а замер делает <b>(8)</b> <span class="drop" id="d7" onclick="curD=7">...</span>.
             </p>
             <div id="chip-box" style="margin-top:40px; border-top:1px solid #333; padding-top:20px;"></div>
-            <button onclick="checkPract()" class="nav-btn" style="width:100%; margin-top:30px; background:var(--success); color:#000; font-weight:900; height:60px; font-size:18px;">ПРОВЕРИТЬ РЕЗУЛЬТАТЫ</button>
+            <button onclick="checkPract()" class="nav-btn" style="width:100%; margin-top:30px; background:var(--success); color:#000; font-weight:900; height:60px;">ПРОВЕРИТЬ</button>
         </div>
     </div>
 </div>
 
-<div id="cert-modal">
+<div id="cert-overlay">
     <div class="cert-paper">
         <h1 style="letter-spacing:8px; color:#856404;">КВАЛИФИКАЦИОННЫЙ ЛИСТ</h1>
         <p>Подтверждается, что горный инженер</p>
         <div id="c-name" style="font-size:45px; font-weight:bold; border-bottom:2px solid #333; margin:20px auto; width:80%;">ИМЯ</div>
         <p>Успешно завершил аттестацию по модулю:</p>
-        <h2 id="c-topic" style="color:#b89600; font-size:32px;">ТЕМА ТЕСТИРОВАНИЯ</h2>
-        <div style="display:flex; justify-content:space-around; align-items:center; margin-top:60px;">
-            <div style="text-align:left;"><b>ID:</b> M-2026-X<br><b>SCORE:</b> 100%</div>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=PRO_MINE" width="90">
-            <div>_____________<br>ПЕЧАТЬ</div>
+        <h2 id="c-topic" style="color:#b89600; font-size:32px;">ТЕМА</h2>
+        <div style="margin:20px 0; font-size:24px; font-weight:bold;">
+            Результат: <span id="c-score-text" style="color:var(--danger)">0 / 50</span> правильных ответов
         </div>
-        <button onclick="closeCert()" style="margin-top:40px; padding:15px 40px; cursor:pointer; background:#000; color:#fff;">ВЕРНУТЬСЯ В МЕНЮ</button>
+        <div style="display:flex; justify-content:space-around; align-items:center; margin-top:40px;">
+            <div style="text-align:left;"><b>DATE:</b> 2026-03-23<br><b>STATUS:</b> VERIFIED</div>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=MINE_PRO" width="90">
+            <div>_____________<br>ПОДПИСЬ</div>
+        </div>
+        <button onclick="closeCert()" style="margin-top:40px; padding:15px 40px; cursor:pointer; background:#000; color:#fff; font-weight:bold; border:none; border-radius:5px;">ВЕРНУТЬСЯ В ГЛАВНОЕ МЕНЮ</button>
     </div>
 </div>
 
 <script>
-    // БАЗА ДАННЫХ ВОПРОСОВ (ПО 50 НА ТЕМУ)
     const db = {
         mark: { t: "МАРКШЕЙДЕРИЯ", q: [] },
         bvr: { t: "ТЕХНОЛОГИИ БВР", q: [] },
@@ -154,33 +150,32 @@
         tb: { t: "БЕЗОПАСНОСТЬ", q: [] }
     };
 
-    // Генерация уникальных вопросов (в коде для краткости шаблоны, в логике будут разные данные)
     const questionsPool = [
-        ["Что измеряет гиротеодолит?", "Истинный азимут", "Влажность", "Скорость конвейера", 0],
-        ["Допустимая невязка при сбойке квершлагов?", "50 мм", "500 мм", "10 мм", 0],
-        ["Какой прибор строит 3D-облако точек забоя?", "Лазерный сканер", "Нивелир", "Рулетка", 0],
-        ["Что такое репер?", "Точка с известной отметкой", "Тип крепи", "Инструмент взрывника", 0],
-        ["Плотность CH4 относительно воздуха?", "0.55", "1.2", "2.0", 0]
+        ["Что такое репер?", "Точка с известной координатой", "Тип отбойного молотка", "Вагончик для руды", 0],
+        ["Предельный срок действия самоспасателя при ходьбе?", "60 минут", "15 минут", "4 часа", 0],
+        ["Где скапливается метан в выработке?", "У кровли (вверху)", "У подошвы (внизу)", "В центре", 0],
+        ["Допустимый процент метана для работы?", "1.0%", "5.0%", "0.1%", 0],
+        ["Что измеряет тахеометр?", "Углы и расстояния", "Давление газа", "Крепость породы", 0]
     ];
 
     for(let k in db) {
         for(let i=1; i<=50; i++) {
             let base = questionsPool[i % questionsPool.length];
-            db[k].q.push({ q: `[ID-${k}${i}] ${base[0]}`, a: base[1], o: [base[1], base[2], base[3]].sort(() => Math.random()-0.5), c: base[1] });
+            db[k].q.push({ q: `${base[0]} (Задание #${i})`, c: base[1], o: [base[1], base[2], base[3]].sort(() => Math.random()-0.5) });
         }
     }
 
-    let state = JSON.parse(localStorage.getItem('mine_26_v2')) || { xp: 0, lvl: 1, name: "" };
+    let state = JSON.parse(localStorage.getItem('mine_26_final')) || { xp: 0, lvl: 1, name: "" };
     let curD = null;
     let activeQ = null;
     let qIdx = 0;
     let qScore = 0;
 
-    const practAnswers = ["АНКЕРНУЮ", "КЛИНОВОЙ", "ПРЕДОХРАНИТЕЛЬНЫЕ", "КИШ", "У КРОВЛИ", "1.0%", "САМОСПАСАТЕЛЬ", "МАРКШЕЙДЕР"];
+    const practAns = ["АНКЕРНУЮ", "КЛИНОВОЙ", "ПРЕДОХРАНИТЕЛЬНЫЕ", "КИШ", "У КРОВЛИ", "1.0%", "САМОСПАСАТЕЛЬ", "МАРКШЕЙДЕР"];
 
     function save() {
         state.name = document.getElementById('uname').value;
-        localStorage.setItem('mine_26_v2', JSON.stringify(state));
+        localStorage.setItem('mine_26_final', JSON.stringify(state));
         updateUI();
     }
 
@@ -224,16 +219,23 @@
     }
 
     function finishExam() {
-        addXP(qScore * 5);
+        addXP(qScore * 10);
         document.getElementById('c-name').innerText = state.name || "ИНЖЕНЕР";
         document.getElementById('c-topic').innerText = activeQ.t;
-        document.getElementById('cert-modal').style.display = 'flex';
+        document.getElementById('c-score-text').innerText = `${qScore} / 50`;
+        document.getElementById('c-score-text').style.color = qScore > 40 ? "green" : "red";
+        document.getElementById('cert-overlay').style.display = 'flex';
+    }
+
+    function closeCert() {
+        document.getElementById('cert-overlay').style.display = 'none';
+        nav('home');
     }
 
     function initPract() {
         const box = document.getElementById('chip-box');
         box.innerHTML = '';
-        [...practAnswers].sort(() => Math.random()-0.5).forEach(word => {
+        [...practAns].sort(() => Math.random()-0.5).forEach(word => {
             const c = document.createElement('div');
             c.className = 'chip'; c.innerText = word;
             c.onclick = () => { if(curD !== null) document.getElementById('d'+curD).innerText = word; }
@@ -242,27 +244,23 @@
     }
 
     function checkPract() {
-        let win = true;
-        practAnswers.forEach((ans, i) => {
-            if(document.getElementById('d'+i).innerText !== ans) win = false;
-        });
-        if(win) { addXP(300); alert("ИДЕАЛЬНО! +300 XP"); nav('home'); }
-        else alert("Ошибка в технологической схеме!");
+        let ok = true;
+        practAns.forEach((a, i) => { if(document.getElementById('d'+i).innerText !== a) ok = false; });
+        if(ok) { addXP(500); alert("ПРАКТИКУМ ПРОЙДЕН! +500 XP"); nav('home'); }
+        else alert("Ошибка в схеме!");
     }
 
-    function addXP(val) {
-        let oldLvl = state.lvl;
-        state.xp += val;
+    function addXP(v) {
+        let old = state.lvl;
+        state.xp += v;
         state.lvl = Math.floor(state.xp / 100) + 1;
-        if(state.lvl > oldLvl) {
-            const a = document.getElementById('lvl-up-anim');
-            a.style.display = 'block'; setTimeout(() => a.style.display='none', 2000);
+        if(state.lvl > old) {
+            document.getElementById('lvl-up-anim').style.display = 'block';
+            setTimeout(() => document.getElementById('lvl-up-anim').style.display = 'none', 2500);
         }
         save();
     }
 
-    function closeCert() { document.getElementById('cert-overlay').style.display = 'none'; nav('home'); }
-    
     updateUI();
 </script>
 </body>
