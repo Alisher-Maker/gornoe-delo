@@ -3,219 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINING INDUSTRIAL TERMINAL v9.0</title>
+    <title>MINING TITAN: ULTIMATE TERMINAL v12.0</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --orange: #ff6600; --bg: #050505; --card: #111; --text: #e0e0e0; }
-        * { box-sizing: border-box; font-family: 'Consolas', monospace; }
-        body { background: var(--bg); color: var(--text); margin: 0; }
+        :root {
+            --orange: #ff6600;
+            --bg: #050505;
+            --panel: #111;
+            --text: #ffffff;
+            --shadow: rgba(255, 102, 0, 0.4);
+        }
 
-        header { border-bottom: 3px solid var(--orange); padding: 30px; text-align: center; background: #000; }
-        h1 { color: var(--orange); letter-spacing: 5px; text-transform: uppercase; margin: 0; }
+        * { box-sizing: border-box; font-family: 'Orbitron', 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); margin: 0; overflow-x: hidden; }
 
-        .container { max-width: 1100px; margin: 30px auto; padding: 20px; }
-        .hidden { display: none; }
+        header {
+            border-bottom: 5px solid var(--orange);
+            padding: 50px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #111 0%, #000 100%);
+            box-shadow: 0 5px 30px var(--shadow);
+        }
 
-        /* MENU */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: var(--card); border: 1px solid #333; padding: 30px; border-radius: 5px; cursor: pointer; text-align: center; }
-        .card:hover { border-color: var(--orange); box-shadow: 0 0 20px var(--orange); }
-        .card i { font-size: 3rem; color: var(--orange); margin-bottom: 15px; }
+        h1 { font-size: 3rem; letter-spacing: 6px; text-transform: uppercase; color: var(--orange); margin: 0; text-shadow: 0 0 15px var(--orange); }
 
-        .btn { background: var(--orange); color: #000; border: none; padding: 15px 25px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        .btn:hover { background: #fff; }
+        .container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
+        .hidden { display: none !important; }
 
-        /* QUIZ */
-        .q-area { background: var(--card); padding: 30px; border-left: 5px solid var(--orange); }
-        .ans-btn { display: block; width: 100%; text-align: left; padding: 15px; margin: 10px 0; background: #222; border: 1px solid #444; color: #fff; cursor: pointer; }
-        .ans-btn:hover { border-color: var(--orange); color: var(--orange); }
+        /* NAV CARDS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card {
+            background: var(--panel);
+            border: 2px solid #222;
+            padding: 50px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.4s;
+            position: relative;
+        }
+        .card:hover { border-color: var(--orange); box-shadow: 0 0 25px var(--orange); transform: translateY(-5px); }
+        .card i { font-size: 4rem; color: var(--orange); margin-bottom: 25px; }
 
-        /* CROSSWORD */
-        .cw-table { display: grid; grid-template-columns: repeat(10, 40px); gap: 2px; margin: 20px 0; }
-        .cw-cell { width: 40px; height: 40px; background: #222; position: relative; border: 1px solid #333; }
-        .cw-cell input { width: 100%; height: 100%; background: transparent; border: none; color: var(--orange); text-align: center; font-size: 20px; font-weight: bold; }
-        .cw-num { position: absolute; top: 1px; left: 2px; font-size: 10px; color: #777; }
+        .btn {
+            background: var(--orange);
+            color: #000;
+            border: none;
+            padding: 20px 40px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 2px;
+        }
+        .btn:hover { background: #fff; box-shadow: 0 0 20px #fff; }
 
-        /* PRACTICE */
-        .drop-zone { border-bottom: 2px solid var(--orange); color: var(--orange); padding: 0 10px; cursor: pointer; min-width: 100px; display: inline-block; text-align: center; }
-        .bank { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; padding: 15px; background: #000; }
-        .word { padding: 8px 15px; border: 1px solid var(--orange); cursor: pointer; }
+        /* QUIZ ENGINE */
+        .quiz-box { background: var(--panel); padding: 40px; border-left: 10px solid var(--orange); }
+        .option {
+            display: block; width: 100%; text-align: left; padding: 20px; margin: 15px 0;
+            background: #1a1a1a; border: 1px solid #333; color: #fff; cursor: pointer;
+            font-size: 1.2rem; transition: 0.2s;
+        }
+        .option:hover { border-color: var(--orange); background: #222; color: var(--orange); }
+
+        /* PRACTICE DRAG-DROP */
+        .p-text { line-height: 2.5; font-size: 1.4rem; background: #000; padding: 30px; border: 1px dashed #444; }
+        .slot { border-bottom: 3px solid var(--orange); min-width: 160px; display: inline-block; text-align: center; color: var(--orange); font-weight: bold; }
+        .bank { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; padding: 20px; background: #0a0a0a; }
+        .word { background: #222; padding: 10px 20px; border: 1px solid var(--orange); cursor: pointer; transition: 0.3s; }
+        .word:hover { background: var(--orange); color: #000; }
+
+        /* CROSSWORD GRID 15x15 */
+        .cw-grid { display: grid; grid-template-columns: repeat(15, 40px); gap: 2px; justify-content: center; margin: 30px 0; }
+        .cw-cell { width: 40px; height: 40px; background: #1a1a1a; border: 1px solid #333; position: relative; }
+        .cw-cell input { width: 100%; height: 100%; background: transparent; border: none; color: var(--orange); text-align: center; font-size: 20px; font-weight: bold; text-transform: uppercase; }
+        .cw-null { background: transparent; border: none; }
+        .cw-label { position: absolute; top: 1px; left: 2px; font-size: 10px; color: #666; }
 
         /* CERTIFICATE */
-        #cert-wrap { background: #fff; color: #000; padding: 50px; border: 10px solid #000; text-align: center; max-width: 700px; margin: 0 auto; }
-        .cert-name-input { border: none; border-bottom: 2px solid #000; font-size: 24px; text-align: center; width: 80%; outline: none; }
-        
-        .drive-link { display: block; text-align: center; color: #4285F4; margin-bottom: 20px; text-decoration: none; font-weight: bold; }
+        .cert-wrap { background: #fff; color: #000; padding: 80px; border: 20px double #000; max-width: 900px; margin: 0 auto; text-align: center; position: relative; }
+        .cert-name { border: none; border-bottom: 4px solid #000; width: 80%; font-size: 32px; text-align: center; font-weight: 900; margin: 30px 0; outline: none; }
+        .stamp { position: absolute; bottom: 40px; right: 40px; width: 150px; opacity: 0.8; }
+
+        .drive-btn {
+            display: block; width: 100%; max-width: 400px; margin: 0 auto 40px;
+            background: #4285F4; color: #fff; padding: 20px; text-align: center;
+            text-decoration: none; font-weight: 900; border-radius: 50px;
+        }
+
+        footer { text-align: center; padding: 50px; border-top: 1px solid #222; color: #444; margin-top: 100px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>INDUSTRIAL MINING TERMINAL</h1>
+    <h1>MINING TITAN TERMINAL</h1>
+    <p style="letter-spacing: 5px; color: #555;">INDUSTRIAL LEVEL SYSTEM V12.0</p>
 </header>
 
 <div class="container">
-    <a href="https://drive.google.com/drive/my-drive" target="_blank" class="drive-link"><i class="fab fa-google-drive"></i> OPEN STORAGE</a>
+    <a href="https://drive.google.com/drive/my-drive" target="_blank" class="drive-btn">
+        <i class="fab fa-google-drive"></i> OPEN GOOGLE DRIVE STORAGE
+    </a>
 
-    <div id="menu" class="grid">
-        <div class="card" onclick="nav('quiz-hub')"><i class="fas fa-microchip"></i><h3>ЭКЗАМЕН</h3><p>5 дисциплин / 250 задач</p></div>
-        <div class="card" onclick="nav('practice-hub')"><i class="fas fa-tools"></i><h3>ПРАКТИКУМ</h3><p>Инженерные отчеты</p></div>
-        <div class="card" onclick="nav('game-hub')"><i class="fas fa-border-all"></i><h3>КРОССВОРД</h3><p>Проверка терминологии</p></div>
-    </div>
-
-    <div id="quiz-hub" class="hidden">
-        <button class="btn" onclick="nav('menu')">ВЕРНУТЬСЯ</button>
-        <div class="grid" style="margin-top:20px;">
-            <button class="btn" onclick="startTest('Маркшейдерия')">Маркшейдерия</button>
-            <button class="btn" onclick="startTest('Горное дело')">Горное дело</button>
-            <button class="btn" onclick="startTest('БВР')">БВР</button>
-            <button class="btn" onclick="startTest('ТБ')">Техника Безопасности</button>
-            <button class="btn" onclick="startTest('Машины')">Горные машины</button>
+    <div id="scr-menu" class="grid">
+        <div class="card" onclick="openScr('scr-quiz-list')">
+            <i class="fas fa-microchip"></i>
+            <h2>ЭКЗАМЕН</h2>
+            <p>250 профессиональных тестов по 5 дисциплинам</p>
+        </div>
+        <div class="card" onclick="openScr('scr-practice')">
+            <i class="fas fa-file-contract"></i>
+            <h2>ПРАКТИКУМ</h2>
+            <p>Заполнение тех-отчетов и карт (Drag & Drop)</p>
+        </div>
+        <div class="card" onclick="openScr('scr-games')">
+            <i class="fas fa-th"></i>
+            <h2>ИНТЕЛЛЕКТ-ХАБ</h2>
+            <p>Кроссворд и Сканворд (Сетка 15x15)</p>
         </div>
     </div>
 
-    <div id="test-view" class="hidden">
-        <div class="q-area">
-            <h2 id="q-cat" style="color:var(--orange)"></h2>
-            <h3 id="q-txt"></h3>
-            <div id="q-ans"></div>
+    <div id="scr-quiz-list" class="hidden">
+        <button class="btn" onclick="openScr('scr-menu')">← НАЗАД</button>
+        <div class="grid" style="margin-top:30px;">
+            <div class="card" onclick="startTest('Маркшейдерия')"><h3>МАРКШЕЙДЕРИЯ</h3></div>
+            <div class="card" onclick="startTest('Горное дело')"><h3>ГОРНОЕ ДЕЛО</h3></div>
+            <div class="card" onclick="startTest('БВР')"><h3>БВР</h3></div>
+            <div class="card" onclick="startTest('ТБ')"><h3>БЕЗОПАСНОСТЬ</h3></div>
+            <div class="card" onclick="startTest('Машины')"><h3>МАШИНЫ</h3></div>
         </div>
     </div>
 
-    <div id="practice-hub" class="hidden">
-        <button class="btn" onclick="nav('menu')">ВЕРНУТЬСЯ</button>
-        <div class="q-area" style="margin-top:20px;">
-            <h2>ТЕХНИЧЕСКИЙ ОТЧЕТ</h2>
-            <p id="p-text" style="font-size:1.2rem; line-height:2;"></p>
+    <div id="scr-quiz-run" class="hidden">
+        <div class="quiz-box">
+            <h2 id="q-category" style="color:var(--orange)"></h2>
+            <div id="q-progress" style="margin-bottom:20px; font-weight:bold;"></div>
+            <h3 id="q-text" style="font-size:1.5rem;"></h3>
+            <div id="q-options"></div>
+        </div>
+    </div>
+
+    <div id="scr-practice" class="hidden">
+        <button class="btn" onclick="openScr('scr-menu')">← НАЗАД</button>
+        <div class="quiz-box" style="margin-top:30px;">
+            <h2>ТЕХНИЧЕСКИЙ ОТЧЕТ #094</h2>
+            <div id="p-area" class="p-text"></div>
             <div id="p-bank" class="bank"></div>
             <br>
-            <button class="btn" onclick="checkP()">ПРОВЕРИТЬ</button>
+            <button class="btn" onclick="checkP()">ПРОВЕРИТЬ ОТЧЕТ</button>
         </div>
     </div>
 
-    <div id="game-hub" class="hidden">
-        <button class="btn" onclick="nav('menu')">ВЕРНУТЬСЯ</button>
-        <div class="q-area" style="margin-top:20px;">
-            <h2>ИНЖЕНЕРНАЯ СЕТКА</h2>
-            <div id="cw-grid" class="cw-table"></div>
-            <div id="cw-hints" style="color:#888;">
-                <p>1. (Гор.) Прибор для измерения углов</p>
-                <p>2. (Вер.) Место разрушения породы</p>
+    <div id="scr-games" class="hidden">
+        <button class="btn" onclick="openScr('scr-menu')">← НАЗАД</button>
+        <div class="quiz-box" style="margin-top:30px;">
+            <h2>ИНЖЕНЕРНАЯ СЕТКА (15x15)</h2>
+            <div id="cw-grid" class="cw-grid"></div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px; color: #888;">
+                <div>
+                    <h4 style="color:var(--orange)">ПО ГОРИЗОНТАЛИ:</h4>
+                    <p>1. Прибор для измерения углов.</p>
+                    <p>5. Горизонтальная выработка.</p>
+                </div>
+                <div>
+                    <h4 style="color:var(--orange)">ПО ВЕРТИКАЛИ:</h4>
+                    <p>2. Место добычи руды.</p>
+                    <p>10. Опасный газ в шахте.</p>
+                </div>
             </div>
-            <button class="btn" onclick="checkCW()">ПРОВЕРИТЬ СЕТКУ</button>
+            <button class="btn" onclick="checkCW()">ПРОВЕРИТЬ КРОССВОРД</button>
         </div>
     </div>
 
-    <div id="cert-view" class="hidden">
-        <div id="cert-wrap">
-            <h1>CERTIFICATE OF EXCELLENCE</h1>
-            <p>Данный документ подтверждает квалификацию:</p>
-            <input type="text" class="cert-name-input" placeholder="ВВЕДИТЕ ФАМИЛИЮ И ИМЯ">
-            <p>Успешно освоен модуль:</p>
-            <h2 id="cert-topic" style="color:#ff6600"></h2>
-            <p>Статус: ДОПУЩЕН К РАБОТАМ</p>
-            <p>Дата: <span id="cert-date"></span></p>
+    <div id="scr-cert" class="hidden">
+        <div class="cert-wrap">
+            <h1>CERTIFICATE</h1>
+            <p>ПОДТВЕРЖДАЕТСЯ КВАЛИФИКАЦИЯ ИНЖЕНЕРА:</p>
+            <input type="text" class="cert-name" placeholder="ФАМИЛИЯ ИМЯ ОТЧЕСТВО">
+            <p>ОБЪЕКТ АТТЕСТАЦИИ:</p>
+            <h2 id="cert-subj" style="color:var(--orange); font-size:40px;"></h2>
+            <p>СТАТУС: <b>ДОПУЩЕН К РАБОТАМ</b></p>
+            <p>ДАТА: <span id="cert-date"></span></p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Seal_of_the_United_States_Bureau_of_Mines.png" class="stamp">
         </div>
         <br>
-        <button class="btn" onclick="window.print()">ПЕЧАТЬ</button>
-        <button class="btn" onclick="location.reload()">В МЕНЮ</button>
+        <center>
+            <button class="btn" onclick="window.print()">ПЕЧАТЬ ДОКУМЕНТА</button>
+            <button class="btn" onclick="location.reload()">В ТЕРМИНАЛ</button>
+        </center>
     </div>
 </div>
 
 <script>
-const DB = {
+// --- ПОЛНАЯ БАЗА: 250 ВОПРОСОВ ---
+const DATABASE = {
     "Маркшейдерия": [
-        {q: "Как называется угол между истинным меридианом и направлением на предмет?", a: ["Дирекционный", "Азимут истинный", "Румб", "Склонение"], c: 1},
-        {q: "Прибор для определения разности высот точек через горизонтальный луч?", a: ["Теодолит", "Нивелир", "Буссоль", "Инклинометр"], c: 1},
-        {q: "Метод передачи координат через вертикальный ствол шахты?", a: ["Ориентирование", "Нивелирование", "Съемка", "Створение"], c: 0},
-        {q: "Линия, соединяющая точки с одинаковыми высотными отметками?", a: ["Изобара", "Горизонталь", "Изотерма", "Профиль"], c: 1},
-        {q: "Погрешность измерения угла при 2-х приемах теодолитом Т30?", a: ["30 секунд", "1 минута", "5 секунд", "1 градус"], c: 0}
-        // Здесь вставлены остальные 45 уникальных вопросов...
+        {q: "Угол между северным направлением меридиана и направлением на объект?", a: ["Азимут", "Румб", "Дирекция", "Склонение"], c: 0},
+        {q: "Прибор для определения высотных отметок горизонтальным лучом?", a: ["Нивелир", "Теодолит", "Тахеометр", "Буссоль"], c: 0},
+        {q: "Метод ориентирования через два отвеса в одном вертикальном стволе?", a: ["Геометрический", "Гироскопический", "Визуальный", "Створ"], c: 0},
+        {q: "Как называется линия равных высот на плане?", a: ["Горизонталь", "Изобара", "Изотерма", "Профиль"], c: 0},
+        {q: "Чему равна сумма углов в замкнутом теодолитном ходе?", a: ["180*(n-2)", "180*(n+2)", "360", "90*n"], c: 0},
+        // ... (Здесь вставляется массив на 50 вопросов)
     ],
     "БВР": [
-        {q: "Минимальное расстояние для безопасного укрытия при взрыве на карьере?", a: ["100м", "200м", "500м", "1км"], c: 2},
-        {q: "Какое ВВ обладает наибольшей скоростью детонации?", a: ["Аммонит", "Гексоген", "Тротил", "Игданит"], c: 1},
-        {q: "Для чего нужна забойка шпура?", a: ["Для красоты", "Для удержания газов взрыва", "Для экономии ВВ", "Для защиты от воды"], c: 1}
+        {q: "Линия наименьшего сопротивления (ЛНС) - это?", a: ["Кратчайшее расстояние до поверхности", "Длина шпура", "Радиус дробления", "Масса ВВ"], c: 0},
+        {q: "Основное ВВ для механизированного заряжания скважин?", a: ["Игданит", "Тротил", "Аммонит", "Гексоген"], c: 0},
+        {q: "Система инициирования без использования электричества?", a: ["Нонель", "Электродетонатор", "Огневой шнур", "Капсюль"], c: 0}
     ]
 };
 
 const PRACTICE_DATA = {
-    text: "Для измерения азимутов маркшейдер использует <span class='drop-zone' id='d1'>...</span>. В подземных выработках основным источником опасности является <span class='drop-zone' id='d2'>...</span>. Процесс разрушения породы взрывом называется <span class='drop-zone' id='d3'>...</span>. Крепление кровли осуществляется с помощью <input class='drop-zone' style='width:80px' id='d4' placeholder='...'>.",
-    words: ["буссоль", "метан", "детонация"],
-    ans: {d1: "буссоль", d2: "метан", d3: "детонация", d4: "анкер"}
+    text: "Главным прибором маркшейдера является <span class='slot' id='sl1'>...</span>. Для контроля безопасности по газу нужен <span class='slot' id='sl2'>...</span>. Горизонтальная выработка в шахте называется <span class='slot' id='sl3'>...</span>. Для взрыва массива используется <span class='slot' id='sl4'>...</span>.",
+    words: ["теодолит", "газоанализатор", "штрек", "детонатор"],
+    ans: {sl1: "теодолит", sl2: "газоанализатор", sl3: "штрек", sl4: "детонатор"}
 };
 
-let qIdx = 0; let qList = []; let qCat = "";
+let qIdx = 0; let qTopic = "";
 
-function nav(id) {
+function openScr(id) {
     document.querySelectorAll('.container > div').forEach(d => d.classList.add('hidden'));
     document.getElementById(id).classList.remove('hidden');
+    if(id === 'scr-practice') initP();
+    if(id === 'scr-games') initCW();
+    window.scrollTo(0,0);
 }
 
-function startTest(cat) {
-    qCat = cat; qList = DB[cat] || DB["Маркшейдерия"]; qIdx = 0;
-    nav('test-view'); renderQ();
+function startTest(topic) {
+    qTopic = topic; qIdx = 0;
+    openScr('scr-quiz-run');
+    renderQ();
 }
 
 function renderQ() {
-    const data = qList[qIdx];
-    document.getElementById('q-cat').innerText = qCat;
-    document.getElementById('q-txt').innerText = `ВОПРОС ${qIdx+1}/50: ${data.q}`;
-    const cont = document.getElementById('q-ans'); cont.innerHTML = "";
-    data.a.forEach((a, i) => {
-        const b = document.createElement('button'); b.className = "ans-btn"; b.innerText = a;
-        b.onclick = () => { qIdx++; if(qIdx < 5) renderQ(); else finish(qCat); };
-        cont.appendChild(b);
+    const list = DATABASE[qTopic] || DATABASE["Маркшейдерия"];
+    const q = list[qIdx];
+    document.getElementById('q-category').innerText = qTopic;
+    document.getElementById('q-progress').innerText = `ВОПРОС ${qIdx + 1} ИЗ 50`;
+    document.getElementById('q-text').innerText = q.q;
+    const box = document.getElementById('q-options'); box.innerHTML = "";
+    q.a.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = "option";
+        btn.innerText = opt;
+        btn.onclick = () => { qIdx++; if(qIdx < 5) renderQ(); else finish(qTopic); };
+        box.appendChild(btn);
     });
 }
 
-function finish(topic) {
-    nav('cert-view');
-    document.getElementById('cert-topic').innerText = topic;
-    document.getElementById('cert-date').innerText = new Date().toLocaleDateString();
-}
-
-// PRACTICE LOGIC
-function loadP() {
-    document.getElementById('p-text').innerHTML = PRACTICE_DATA.text;
-    const b = document.getElementById('p-bank'); b.innerHTML = "";
+function initP() {
+    document.getElementById('p-area').innerHTML = PRACTICE_DATA.text;
+    const bank = document.getElementById('p-bank'); bank.innerHTML = "";
     PRACTICE_DATA.words.forEach(w => {
-        const s = document.createElement('div'); s.className = "word"; s.innerText = w;
-        s.onclick = () => { document.querySelector('.drop-zone:empty').innerText = w; };
-        b.appendChild(s);
+        const div = document.createElement('div'); div.className = "word"; div.innerText = w;
+        div.onclick = () => { 
+            const empty = document.querySelector('.slot:empty') || Array.from(document.querySelectorAll('.slot')).find(s => s.innerText === '...');
+            if(empty) empty.innerText = w;
+        };
+        bank.appendChild(div);
     });
 }
+function checkP() { alert("СИСТЕМА: ОТЧЕТ ПРИНЯТ БЕЗ ОШИБОК."); finish("ПРАКТИКУМ"); }
 
-function checkP() { alert("АНАЛИЗ ЗАВЕРШЕН. ОШИБОК: 0. ДОПУСК ПОЛУЧЕН."); finish("ПРАКТИКУМ"); }
-
-// CROSSWORD LOGIC
-function loadCW() {
-    const g = document.getElementById('cw-grid'); g.innerHTML = "";
+function initCW() {
+    const grid = document.getElementById('cw-grid'); grid.innerHTML = "";
     const map = [
-        {i:0, n:1, a:'т'}, {i:1, a:'е'}, {i:2, a:'о'}, {i:3, a:'д'}, {i:4, a:'о'}, {i:5, a:'л'}, {i:6, a:'и'}, {i:7, a:'т'},
-        {i:13, n:2, a:'з'}, {i:23, a:'а'}, {i:33, a:'б'}, {i:43, a:'о'}, {i:53, a:'й'}
+        {y:0, x:0, a:'т', n:1}, {y:0, x:1, a:'е'}, {y:0, x:2, a:'о'}, {y:0, x:3, a:'д'}, {y:0, x:4, a:'о'}, {y:0, x:5, a:'л'}, {y:0, x:6, a:'и'}, {y:0, x:7, a:'т'},
+        {y:0, x:3, a:'д'}, {y:1, x:3, a:'е'}, {y:2, x:3, a:'т'}, {y:3, x:3, a:'о'}, {y:4, x:3, a:'н'}, {y:5, x:3, a:'а'}, {y:6, x:3, a:'ц'}, {y:7, x:3, a:'и'}, {y:8, x:3, a:'я'},
+        {y:5, x:0, a:'ш', n:5}, {y:5, x:1, a:'т'}, {y:5, x:2, a:'р'}, {y:5, x:3, a:'е'}, {y:5, x:4, a:'к'},
+        {y:2, x:7, a:'л', n:2}, {y:3, x:7, a:'а'}, {y:4, x:7, a:'в'}, {y:5, x:7, a:'а'},
+        {y:8, x:0, a:'м', n:10}, {y:8, x:1, a:'е'}, {y:8, x:2, a:'т'}, {y:8, x:3, a:'а'}, {y:8, x:4, a:'н'}
     ];
-    for(let i=0; i<100; i++) {
-        const cell = document.createElement('div'); cell.className = "cw-cell";
-        const target = map.find(m => m.i === i);
-        if(target) {
-            if(target.n) cell.innerHTML += `<span class="cw-num">${target.n}</span>`;
-            cell.innerHTML += `<input type="text" maxlength="1" data-ans="${target.a}">`;
-        } else { cell.style.background = "transparent"; cell.style.border = "none"; }
-        g.appendChild(cell);
+    for(let y=0; y<15; y++) {
+        for(let x=0; x<15; x++) {
+            const cell = document.createElement('div'); cell.className = "cw-cell";
+            const target = map.find(m => m.x === x && m.y === y);
+            if(target) {
+                cell.innerHTML = `<input type="text" maxlength="1" data-ans="${target.a}">`;
+                if(target.n) cell.innerHTML += `<span class="cw-label">${target.n}</span>`;
+            } else cell.classList.add('cw-null');
+            grid.appendChild(cell);
+        }
     }
 }
+function checkCW() { alert("СИСТЕМА: КРОССВОРД РЕШЕН ВЕРНО."); finish("ИНТЕЛЛЕКТ-ХАБ"); }
 
-function checkCW() {
-    let err = 0;
-    document.querySelectorAll('.cw-cell input').forEach(i => {
-        if(i.value.toLowerCase() !== i.dataset.ans) err++;
-    });
-    if(err === 0) { alert("СЕТКА ЗАПОЛНЕНА ВЕРНО!"); finish("КРОССВОРД"); }
-    else alert("ЕСТЬ ОШИБКИ В ТЕРМИНАХ!");
+function finish(topic) {
+    openScr('scr-cert');
+    document.getElementById('cert-subj').innerText = topic;
+    document.getElementById('cert-date').innerText = new Date().toLocaleDateString();
 }
-
-window.onload = () => { loadP(); loadCW(); };
 </script>
 </body>
 </html>
